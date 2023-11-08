@@ -1,0 +1,276 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+/*Navigation Area*/
+.navbar {
+    background-color: rgba(25, 54, 49, 0.2);
+    padding: 0 2.5%;
+}
+
+.nav-item a {
+    display: flex;
+}
+
+.nav-link.text-dark:hover {
+    color: white !important;
+}
+
+.nav-logo {
+    position: relative;
+    width: 120px;
+}
+
+
+.btn-light {
+    border-radius: 5%;
+}
+
+svg {
+    background-color: none;
+}
+
+/*Home Page*/
+
+.navbar {
+    background-color: rgba(25, 54, 49, 0.23);
+}
+
+.top-section {
+    background-image: url('https://i.ibb.co/Z6ZybsT/dan-meyers-IQVFVH0ajag-unsplash.jpg');
+    background-size: 100% 100%;
+    background-position: center;
+    margin-top: -250px;
+    color: #fff;
+    text-align: center;
+    padding: 430px 0;
+    height: 500px;
+    background-color: #a4c3b2;
+}
+
+.custom-button {
+    background-color: rgb(25, 54, 49);
+    /* margin: 50px; */
+    color: white;
+    justify-content: center;
+    padding: .8%;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+    .custom-button:hover {
+        color: #fdf8f3;
+    }
+
+
+.button .custom-button {
+    justify-content: center;
+}
+
+.btn-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 3%;
+    padding-top: 5%;
+}
+
+.h3 {
+    font-weight: 200;
+}
+
+.intro {
+    margin: 2%;
+}
+
+.text-center h3 {
+    padding-top: 20%;
+}
+
+.card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    padding-bottom: 2%;
+    width: 15% !important;
+    min-height: 35% !important;
+}
+
+
+    .card:hover {
+        transform: scale(1.05);
+    }
+
+
+.card-image {
+    position: absolute;
+}
+
+.hero-img {
+    border-radius: 20px;
+    margin-top: -10%;
+}
+
+.recipes {
+    padding: 5%;
+}
+
+.home p {
+    color: black;
+}
+
+/*User Profile*/
+.badge-container {
+    background-color: #a4c3b2;
+    color: white;
+    width: 45%;
+    padding: 2%;
+    border-radius: 20px;
+    margin: 10% 55%;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    transition: box-shadow 0.3s;
+}
+
+.badge {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+h3 {
+    padding: 2%;
+    text-align: center;
+}
+
+p {
+    color: white;
+}
+
+.fa {
+    font-size: 20px;
+    margin-right: 8px;
+    color: white;
+}
+
+.user-card {
+    position: relative;
+    width: 350px;
+    height: 190px;
+    background: #a4c3b2;
+    border-radius: 20px;
+    box-shadow: 0 35px 80px white;
+    text-align: center;
+    transition: 0.5s;
+    float: left;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4)
+}
+
+    .user-card:hover {
+        height: 450px;
+        width: 500px;
+    }
+
+        .user-card:hover .user-image {
+            width: 250px;
+            height: 250px;
+        }
+
+.user-image {
+    left: 50%;
+    transform: translateX(-50%);
+    top: -50px;
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    border-radius: 20px;
+    background: white;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.35);
+    overflow: hidden;
+    transition: 0.5s
+}
+
+    .user-image img {
+        position: absolute;
+    }
+
+.user-card .content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: 1%;
+    color: #193631;
+}
+
+    .user-card .content .details {
+        padding: 40px;
+        text-align: center;
+        width: 100%;
+        transition: 0.5s;
+    }
+
+    .user-card .content h2 {
+        font-size: 1.25em;
+        font-weight: 600;
+        line-height: 1.2em;
+    }
+
+.details h2 span {
+    font-size: 0.75em;
+    font-weight: 500;
+    color: #193631;
+}
+
+.badge i {
+    margin-bottom: 10px;
+    color: #193631;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+
+/*SignUp Form*/
+
+.signup container {
+    width: 100%;
+}
+
+.btn {
+    background-color: #193631;
+}
+
+footer {
+    display: none !important;
+}
+
+
+/*LogIn*/
+
+.login container {
+    padding: 15%;
+}
+
+.login btn {
+    padding: 5%;
+    align-content: center;
+}
