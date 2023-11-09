@@ -1,16 +1,52 @@
 ﻿using Agrisustain_Jamaica.Models;
+using Agrisustain_Jamaica.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace Agrisustain_Jamaica.Controllers
 {
+    /// <summary>
+    /// CROP TRACKING VIEW MODEL CLASS FOR RETURNING A SINGLE SERVICES OBJECT - START
+    /// </summary>
+    public class ViewModels
+    {
+        public object? ListedIrrigationService { get; set; }
+
+        public object? ListedCropCareService { get; set; }
+
+        public object? ListedPlantingGuidesService { get; set; }
+    }
+    /// <summary>
+    /// CROP TRACKING VIEW MODEL CLASS FOR RETURNING A SINGLE SERVICES OBJECT - END
+    /// </summary>
+
+
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        
+        /// <summary>
+        /// SERVICES DATA - FOR DEPENDENCY INJECTION RE CROP INFO BLOG POSTS - START
+        /// </summary>
+        /// <param name="logger"></param>
+        private readonly ILogger<JSONFileIrrigationService>? _irrigationService;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ILogger<JSONFileCropCareService>? _cropcareService;
+
+        private readonly ILogger<JSONFilePlantingGuidesService>? _plantingGuidesService;
+
+        /// <summary>
+        /// SERVICES DATA - FOR DEPENDENCY INJECTION RE CROP INFO BLOG POSTS - END
+        /// </summary>
+
+        public HomeController(ILogger<HomeController> logger, ILogger<JSONFileIrrigationService> IrrigationService,
+            ILogger<JSONFilePlantingGuidesService>? plantingGuidesService,
+            ILogger<JSONFileCropCareService>? cropcareService)
         {
             _logger = logger;
+            _irrigationService = IrrigationService;
+            _plantingGuidesService = plantingGuidesService;
+            _cropcareService = cropcareService;
         }
 
         public IActionResult Index()
@@ -76,6 +112,40 @@ namespace Agrisustain_Jamaica.Controllers
         {
             return View();
         }
+
+        /// CROP TRACKING DATA - START
+
+        public IActionResult CropInfoBlogs()
+        {
+            //Create a view model to pass multiple data to view since it only accepts 1 parameter
+
+            ViewModels viewModels = new ViewModels
+            {
+                ListedIrrigationService = _irrigationService,
+                ListedPlantingGuidesService = _plantingGuidesService,
+                ListedCropCareService = _cropcareService,
+            };
+
+            return View(viewModels);
+
+        }
+
+        public IActionResult Irrigation()
+        {
+            return View("CropInfo/Irrigation");
+        }
+
+        public IActionResult CropCare()
+        {
+            return View("CropInfo/CropCare");
+        }
+
+        public IActionResult PlantingGuides()
+        {
+            return View("CropInfo/PlantingGuides");
+        }
+
+        /// CROP TRACKING DATA - END
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

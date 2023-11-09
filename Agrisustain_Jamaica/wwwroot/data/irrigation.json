@@ -1,0 +1,41 @@
+[
+  {
+    "id": "crop_irrigation",
+    "main_heading": "Irrigation",
+    "img": "",
+    "intro": [
+      "According to research, irrigation has been a key aspect of agriculture for over 5,000 years and has been developed by many cultures around the world. Irrigation can also help to revegetate disturbed soils in dry areas and during times of below-average rainfall. In addition to these uses, irrigation is also employed to protect crops from frost, suppress weed growth in grain fields, and prevent soil consolidation.",
+      "Water is an essential element for survival. About seventy per cent of the human body consists of water while plants contain almost 90 per cent of water. Still, we have to depend on some outside sources to fulfil the water requirements of our body.",
+
+      "Similarly, crops require water for their growth and development. The process of supplying water to the crops is known as irrigation."
+    ],
+    "sub-headings": [
+      {
+        "_id": "1",
+        "sub-heading": "Types of Irrigation",
+        "info": [ "There are different types of irrigation practised for improving crop yield. These types of irrigation systems are practised based on the different types of soils, climates, crops and resources. The main types of irrigation followed by farmers include:" ]
+      },
+      {
+        "_id": "2",
+        "sub-heading": "Surface Irrigation",
+        "info": [ "In this system, no irrigation pump is involved. Here, water is distributed across the land by gravity." ]
+      },
+      {
+        "_id": "3",
+        "sub-heading": "Localized Irrigation",
+        "info": [ "In this system, water is applied to each plant through a network of pipes under low pressure." ]
+      },
+      {
+        "_id": "4",
+        "sub-heading": "Sprinkler Irrigation",
+        "info": [ "Water is distributed from a central location by overhead high-pressure sprinklers or from sprinklers from the moving platform." ]
+      },
+      {
+        "_id": "5",
+        "sub-heading": "Drip Irrigation",
+        "info": [ "In this type, drops of water are delivered near the roots of the plants. This type of irrigation is rarely used as it requires more maintenance." ]
+      }
+    ]
+  }
+]
+
