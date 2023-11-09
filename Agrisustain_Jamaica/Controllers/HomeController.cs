@@ -121,6 +121,22 @@ namespace Agrisustain_Jamaica.Controllers
             return View();
         }
 
+        public IActionResult UserSelector()
+        {
+            return View();
+        }
+        public IActionResult ManageGarden()
+        {
+            return View();
+        }
+
+        public IActionResult StarterGuide()
+        {
+            return View();
+        }
+
+
+
         /// CROP TRACKING DATA - START
 
         public IActionResult CropInfoBlogs()
