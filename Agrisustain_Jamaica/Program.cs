@@ -1,6 +1,12 @@
+using Agrisustain_Jamaica.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddTransient<JSONFileIrrigationService, JSONFileIrrigationService>();
+builder.Services.AddTransient<JSONFilePlantingGuidesService, JSONFilePlantingGuidesService>();
+builder.Services.AddTransient<JSONFileCropCareService, JSONFileCropCareService>();
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

@@ -1,0 +1,85 @@
+[
+  {
+
+    "_id": "planting_guides",
+    "main_heading": "Planting Guides: When to plant your Crops",
+    "intro": [
+       "AgriSustain gardening calendar tells you the ideal times to plant vegetables, fruit, and other crops in your area during the Fall and Spring Seasons." 
+    ],
+    "crops": [
+      {
+        "id": "1",
+        "crop": "Banana",
+        "popularity":  "1",
+        "seasons": [ "Spring" ],
+        "info": [
+           "The best time to plant sweet potatoes is in the spring, right after all the danger of frost has come and gone. Check that the soil is over 18.33°C and nighttime temperatures do not drop below 12.8°C. In most growing zones, this is around three to four weeks after the last frost."
+        ]
+      },
+      {
+        "id": "2",
+        "crop": "Yam",
+        "popularity": "5",
+        "seasons": [ "Spring", "Summer" ],
+        "info": [
+            "Yams are frost-tender and require warm temperatures to grow. The best time to plant yams is when the risk of frost has passed, which is around October-November. The rainy season in Jamaica starts in May and ends in November. Therefore, it’s best to plant yams within these months."
+        ]
+      },
+      {
+        "id": "3",
+        "crop": "Dasheen",
+        "popularity": "8",
+        "seasons": [ "Spring", "Summer" ],
+        "info": [
+            "Dasheen grows well in warm and hot, humid areas, that have no frosts and mild winter. Dasheen needs a long growing period to produce large tubers. Deep and frequent watering is required as dryness will cause the plants to stop growing. It grows best in full sun but can handle some shade. It can be grown in cooler areas by digging up the tubers and storing them in a cool dry place. Dasheen is ruined by frost and extended periods of cold weather. There are many varieties to choose from. It is a large plant and requires plenty of space."
+        ]
+      },
+      {
+        "id": "4",
+        "crop": "Pepper",
+        "popularity": "4", 
+        "seasons": [ "Spring", "Summer" ],
+        "info": [
+            "Peppers do not like cold weather. Peppers are warm-season annuals that grow best at temperatures of 70-85°C during the day and 60-70°C during the night. They generally require a long growing season and grow very slowly during cool periods. So, the time for planting is after the soil has warmed to 65°C or more."
+        ]
+      },
+      {
+        "id": "5",
+        "crop": "Ginger",
+        "popularity":  "7",
+        "seasons": [ "Spring", "Summer" ],
+        "info": [
+          "According to The Old Farmer’s Almanac, ginger is the 2023 Herb of the Year™. Ginger is a tropical plant that grows well in warm temperatures ranging from 70°F to 90°F (21°C to 32°C). The best time to plant ginger is in early spring, after the last frost, when the temperature is warm enough." 
+        ]
+      },
+      {
+        "id": "6",
+        "crop": "Tomato",
+        "popularity": "6",
+        "seasons": [ "Spring" ],
+        "info": [
+            "Tomatoes are warm-season, frost-susceptible plants that need a growing season of at least three months. In warm, frost-free regions, tomatoes can be grown throughout the year; in temperate and cooler climes, the best time to plant is from the end of winter right through spring."
+        ]
+      },
+      {
+        "id": "7",
+        "crop": "Sweet Potato",
+        "popularity":  "2",
+        "seasons": [ "Spring" ],
+        "info": [
+            "A few sweet potato plants can produce a generous harvest of this nutritious, sweet-tasting root vegetable. Potatoes require warm weather and lanted early in the spring, sweet potatoes are harvested in the fall."
+        ]
+      },
+      {
+        "id": "8",
+        "crop": "Irish Potato",
+        "popularity":  "3",
+        "seasons": ["Winter", "Spring"],
+        "info": [
+          "Potatoes do not grow well in extreme heat or dry soil. High temperatures can cause mature potatoes to discolor inside. Plant potatoes as early as 4 to 6 weeks before the average last frost in spring or any time after the soil temperature warms to 40°F (4.4°C).",
+            "Potatoes need 75 to 135 or more cool, frost-free days to reach harvest depending on the variety."
+        ]
+      }
+    ]
+  }
+]

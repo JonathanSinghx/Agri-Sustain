@@ -1,5 +1,5 @@
 html {
-  font-size: 14px;
+    font-size: 16px;
 }
 
 @media (min-width: 768px) {
@@ -67,11 +67,9 @@ svg {
     background-color: rgb(25, 54, 49);
     /* margin: 50px; */
     color: white;
-    justify-content: center;
-    padding: .8%;
-    display: flex;
-    flex-direction: row;
     width: 100%;
+    max-width: 200px;
+    margin-inline: auto;
 }
 
     .custom-button:hover {
@@ -80,15 +78,20 @@ svg {
 
 
 .button .custom-button {
-    justify-content: center;
+    /*justify-content: center;*/
 }
 
 .btn-section {
-    display: flex;
+    padding-block: 5em;
+    /*display: flex;
     flex-direction: row;
     justify-content: center;
     margin: 3%;
-    padding-top: 5%;
+    padding-top: 5%;*/
+}
+
+.btn-section > .row >* {
+    flex: 1 0 30%;
 }
 
 .h3 {
@@ -96,22 +99,56 @@ svg {
 }
 
 .intro {
-    margin: 2%;
+    text-align: center;
+    background-color: rgba(25, 54, 49, 0.23);
+    padding-block: 5em;
+    height: 100vh;
 }
 
 .text-center h3 {
     padding-top: 20%;
 }
 
-.card {
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
-    padding-bottom: 2%;
-    width: 15% !important;
-    min-height: 35% !important;
+.cards-container > * {
+    /*flex-basis: 15%;*/
+    
 }
+
+.card >* {
+
+}
+
+.card {
+    color: #fff;
+    text-shadow: 2px 2px 5px #000;
+    position: relative;
+    background-image: url("https://picsum.photos/200");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #ffffff;
+    border-radius: 1em;
+    /*box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);*/
+    box-shadow: 5px 10px 22px 0px rgba(0,0,0,0.19);
+    -webkit-box-shadow: 5px 10px 22px 0px rgba(0,0,0,0.19);
+    -moz-box-shadow: 5px 10px 22px 0px rgba(0,0,0,0.19);
+    transition: transform 0.3s;
+    padding-block: 2em;
+    border: none;
+    overflow: hidden;
+    isolation: isolate;
+    /*width: 15% !important;*/
+    /*padding-bottom: 2%;
+    width: 15% !important;
+    min-height: 35% !important;*/
+}
+
+    .card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0,0,0,0.15);
+        z-index: -1;
+    }
 
 
     .card:hover {
@@ -133,7 +170,7 @@ svg {
 }
 
 .home p {
-    color: black;
+    /*color: black;*/
 }
 
 /*User Profile*/
@@ -154,12 +191,12 @@ svg {
 }
 
 h3 {
-    padding: 2%;
-    text-align: center;
+    /*padding: 2%;
+    text-align: center;*/
 }
 
 p {
-    color: white;
+    /*color: white;*/
 }
 
 .fa {
@@ -260,7 +297,7 @@ a {
 }
 
 footer {
-    display: none !important;
+    /*display: none !important;*/
 }
 
 
@@ -274,3 +311,6 @@ footer {
     padding: 5%;
     align-content: center;
 }
+
+
+

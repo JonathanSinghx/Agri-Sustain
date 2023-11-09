@@ -1,0 +1,55 @@
+[
+  {
+    "_id": "crop_care",
+    "main_heading": "Crop Care Instructions",
+    "intro": [
+      "Crop care is a very important aspect of agriculture, and it's pertinence must be taken into deep consideration when farming.",
+      "Crop care includes fertilization, pesticide application,temperature control, and more.",
+      "View quick reference guides for plant care instructions."
+    ],
+    "guides": [
+      {
+        "id": "1",
+        "name": "Cultivation",
+        "info": [
+            "Cultivation refers to stirring the soil between rows of vegetable plants. Because weed control is the most important function of cultivation, this work should be performed at the most favourable time for weed killing, when the weeds are breaking through the soil surface. When the plants are grown on ridges, it is necessary to cover the basal plant portion with soil in the case of such vegetables as asparagus, carrot, garlic, leek, onion, potato, sweet corn, and sweet potato."
+        ]
+      },
+      {
+        "id": "2",
+        "name": "Fertilizer Application",
+        "info": [
+          "Soil fertility is the capacity of the soil to supply the nutrients necessary for good crop production, and fertilizing is the addition of nutrients to the soil. Methods of fertilizer application include scattering and mixing with the soil before planting; application with a drill below the surface of the soil at the time of planting; row application before or at planting time; and row application during plant growth, also called side-dressing."
+        ]
+      },
+      {
+        "id": "3",
+        "name": "Weed control",
+        "info": [
+            "Weeds (plants growing where they are not wanted) reduce crop yield, increase production cost, and may harbour insects and diseases that attack crop plants. Methods employed to control weeds include hand weeding, mechanical cultivation, application of chemicals acting as herbicides, and a combination of mechanical and chemical means."
+        ]
+      },
+      {
+        "id": "4",
+        "name": "Frost protection",
+        "info": [
+          "Frost protection may be accomplished by increasing the amount of heat radiated from the soil when frost is likely to occur. Irrigation on the day before a predicted frost provides additional moisture in the soil to increase the amount of heat given off as infrared rays. This extra heat protects the plants from frost injury. A continuous supply of water provided by sprinkler irrigation may also protect plants from frost. "
+        ]
+      },
+      {
+        "id": "5",
+        "name": "Growth regulators",
+        "info": [
+          "It is sometimes desirable to retard or accelerate maturity in vegetable crops. A chemical compound may be applied to prevent sprouting in onion crops. It is applied in the field sufficiently early for absorption by the still-green foliage but late enough to avoid suppressing the bulb yield. Another substance may be used to end the dormancy, or rest period, of newly harvested potato tubers intended for planting."
+        ]
+      },
+      {
+        "id": "6",
+        "name": "Precooling",
+        "info": [
+          "Precooling, the rapid removal of heat from freshly harvested vegetables, allows the grower to harvest produce at optimum maturity with greater assurance that it will reach the consumer at maximum quality. Precooling benefits the vegetable by slowing the natural deterioration that starts shortly after harvest, slowing the growth of decay organisms and reducing wilt by retarding water loss."
+        ]
+      }
+    ]
+  }
+]
