@@ -120,6 +120,10 @@ namespace Agrisustain_Jamaica.Controllers
         {
             return View();
         }
+        public IActionResult weatherData() 
+        {
+            return View();
+        }
 
         public IActionResult UserSelector()
         {
