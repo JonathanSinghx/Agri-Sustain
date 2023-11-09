@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewData["Title"] = "agriInfo";
+}
+
+<h1>Agriculture Information</h1>
+@using System.Text
+@using System.Text.Json
+@using System.Text.Json.Nodes
+@using System.Text.Json.Serialization
+@{
+    <div class="card">
+        @Html.Label("Agricultural Best Practices")<br />
+        @Html.TextArea("abp",show_abp(),new{rows=5,cols=100})<br />
+    </div>
+    <div class="card">
+        @Html.Label("Crop Management Tips")<br />
+        @Html.TextArea("tips",show_tips(),new{rows=3,cols=100})<br />
+    </div>
+    <div class="card">
+        @Html.Label("Pest Control Strategies")<br />
+        @Html.TextArea("pcs",show_pcs(),new{rows=5,cols=100})
+    </div>
+}
+@functions {
+    public string show_abp()
+    {
+        string abp = null;
+        string info = File.ReadAllText(@"C:\Users\StephenGentles\source\repos\WebApplication4\WebApplication4\best_practices.json");
+        var j_data = JsonSerializer.Deserialize<JsonObject>(info);
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 3; i++)
+        {
+            sb.Append(j_data["abp"][i]["bp"] + " ");
+        }
+        abp = sb.ToString();
+        return abp;
+    }
+    public string show_tips()
+    {
+        string tip = null;
+        Random rand = new Random();
+        string info = File.ReadAllText(@"C:\Users\StephenGentles\source\repos\WebApplication4\WebApplication4\crop_management.json");
+        var j_data = JsonSerializer.Deserialize<JsonObject>(info);
+        int i = rand.Next(3);
+        tip = j_data["tips"][i]["tip"].ToString();
+        return tip;
+    }
+    public string show_pcs()
+    {
+        string pcs = null;
+        string info = File.ReadAllText(@"C:\Users\StephenGentles\source\repos\WebApplication4\WebApplication4\pest_control.json");
+        var j_data = JsonSerializer.Deserialize<JsonObject>(info);
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 3; i++)
+        {
+            sb.Append(j_data["pcs"][i]["cs"] + " ");
+        }
+        pcs = sb.ToString();
+        return pcs;
+    }
+}

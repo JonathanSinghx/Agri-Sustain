@@ -109,22 +109,8 @@ svg {
     padding-top: 20%;
 }
 
-.cards-container > * {
-    /*flex-basis: 15%;*/
-    
-}
-
-.card >* {
-
-}
 
 .card {
-    color: #fff;
-    text-shadow: 2px 2px 5px #000;
-    position: relative;
-    background-image: url("https://picsum.photos/200");
-    background-repeat: no-repeat;
-    background-size: cover;
     background-color: #ffffff;
     border-radius: 1em;
     /*box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);*/
@@ -134,21 +120,12 @@ svg {
     transition: transform 0.3s;
     padding-block: 2em;
     border: none;
-    overflow: hidden;
-    isolation: isolate;
     /*width: 15% !important;*/
     /*padding-bottom: 2%;
     width: 15% !important;
     min-height: 35% !important;*/
 }
 
-    .card::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: rgba(0,0,0,0.15);
-        z-index: -1;
-    }
 
 
     .card:hover {
@@ -223,10 +200,10 @@ p {
         width: 500px;
     }
 
-        .user-card:hover .user-image {
+   .user-card:hover .user-image {
             width: 250px;
             height: 250px;
-        }
+   }
 
 .user-image {
     left: 50%;
@@ -242,7 +219,7 @@ p {
     transition: 0.5s
 }
 
-    .user-image img {
+.user-image img {
         position: absolute;
     }
 

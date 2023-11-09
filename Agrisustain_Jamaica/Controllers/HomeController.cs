@@ -112,6 +112,14 @@ namespace Agrisustain_Jamaica.Controllers
         {
             return View();
         }
+        public IActionResult farmersHub() 
+        {
+            return View();
+        }
+        public IActionResult agriInfo() 
+        {
+            return View();
+        }
 
         /// CROP TRACKING DATA - START
 
