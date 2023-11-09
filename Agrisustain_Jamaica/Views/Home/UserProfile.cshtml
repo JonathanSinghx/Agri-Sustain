@@ -1,0 +1,102 @@
+﻿@model Agrisustain_Jamaica.Models.UserProfile;
+@{
+
+   ViewData["Title"] = "User Profile";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+
+    <div class="container-fluid">
+        <div class="text-center text-dark">
+            <h2>Welcome, @Model.FirstName</h2>
+        </div>
+        <div class="container user-card">
+            <div class="content">
+                <div class="details">
+                    <img src="https://ibb.co/qDWNTyr" alt="User" class="user-image img-fluid">
+                    <h2 id="user-name">@Model.FirstName @Model.LastName</h2>
+                    <span id="user-type">@Model.UserType</span><br />
+                    <span id="user-location">@Model.Location</span>
+                </div>
+            </div>
+        </div>
+
+        @* Sustainable badges area *@
+        <div class="container badge-container">
+            <h3>Available Badges</h3>
+
+            <div class="row">
+                <div class="col-12 col-md-4">
+                    <div class="badge d-flex flex-column justify-content-center align-items-center">
+                        <i class="fa fa-tint"></i>
+                    <a asp-controller="Home" asp-action="DripIrrigation"><p class="text-light text-center">Drip Irrigation</p></a>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <div class="badge d-flex flex-column justify-content-center align-items-center">
+                        <i class="fa fa-leaf"></i>
+                    <a asp-controller="Home" asp-action="OrganicFarming"><p class="text-light">Organic Farming</p></a>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <div class="badge d-flex flex-column justify-content-center align-items-center">
+                        <i class="fa fa-retweet"></i>
+                    <a asp-controller="Home" asp-action="CropRotation"><p class="text-light">Crop Rotation</p></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-md-4">
+                    <div class="badge d-flex flex-column justify-content-center align-items-center">
+                        <i class="fa fa-cloud-showers-heavy"></i>
+                    <a asp-controller="Home" asp-action="RainwaterHarvesting"><p class="text-light">Rainwater Harvesting</p></a>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <div class="badge d-flex flex-column justify-content-center align-items-center">
+                        <i class="fa fa-magic"></i>
+                    <a asp-controller="Home" asp-action="Mulching"><p class="text-light">Mulching</p></a>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <div class="badge d-flex flex-column justify-content-center align-items-center">
+                        <i class="fa fa-sync"></i>
+                    <a asp-controller="Home" asp-action="ReducingFoodWaste"><p class="text-light">Reducing Food Waste</p></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-md-4">
+                    <div class="badge d-flex flex-column justify-content-center align-items-center">
+                        <i class="fa fa-seedling"></i>
+                    <a asp-controller="Home" asp-action="HydroponicsAquaponics"><p class="text-light">Hydroponics and Aquaponics</p></a>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <div class="badge d-flex flex-column justify-content-center align-items-center">
+                        <i class="fa fa-recycle"></i>
+                    <a asp-controller="Home" asp-action="Composting"><p class="text-light">Composting</p></a>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <div class="badge d-flex flex-column justify-content-center align-items-center">
+                        <i class="fa fa-bug"></i>
+                    <a asp-controller="Home" asp-action="NaturalPestManagement"><p class="text-light">Natural Pest Management</p></a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        
+    </div>

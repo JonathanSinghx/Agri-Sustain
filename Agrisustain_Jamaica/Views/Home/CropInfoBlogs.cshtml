@@ -1,0 +1,68 @@
+﻿@{
+    ViewData["Title"] = "Resources";
+
+}
+
+
+<section class="[ text-center  ] [ hero resources ]">
+    <div class="[ row align-items-center position-relative ] [ hero__body ]">
+        <h1 class="position-relative fw-bolder m-0">AgriSustain Resources</h1>
+        <p class="position-relative fw-bold">Information at your fingertips</p>
+        <img class="position-absolute" src="~/coconut-tree.png" alt="coconut tree" />
+    </div>
+</section>
+<section class="[ row justify-content-center mx-0 g-2 position-relative ] [ blog-posts ]">
+    <div class="row justify-content-center align-items-center [ intro-text-container ]">
+        <div class="[ text-center fs-4 col col-10 px-4 ]">
+            <h2 class="fw-bolder lh-1">Welcome to the <span>Crop Information library</span> from AgriSustain.</h2>
+            <p class="fs-4 mt-3">Here you'll find useful information about how to plant, grow, and care for your crops</p>
+       </div>
+    </div>
+    <div class="blogposts-container">
+        
+        <div class="[ row flex-column gap-4 flex-lg-row ] [ row-bottom ]">
+            <div class="[ col bg-white ] [ article-col ]">
+                <div class="[ row flex-column ] [ blog-post ]">
+                    <div class="[ col ] [ img-container ]">
+                        <img class="img-fluid" src="~/cropinfo_coverImg.jpg" alt="crop" />
+                    </div>
+                    <div class="[ col ] [ text-container ]">
+                        <h3 class="mt-3">Irrigation</h3>
+                        <p>
+                            Irrigation and the methods used for applying controlled amounts of water to land to help grow crops. 
+                        </p>
+                    </div>
+                    <a class="[ text-white fw-bold text-decoration-none py-2 px-4 mt-auto ] [ btn-link ]" asp-area="" asp-controller="Home" asp-action="Irrigation">Learn More <span>&#8702;</span></a>
+                </div>
+            </div>
+
+            <div class="[ col bg-white ] [ article-col ]">
+                <div class="[ row flex-column ] [ blog-post ]">
+                    <div class="[ col ] [ img-container ]">
+                        <img class="img-fluid" src="~/cropinfo_coverImg.jpg" alt="crop" />
+                    </div>
+                    <div class="[ col ] [ text-container ]">
+                        <h3 class="mt-3">Crop Care Instructions</h3>
+                        <p>Crop care is the act of protecting crops from weather, pests, or nutrient deficiency. </p>
+
+                    </div>
+                    <a class="[ text-white fw-bold text-decoration-none py-2 px-4 mt-auto ] [ btn-link ]" asp-area="" asp-controller="Home" asp-action="CropCare">Learn More <span>&#8702;</span></a>
+                </div>
+            </div>
+
+            <div class="[ col bg-white ] [ article-col ]">
+                <div class="[ row flex-column ] [ blog-post ]">
+                    <div class="[ col ] [ img-container ]">
+                        <img class="img-fluid" src="~/cropinfo_coverImg.jpg" alt="crop" />
+                    </div>
+                    <div class="[ col ] [ text-container ]">
+                        <h3 class="mt-3">Planting Guides</h3>
+                        <p><span class="fw-bold">Disclaimer:</span> You don’t need a biology degree or any complicated equipment to start farming. Caring for your crops and having the right knowledge is all you'll need to have a successful growth season.</p>
+                    </div>
+                    <a class="[ text-white fw-bold text-decoration-none py-2 px-4 ] [ btn-link ]" asp-area="" asp-controller="Home" asp-action="PlantingGuides">Learn More <span>&#8702;</span></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
