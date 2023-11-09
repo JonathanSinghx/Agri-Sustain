@@ -51,6 +51,10 @@ svg {
     background-color: rgba(25, 54, 49, 0.23);
 }
 
+.navbar span {
+    font-size: 16px;
+}
+
 .top-section {
     background-image: url('https://i.ibb.co/Z6ZybsT/dan-meyers-IQVFVH0ajag-unsplash.jpg');
     background-size: 100% 100%;
@@ -91,7 +95,7 @@ svg {
 }
 
 .btn-section > .row >* {
-    flex: 1 0 30%;
+    flex: 1 0 15%;
 }
 
 .h3 {
@@ -150,7 +154,7 @@ svg {
     /*color: black;*/
 }
 
-/*User Profile*/
+/*USER PROFILE*/
 .badge-container {
     background-color: #a4c3b2;
     color: white;
@@ -261,6 +265,21 @@ a {
     text-decoration: none;
 }
 
+/*.badge-input-container {
+
+}*/
+
+.pdsubmission {
+    background-color: #a4c3b2;
+    color: white;
+    width: 45%;
+    padding: 2%;
+    border-radius: 20px;
+    margin: 10% 30%;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    transition: box-shadow 0.3s;
+    
+}
 
 
 /*SignUp Form*/
