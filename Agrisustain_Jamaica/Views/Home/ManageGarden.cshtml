@@ -1,0 +1,179 @@
+﻿@using AgriSustain_Jamaica.Models;
+@model ManageGarden
+
+
+@{
+    var Gardens = new ManageGarden();
+    var Crops = new cropDetails();
+    var categories = Crops.getCategoryData();
+    var data = Gardens.getData().ElementAt(0).CropInventory;
+}
+
+<style>
+    body {
+        font-family: sans-serif;
+        line-height: 1.6;
+    }
+
+    header {
+        background-color: #193631;
+        color: #fff;
+        padding: 1rem;
+        text-align: center;
+    }
+
+    main {
+        padding: 1rem;
+    }
+
+    .card h3 {
+        text-align: center;
+    }
+
+    .card {
+
+        color: black;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        border-color: #96D4D4;
+    }
+
+
+    #cropTable {
+        margin-bottom: 20px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #D6EEEE;
+    }
+
+    h1 {
+        padding: 5%;
+    }
+
+    .header {
+        background-color: #193631;
+        margin-bottom: 2%;
+    }
+
+    .title, h1, h3 {
+        text-align: center;
+    }
+
+    #addCropForm {
+        display: none;
+    }
+
+
+    #addCropButton{
+        width: fit-content;
+        height: fit-content;
+        padding: 10px;
+        background-color: #193631;
+        color: white;
+        border-radius: 5px;
+        align-self: center;
+    }
+    
+    #editCropButton{
+        width: fit-content;
+        height: fit-content;
+        padding: 10px;
+        background-color: #193631;
+        color: white;
+        border-radius: 5px;
+        align-self: center;
+    }
+
+    h1,h2 {
+        text-align: center;
+    }
+
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<h1>Farm Crop Management</h1>
+<h2>This tool will allow you to manage your crops by tracking location, supplies, tools and comments on tasks to be done. </h2>
+    <table id="cropTable">
+        <thead>
+            <tr>
+                <th>Crop Type</th>
+                <th>Quantity</th>
+                <th>Community</th>
+                <th>Supplies</th>
+                <th>Gardening Tools</th>
+                <th>Comments</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        @foreach (var items in categories)
+        {
+            <tr>
+                <td data-cell="Crop Type">@items.CropType</td>
+                <td data-cell="Quantity">@items.Quantity</td>
+                <td data-cell="Community">@items.Community</td>
+                <td data-cell="Supplies">
+                    @String.Join(",", items.Supplies)
+                </td>
+                <td data-cell="Gardening Tools">
+                    @String.Join(",", items.GardeningTools)
+                </td>
+                <td data-cell="Comments">@items.Comments</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+
+<button id="addCropButton" >Manage New Crop</button>   
+    <button id="editCropButton">Edit Existing Crop</button>
+
+
+    <form id="addCropForm" method="post">
+        <div class="form-group">
+            <label for="cropType">Crop Type:</label>
+            <input type="text" id="cropType" name="CropType" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="Quantity" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="community">Community:</label>
+            <input type="text" id="community" name="Community" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="supplies">Supplies:</label>
+            <input type="text" id="supplies" name="Supplies" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="gardeningTools">Gardening Tools:</label>
+            <input type="text" id="gardeningTools" name="GardeningTools" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="comments">Comments:</label>
+            <textarea id="comments" name="Comments" class="form-control"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add Crop</button>
+    </form>
+
+    <script>
+        $(document).ready(function () {
+            $("#addCropButton").click(function () {
+                $("#addCropForm").toggle();
+            });
+        });
+        
+    </script>

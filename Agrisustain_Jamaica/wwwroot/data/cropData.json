@@ -1,0 +1,136 @@
+[
+  {
+    "CropInventory": [
+      {
+        "Id": 1,
+        "CropType": "Ackee",
+        "Quantity": 50,
+        "Community": "Grants Pen",
+        "Supplies": [ "Organic Fertilizer" ],
+        "GardeningTools": [ "Spade", "Pruning Shears" ],
+        "Comments": "Clear weeds near roots.",
+        "Image": "https://ibb.co/BtcFccr"
+      },
+      {
+        "Id": 2,
+        "CropType": "Scotch Bonnet Peppers",
+        "Quantity": 100,
+        "Community": "Three Oaks",
+        "Supplies": [ "Organic Compost" ],
+        "GardeningTools": [ "Garden Hoe", "Watering Can" ],
+        "Comments": "Harvest last week in October.",
+        "Image": "https://ibb.co/LxXZ9SQ"
+      },
+      {
+        "Id": 3,
+        "CropType": "Callaloo",
+        "Quantity": 75,
+        "Community": "Cedar Grove",
+        "Supplies": [ "Compost" ],
+        "GardeningTools": [ "Hoe", "Garden Fork" ],
+        "Comments": "Apply fertilizer daily.",
+        "Image": "https://ibb.co/Wn6bGLJ"
+      },
+      {
+        "Id": 4,
+        "CropType": "Mangoes",
+        "Quantity": 200,
+        "Community": "St. Mary",
+        "Supplies": [ "Organic Fertilizer", "PesticIdes" ],
+        "GardeningTools": [ "Pruning Shears", "Watering Can" ],
+        "Comments": "Mangoes are ripe for picking.",
+        "Image": "https://ibb.co/q9PYCyP"
+      },
+      {
+        "Id": 5,
+        "CropType": "Bananas",
+        "Quantity": 150,
+        "Community": "Port Antonio",
+        "Supplies": [ "Organic Compost" ],
+        "GardeningTools": [ "Machete", "Rake" ],
+        "Comments": "Bananas are growing well.",
+        "Image": "https://ibb.co/drt4Yz9"
+      },
+      {
+        "Id": 6,
+        "CropType": "Sugarcane",
+        "Quantity": 300,
+        "Community": "Clarendon",
+        "Supplies": [ "Sugarcane Cuttings", "Fertilizer" ],
+        "GardeningTools": [ "Machete", "Wheelbarrow" ],
+        "Comments": "Sugarcane is ready for processing.",
+        "Image": "https://ibb.co/BtcFccr"
+      },
+      {
+        "Id": 7,
+        "CropType": "Pineapples",
+        "Quantity": 120,
+        "Community": "Ocho Rios",
+        "Supplies": [ "Pineapple Suckers", "Compost" ],
+        "GardeningTools": [ "Knife", "Trowel" ],
+        "Comments": "Pineapples are sweet and ripe.",
+        "Image": "https://ibb.co/vjhGcjh"
+      },
+      {
+        "Id": 8,
+        "CropType": "Coffee",
+        "Quantity": 500,
+        "Community": "Blue Mountains",
+        "Supplies": [ "Coffee Beans", "Shade Trees" ],
+        "GardeningTools": [ "Rake", "Coffee Picker" ],
+        "Comments": "Coffee beans ready for harvesting.",
+        "Image": "https://ibb.co/n3S6bnP"
+      },
+      {
+        "Id": 9,
+        "CropType": "Cocoa",
+        "Quantity": 80,
+        "Community": "Portland",
+        "Supplies": [ "Cocoa Pods", "Fermentation Boxes" ],
+        "GardeningTools": [ "Machete", "Cocoa Knife" ],
+        "Comments": "Cocoa pods are ready.",
+        "Image": "https://ibb.co/BC2DDGv"
+      },
+      {
+        "Id": 10,
+        "CropType": "Pimento",
+        "Quantity": 40,
+        "Community": "St. Ann",
+        "Supplies": [ "Pimento ", "Organic Fertilizer" ],
+        "GardeningTools": [ "Pruning Shears", "Harvesting Bag" ],
+        "Comments": "Pimento spice is aromatic.",
+        "Image": "https://ibb.co/RgYMh6V"
+      },
+      {
+        "Id": 11,
+        "CropType": "Breadfruit",
+        "Quantity": 60,
+        "Community": "Portmore",
+        "Supplies": [ "Breadfruit Saplings", "Mulch" ],
+        "GardeningTools": [ "Spade", "Harvesting Pole" ],
+        "Comments": "Breadfruit is in season.",
+        "Image": "https://ibb.co/rwwDGqk"
+      },
+      {
+        "Id": 12,
+        "CropType": "Yams",
+        "Quantity": 120,
+        "Community": "Manchester",
+        "Supplies": [ "Yam Setts", "Organic Compost" ],
+        "GardeningTools": [ "Hoe", "Rake" ],
+        "Comments": "Yams are thriving.",
+        "Image": "https://ibb.co/d6k7FKq"
+      },
+      {
+        "Id": 13,
+        "CropType": "Coconuts",
+        "Quantity": 300,
+        "Community": "Negril",
+        "Supplies": [ "Coconut Saplings", "Ladder" ],
+        "GardeningTools": [ "Machete", "Coconut Picker" ],
+        "Comments": "Coconuts are abundant.",
+        "Image": "https://ibb.co/pXz4yZT"
+      }
+    ]
+  }
+]

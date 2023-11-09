@@ -1,0 +1,57 @@
+﻿@using AgriSustain_Jamaica.Models;
+
+@model UserSelectorModel
+
+@{
+}
+<style>
+.section-container {
+    max-width: 950px;
+    margin-inline: auto;
+}
+
+.cards-container {
+    width: 100%;
+
+}
+.card-btn{
+    background-color: #193631;
+    max-width:300px;
+}
+</style>
+
+
+<div class="section-container">
+    <h1>Welcome to the Community Gardens</h1>
+    <p>Please click below to select whether you're a farmer or a consumer.</p>
+    <div class="row justify-content-between cards-container gap-5">
+        <div class="card col p-0">
+            <h2>Farmer</h2>
+            <div class="img-container">
+                <img src="https://shorturl.at/ahNY4" width="90%" />
+            </div>
+            <div class="card-text p-4">
+                <p class="fs-3 lh-1">
+                    Access to the Garden manager where you are able to manage your crops and resources.
+                </p>
+                <a class="text-decoration-none btn text-white card-btn" asp-controller="Home" asp-action="StarterGuide">Farmer</a>
+            </div>
+
+
+
+        </div>
+        <div class="card col p-0">
+            <h2>Consumer</h2>
+            <div class="img-container">
+                <img src="https://shorturl.at/ixJQX" width="100%" />
+            </div>
+            <div class="card-text p-4">
+                <p class="fs-3 lh-1">
+                    View crops farmers have available for sharing.
+                </p>
+                <a class="text-decoration-none btn text-white card-btn" asp-controller="Home" asp-action="ShareProduce">Consumer</a>
+            </div>
+
+        </div>
+    </div>
+</div>
