@@ -1,0 +1,215 @@
+﻿@using Agrisustain_Jamaica.Models
+
+@{
+
+    ViewData["Title"] = "Sustainable Farming Techniques";
+}
+
+<style>
+    .card-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin: 0 5%;
+        width: 90%;
+    }
+
+    .card {
+        flex: 0 0 calc(33.33% - 20px) !important;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        transition: transform 0.3s;
+        margin-bottom: 5%;
+    }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card h2 {
+            color: #193631;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            text-align: center;
+        }
+
+        .card p {
+            margin-top: 15px;
+            font-size: 14px;
+            height: 25%;
+            text-align: justify;
+        }
+
+        .card a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #193631;
+            color: #fff;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            width: 35%;
+            text-align: center;
+            align-self: center;
+        }
+
+            .card a:hover {
+                background-color: #193631;
+            }
+
+
+    h1 {
+        padding: 5%;
+        color: white;
+    }
+
+    .header {
+        background-color: #193631;
+        margin-top: -1.5%;
+    }
+
+
+    .search {
+        align-self: center;
+        margin: 3%;
+    }
+
+        .search button {
+            background-color: #193631;
+            border-radius: 5%;
+            color: white;
+            border: none;
+            padding: .3% 1%
+        }
+
+    #searchInput {
+        width: 60%;
+        margin-left: 20%;
+    }
+
+    p {
+        color: black;
+    }
+</style>
+
+<div class="header">
+    <h1 class="text-center">Sustainable Farming Techniques</h1>
+</div>
+
+<div class="search">
+    <input type="text" id="searchInput" placeholder="Search our resources...">
+    @* <button class="search-button btn-light" onclick="filterCards()">Search</button> *@
+</div>
+
+
+<section class="sf card-section">
+
+    <div class="card-container">
+        <!-- Drip Irrigation -->
+        <div class="card" id="dripIrrigationCard">
+            <h5>Drip Irrigation</h5>
+            <img src="https://images.unsplash.com/photo-1557129603-ff35a0c70e5e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" />
+            <p>
+                Drip irrigation is a method of  delivering water directly to the roots of plants through a network of tubes, pipes and emitters. It involves the controlled release of small, consisteent amounts of water, minimising wastage and maximising water efficiency.<br /><br />
+                <b>Benefit</b>: It enhances water efficiency, plant health, weed control, nutrient management, and conserves water resources.
+            </p>
+            <a asp-controller="Home" asp-action="DripIrrigation">Learn More</a>
+        </div>
+
+        <!-- Organic Farming -->
+        <div class="card" id="organicFarmingCard">
+            <h5>Organic Farming</h5>
+            <img src="https://images.unsplash.com/photo-1557129603-ff35a0c70e5e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" />
+            <p>
+                Organic farming avoids synthetic chemicals and genetically modified organisms, relying on natural methods for pest control and soil health.<br /><br />
+                <b>Benefit</b>: It is environmentally friendly, promotes healthier food, enhances biodiversity, supports sustainability, and offers resilience to environmental changes.
+            </p>
+            <a asp-controller="Home" asp-action="OrganicFarming">Learn More</a>
+        </div>
+
+        <!-- Crop Rotation -->
+        <div class="card" id="cropRotationCard">
+            <h5>Crop Rotation</h5>
+            <img src="https://images.unsplash.com/photo-1557129603-ff35a0c70e5e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" />
+            <p>
+                Crop rotation is the practice of changing the type of crops grown in a specific field in a planned sequence.<br /><br />
+                <b>Benefit</b>: Maintains soil fertility, minimises pest pressure, prevents soil depletion, enhances crop diversity and improves nutrient cycling.
+            </p>
+            <a asp-controller="Home" asp-action="CropRotation">Learn More</a>
+        </div>
+
+        <!-- Rainwater Harvesting -->
+        <div class="card" id="harvestingCard">
+            <h5>Rainwater Harvesting</h5>
+            <img src="https://images.unsplash.com/photo-1557129603-ff35a0c70e5e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" />
+            <p>
+                Rainwater harvesting is the collection and storage of rainwater for various agricultural and non-agricultural purposes. It involves the use of tanks, reservoirs, and other systems to capture rainwater. <br /><br />
+                <b>Benefit</b>: Reduces reliance on conventional water sources, conserves water, and provides a sustainable water supply for irrigation and livestock.
+            </p>
+            <a asp-controller="Home" asp-action="RainwaterHarvesting">Learn More</a>
+        </div>
+
+        <!-- Mulching -->
+        <div class="card" id="mulchingCard">
+            <h5>Mulching</h5>
+            <img src="https://images.unsplash.com/photo-1557129603-ff35a0c70e5e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" />
+            <p>
+                Mulching is the practice of covering the soil with organic and synthetic material (mulch) to conserve moisture, suppress weed growth, and regulate soil temperature.<br /><br />
+                <b>Benefit</b>: Protects water quality, prevents soil erosion, and reduces the movement of pollutants into water bodies.
+            </p>
+            <a asp-controller="Home" asp-action="Mulching">Learn More</a>
+        </div>
+
+        <!-- Contour Farming -->
+        <div class="card" id="reducingFoodWasteCard">
+            <h5>Reducing Food Waste</h5>
+            <img src="https://images.unsplash.com/photo-1557129603-ff35a0c70e5e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" />
+            <p>
+                Contour farming is a technique where crops are planted and tilled parallel to contour lines of a slope. It helps prevent soil erosion by slowing down the flow of water.<br /><br />
+                <b>Benefit</b>: Minimises soil erosion, improves water retention, and maintains soil fertility on sloping terrain.
+            </p>
+            <a asp-controller="Home" asp-action="ReducingFoodWaste">Learn More</a>
+        </div>
+
+        <!-- Hydroponics and Aquaponics -->
+        <div class="card" id="hydroponicsAquaponicsCard">
+            <h5>Hydroponics and Aquaponics</h5>
+            <img src="https://images.unsplash.com/photo-1557129603-ff35a0c70e5e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" />
+            <p>
+                Hydroponics is a soilless farming method that grows plants in nutrient-rich water.
+                Aquaponics combines hydroponics with fish farming, utilising fish waste to fertilise the plants.<br /><br />
+                <b>Benefit</b>: Efficient water and resource use, reduced pesticide use, and year-round production in controlled environments.
+            </p>
+            <a asp-controller="Home" asp-action="HydroponicsAquaponics">Learn More</a>
+        </div>
+
+        <!-- Natural Pest Management -->
+        <div class="card" id="pestManagementCard">
+            <h5>Natural Pest Management</h5>
+            <img src="https://images.unsplash.com/photo-1557129603-ff35a0c70e5e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" />
+            <p>
+                Natural pest management involves the use of natural predators, parasites and beneficial insects to control pests without the use of synthetic pesticides<br /><br />
+                <b>Benefit</b>: Reduces chemical pesticide use, maintains ecological balance, and prevents pest outbreaks.
+            </p>
+            <a asp-controller="Home" asp-action="NaturalPestManagement">Learn More</a>
+        </div>
+
+        <!-- Composting -->
+        <div class="card" id="compostingCard">
+            <h5>Composting</h5>
+            <img src="https://images.unsplash.com/photo-1557129603-ff35a0c70e5e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" />
+            <p>
+                Composting is the natural breakdown of organic materials into nutrient rich product that can be used to enrich soil. <br /><br />
+                <b>Benefit</b>: Improves soil health, reduces waste, lessens chemical dependency, enhances water retention and controls erosion.
+            </p>
+            <a asp-controller="Home" asp-action="Composting">Learn More</a>
+        </div>
+    </div>
+</section>

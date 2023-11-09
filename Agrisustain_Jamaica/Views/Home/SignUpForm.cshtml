@@ -1,0 +1,52 @@
+﻿@model Agrisustain_Jamaica.Models.AddUserModel
+
+@{
+    ViewData["Title"] = "Sign Up Form";
+}
+
+<div class="signup container">
+    <div class="row justify-content-center align-items-center" style="height: 100vh;">
+        <div class="col-md-6">
+                <div class="card-body">
+                    <h2 class="card-title text-center">Sign Up</h2>
+                    <form method="post" asp-controller="User" asp-action="SignUpForm" id="signup-form">
+                        <div class="mb-3">
+                            <label for="FirstName" class="form-label">First Name</label>
+                            <input asp-for="FirstName" type="text" class="form-control" id="FirstName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="LastName" class="form-label">Last Name</label>
+                            <input asp-for="LastName" type="text" class="form-control" id="LastName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Email" class="form-label">Email</label>
+                            <input asp-for="Email" type="email" class="form-control" id="Email"  required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Password" class="form-label">Password</label>
+                            <input asp-for="Password" type="password" class="form-control" id="Password" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="PhoneNumber" class="form-label">Phone Number</label>
+                            <input asp-for="PhoneNumber" type="text" class="form-control" id="PhoneNumber"  required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="UserType" class="form-label">User Type</label>
+                            <select for="UserType" class="form-select" id="userType" name="UserType">
+                                <option value="Farmer">Farmer</option>
+                                <option value="Consumer">Consumer</option>
+                                <option value="CommunityMember">Community Member</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Location" class="form-label">Location</label>
+                            <input asp-for="Location" type="text" class="form-control" id="location" required>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Sign Up</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

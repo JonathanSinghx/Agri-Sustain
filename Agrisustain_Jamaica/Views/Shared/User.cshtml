@@ -1,0 +1,520 @@
+﻿@model Agrisustain_Jamaica.Models.UserProfile
+
+@{
+
+    ViewData["Title"] = "User Profile";
+}
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<style>
+    .badge-container {
+        background-color: #a4c3b2;
+        color: white;
+        width: 45%;
+        padding: 2%;
+        border-radius: 20px;
+        margin: 10% 55%;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        transition: box-shadow 0.3s;
+    }
+
+    .badge {
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    h3 {
+        padding: 2%;
+        text-align: center;
+    }
+
+    p {
+        color: white;
+    }
+
+    .fa {
+        font-size: 20px;
+        margin-right: 8px;
+        color: white;
+    }
+
+    .user-header {
+        padding-top: 5%;
+    }
+
+    .user-card {
+        position: relative;
+        width: 350px;
+        height: 190px;
+        background: #a4c3b2;
+        border-radius: 20px;
+        box-shadow: 0 35px 80px white;
+        text-align: center;
+        transition: 0.5s;
+        float: left;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4)
+    }
+
+        .user-card:hover {
+            height: 350px;
+            width: 500px;
+        }
+
+            .user-card:hover .user-image {
+                width: 250px;
+                height: 200px;
+            }
+
+    .user-image {
+        left: 50%;
+        transform: translateX(-50%);
+        top: -50px;
+        position: absolute;
+        width: 110px;
+        height: 110px;
+        border-radius: 20px;
+        background: white;
+        box-shadow: 0 15px 50px rgba(0,0,0,0.35);
+        overflow: hidden;
+        transition: 0.5s
+    }
+
+        .user-image img {
+            position: absolute;
+        }
+
+    .user-card .content {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        margin-top: 1%;
+        color: #193631;
+    }
+
+        .user-card .content .details {
+            padding: 40px;
+            text-align: center;
+            width: 100%;
+            transition: 0.5s;
+        }
+
+        .user-card .content h2 {
+            font-size: 1.25em;
+            font-weight: 600;
+            line-height: 1.2em;
+        }
+
+    .details h2 span {
+        font-size: 0.75em;
+        font-weight: 500;
+        color: #193631;
+    }
+
+    .badge i {
+        margin-bottom: 10px;
+        color: #193631;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .btn-container {
+        padding-top: 5%;
+    }
+
+    .badge-input-container {
+            background-color: #a4c3b2;
+            color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            transition: box-shadow 0.3s;
+            padding: 2%;
+    }
+
+    .hidden-badge {
+        display: none;
+    }
+    </style>
+</head>
+
+<body>
+
+    <div class="user-header container">
+        <div class="text-center">
+            <h1>Welcome, @Model.FirstName!</h1>
+        </div>
+        @* User Profile Header *@
+        <div class="container-fluid">
+        @* User Card *@
+        <div class="container user-card">
+            <div class="content">
+                <div class="details">
+                    <img src="https://ibb.co/qDWNTyr" alt="User" class="user-image img-fluid">
+                    <h2 id="user-name">@Model.FirstName @Model.LastName</h2>
+                    <span id="user-type">@Model.UserType</span><br />
+                    <span id="user-location">@Model.Location</span>
+                </div>
+                <div id="user-badges"></div>
+            </div>
+        </div>
+
+        @* Sustainable badges area *@
+        <div class="container badge-container">
+            <h3>Available Badges</h3>
+
+                <div class="row">
+                    <div class="col-12 col-md-4">
+                        <div class="badge d-flex flex-column justify-content-center align-items-center">
+                            <i class="fa fa-tint badge-hidden"></i>
+                            <a asp-controller="Home" asp-action="DripIrrigation">
+                                <p class="text-light text-center" data-badge-name="Drip Irrigation">Drip Irrigation</p>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <div class="badge d-flex flex-column justify-content-center align-items-center">
+                            <i class="fa fa-leaf badge-hidden"></i>
+                            <a asp-controller="Home" asp-action="OrganicFarming">
+                                <p class="text-light" data-badge-name="Organic Farming">Organic Farming</p>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <div class="badge d-flex flex-column justify-content-center align-items-center">
+                            <i class="fa fa-retweet badge-hidden"></i>
+                            <a asp-controller="Home" asp-action="CropRotation">
+                                <p class="text-light" data-badge-name="Crop Rotation">Crop Rotation</p>
+                            </a>
+                        </div>
+                    </div>
+            </div>
+
+                <div class="row">
+                    <div class="col-12 col-md-4">
+                        <div class="badge d-flex flex-column justify-content-center align-items-center">
+                            <i class="fa fa-cloud-showers-heavy badge-hidden"></i>
+                            <a asp-controller="Home" asp-action="RainwaterHarvesting">
+                                <p class="text-light" data-badge-name="Rainwater Harvesting">Rainwater Harvesting</p>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <div class="badge d-flex flex-column justify-content-center align-items-center">
+                            <i class="fa fa-magic badge-hidden"></i>
+                            <a asp-controller="Home" asp-action="Mulching">
+                                <p class="text-light" data-badge-name="Mulching">Mulching</p>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <div class="badge d-flex flex-column justify-content-center align-items-center">
+                            <i class="fa fa-sync badge-hidden"></i>
+                            <a asp-controller="Home" asp-action="ReducingFoodWaste">
+                                <p class="text-light" data-badge-name="Reducing Food Waste">Reducing Food Waste</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 col-md-4">
+                        <div class="badge d-flex flex-column justify-content-center align-items-center">
+                            <i class="fa fa-seedling badge-hidden"></i>
+                            <a asp-controller="Home" asp-action="HydroponicsAquaponics">
+                                <p class="text-light" data-badge-name="Hydroponics and Aquaponics">Hydroponics and Aquaponics</p>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <div class="badge d-flex flex-column justify-content-center align-items-center">
+                            <i class="fa fa-recycle badge-hidden"></i>
+                            <a asp-controller="Home" asp-action="Composting">
+                                <p class="text-light" data-badge-name="Composting">Composting</p>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <div class="badge d-flex flex-column justify-content-center align-items-center">
+                            <i class="fa fa-bug badge-hidden"></i>
+                            <a asp-controller="Home" asp-action="NaturalPestManagement">
+                                <p class="text-light" data-badge-name="Natural Pest Management">Natural Pest Management</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+        </div>
+
+            @* Track your badges *@
+
+            <div class="container badge-input-container">
+                <h3>Track your badges</h3>
+                <form>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="badgeSelect">Select Badge:</label>
+                                <select class="form-control" id="badgeSelect">
+                                    <option value="" selected disabled>Choose a Badge</option>
+                                    <option value="dripIrrigation">
+                                        <i class="fa fa-tint"></i> Drip Irrigation
+                                    </option>
+                                    <option value="organicFarming">
+                                        <i class="fa fa-leaf"></i> Organic Farming
+                                    </option>
+                                    <option value="cropRotation">
+                                        <i class="fa fa-retweet"></i> Crop Rotation
+                                    </option>
+                                    <option value="rainwaterHarvesting">
+                                        <i class="fa fa-cloud-showers-heavy"></i> Rainwater Harvesting
+                                    </option>
+                                    <option value="mulching">
+                                        <i class="fa fa-magic"></i> Mulching
+                                    </option>
+                                    <option value="reducingFoodWaste">
+                                        <i class="fa fa-sync"></i> Reducing Food Waste
+                                    </option>
+                                    <option value="hydroponicsAquaponics">
+                                        <i class="fa fa-seedling"></i> Hydroponics and Aquaponics
+                                    </option>
+                                    <option value="composting">
+                                        <i class="fa fa-recycle"></i> Composting
+                                    </option>
+                                    <option value="naturalPestManagement">
+                                        <i class="fa fa-bug"></i> Natural Pest Management
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Criteria for Drip Irrigation -->
+                    <div class="criteria-check" id="dripIrrigation-criteria">
+                        <div class="row">
+                            <div class="col-12">
+                                <p>Badge Criteria:</p>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="criteria1">
+                                    <label class="form-check-label" for="criteria1">I've completed 90 days of Drip Irrigation on my farm</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Criteria for Organic Farming -->
+                    <div class="criteria-check" id="organicFarming-criteria">
+                        <div class="row">
+                            <div class="col-12">
+                                <p>Badge Criteria:</p>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="criteria2">
+                                    <label class="form-check-label" for="criteria2">I've practiced Organic Farming for over 6 months</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Criteria for Crop Rotation -->
+                    <div class="criteria-check" id="cropRotation-criteria">
+                        <div class="row">
+                            <div class="col-12">
+                                <p>Badge Criteria:</p>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="criteria3">
+                                    <label class="form-check-label" for="criteria3">I've implemented crop rotation 6 times on my farm</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Criteria for Rainwater Harvesting -->
+                    <div class="criteria-check" id="rainwaterHarvesting-criteria">
+                        <div class="row">
+                            <div class="col-12">
+                                <p>Badge Criteria:</p>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="criteria4">
+                                    <label class="form-check-label" for="criteria4">I've completed 3 months of rainwater harvesting</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Criteria for Mulching -->
+                    <div class="criteria-check" id="mulching-criteria">
+                        <div class="row">
+                            <div class="col-12">
+                                <p>Badge Criteria:</p>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="criteria5">
+                                    <label class="form-check-label" for="criteria5">I've applied mulch to my farm over 6 times</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Criteria for Reducing Food Waste -->
+                    <div class="criteria-check" id="reducingFoodWaste-criteria">
+                        <div class="row">
+                            <div class="col-12">
+                                <p>Badge Criteria:</p>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="criteria6">
+                                    <label class="form-check-label" for="criteria6">I have implemented food waste reduction strategies for 3 months</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Criteria for Hydroponics and Aquaponics -->
+                    <div class="criteria-check" id="hydroponicsAquaponics-criteria">
+                        <div class="row">
+                            <div class="col-12">
+                                <p>Badge Criteria:</p>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="criteria7">
+                                    <label class="form-check-label" for="criteria7">I have implmented hydroponics and aquaponics on my farm for over 3 months</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Criteria for Composting -->
+                    <div class="criteria-check" id="composting-criteria">
+                        <div class="row">
+                            <div class="col-12">
+                                <p>Badge Criteria:</p>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="criteria8">
+                                    <label class="form-check-label" for="criteria8">I've completed 180 days of Composting</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Criteria for Natural Pest Management -->
+                    <div class="criteria-check" id="naturalPestManagement-criteria">
+                        <div class="row">
+                            <div class="col-12">
+                                <p>Badge Criteria:</p>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="criteria9">
+                                    <label class="form-check-label" for="criteria9">I've used Natural Pest Management practices 6 times</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                   
+
+                    <div class="row">
+                        <div class="btn-container col-12">
+                            <button type="submit" id="addBadgeButton" class="btn btn-primary">Add to my badges</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+</div>
+
+    <script>
+        
+         $(document).ready(function () {
+             // Hide all criteria checkboxes initially
+             $(".criteria-check").hide();
+
+             // Listen for changes in the badge select dropdown
+             $("#badgeSelect").change(function () {
+                 // Hide all criteria checkboxes
+                 $(".criteria-check").hide();
+
+                 // Show criteria for the selected badge
+                 var selectedBadge = $(this).val();
+                 $("#" + selectedBadge + "-criteria").show();
+             });
+
+             // Attach a click event handler to all elements with the "add-badge" class
+             $(".btn-container button").click(function () {
+                 // Get the selected badge name from the dropdown
+                 var selectedBadgeName = $("#badgeSelect option:selected").text();
+
+                 // Create a container for the badge
+                 var badgeElement = $("<div class='badge d-flex flex-column justify-content-center align-items-center'></div>");
+                 var iconElement = $("<i class='fa'></i>");
+
+                 // Assign the appropriate class based on the badge name
+                 switch (badgeName) {
+                     case "Drip Irrigation":
+                         iconElement.addClass("fa-tint");
+                         break;
+                     case "Organic Farming":
+                         iconElement.addClass("fa-leaf");
+                         break;
+                     case "Crop Rotation":
+                         iconElement.addClass("fa-retweet");
+                         break;
+                     case "Rainwater Harvesting":
+                         iconElement.addClass("fa-cloud-showers-heavy");
+                         break;
+                     case "Mulching":
+                         iconElement.addClass("fa-magic");
+                         break;
+                     case "Reducing Food Waste":
+                         iconElement.addClass("fa-sync");
+                         break;
+                     case "Hydroponics and Aquaponics":
+                         iconElement.addClass("fa-seedling");
+                         break;
+                     case "Composting":
+                         iconElement.addClass("fa-recycle");
+                         break;
+                     case "Natural Pest Management":
+                         iconElement.addClass("fa-bug");
+                         break;
+                 }
+
+                 // Add the icon to the badge element but hide it initially
+                 iconElement.hide();
+                 badgeElement.append(iconElement);
+
+                 // Add the badge name to the badge element
+                 badgeElement.append("<p class='text-light text-center badge-name'>" + selectedBadgeName + "</p>");
+
+                 // Append the badge element to the user-badges container
+                 $("#user-badges").append(badgeElement);
+             });
+
+             // Attach a click event handler to the "Add to my badges" button
+             $("#addBadgeButton").click(function () {
+                 // Get the selected badge name
+                 var selectedBadgeName = $("#badgeSelect").val();
+
+                 // Find the badge with the corresponding name and unhide its icon
+                 var selectedBadge = $(".badge-name:contains('" + selectedBadgeName + "')");
+                 selectedBadge.siblings("i.fa").show();
+             });
+         });
+    </script>
+
+
+   
+
+ 
+
+</body>
+</html>

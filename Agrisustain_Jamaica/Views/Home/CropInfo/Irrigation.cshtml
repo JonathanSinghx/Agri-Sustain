@@ -1,0 +1,101 @@
+﻿@using Agrisustain_Jamaica.Models
+@using Agrisustain_Jamaica.Services
+@using Microsoft.AspNetCore.Components.Web
+@inject JSONFileIrrigationService IrrigationService
+@* @using System.Text.Json; *@
+
+@{
+    var irrigationPageInfo = IrrigationService.GetIrrigationInfo();
+    var IrrigationMethodsInfo = IrrigationService.GetData();
+
+    string mainHeading = "";
+    string blogID = "";
+
+    List<string> blogIntroText = new List<string>();
+
+
+    if (irrigationPageInfo != null)
+    {
+        foreach (var info in irrigationPageInfo)
+        {
+
+            if (info.PostID != null)
+            {
+                blogID = info.PostID;
+            }
+
+            if (info.MainHeading != null)
+            {
+                mainHeading = info.MainHeading;
+            }
+
+            if (info.BlogIntro != null)
+            {
+                for (int i = 0; i < info.BlogIntro.Length; i++)
+                {
+                    blogIntroText.Add(info.BlogIntro[i]);
+                }
+
+            }
+
+        }
+    }
+
+    <section class="irrigation-page article-page">
+        <article class="row">
+            <div class="d-flex flex-column flex-md-row gap-md-3 gap-lg-5 header-container">
+                <div class="col col-md-5 header-img">
+                    <img class="img-fluid" src="~/irrigation-img.jpg" alt="irrigation" />
+                </div>
+                <div class="col col-md-6 px-3 pt-3 py-md-0">
+                    <h1 class="fw-bold [ main-heading ]">@mainHeading</h1>
+                    <div class="main-intro-text">
+                        @{
+                            foreach (string text in blogIntroText)
+                            {
+                                <p class="fs-4">@text</p>
+                                
+                            } 
+                        }
+                    </div>
+                </div>
+            </div>
+            
+            <div class="[ mt-5 ] [ sub-sections ]">
+
+                <div class="row flex-column align-items-center mx-auto px-3 [ content-section ] ">
+                    @{
+                        if(IrrigationMethodsInfo != null)
+                        {
+                            foreach (var sub in IrrigationMethodsInfo)
+                            {
+                                // <div class="col text-md-center col-md-10 mx-md-auto mb-md-3">
+                                <div class="[ col mb-3 p-0 ] [ irrigation-method-container ]">
+                                    <h2 class=" fw-bold fs-3 position-relative ">@sub.Subheading</h2>
+                                    @for (int i = 0; i < sub.Info.Length; i++)
+                                    {
+                                        <p class="fs-4">@sub.Info[i]</p>
+                                       
+                                    }
+                                </div>
+
+                            }
+                        }
+                    }
+               </div>    
+            </div>
+        </article>
+    </section>
+}
+
+@* <div class="row flex-column px-3 mt-md-5"> *@
+
+@* <div class="[ row mt-4 p-4 flex-column align-items-center mx-auto px-4 ] [ search-container ]">
+    <div class="">
+        <h3>An overview of the different types of irrigation methods</h3>
+        <div class="btns">
+            <button class="btn">Sort Alphabetically</button>
+            <button class="btn">Sort By Popularity</button>
+        </div>
+    </div>
+</div> *@
