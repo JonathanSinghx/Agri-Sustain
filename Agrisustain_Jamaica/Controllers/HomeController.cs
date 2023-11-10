@@ -124,7 +124,10 @@ namespace Agrisustain_Jamaica.Controllers
         {
             return View();
         }
-
+        public IActionResult Marketplace() 
+        {
+            return View();
+        }
         public IActionResult UserSelector()
         {
             return View();
