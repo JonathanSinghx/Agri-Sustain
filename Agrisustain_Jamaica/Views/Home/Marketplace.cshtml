@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewData["Title"] = "Marketplace";
+}
+
+<h1>Marketplace</h1>
+@using System.Data.SqlClient
+@{
+    List<Item> lst = new List<Item>();
+    string constr = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;";
+    SqlConnection conn = new SqlConnection(constr);
+    conn.Open();
+    SqlCommand comm = new SqlCommand(constr, conn);
+    comm.Connection = conn;
+    comm.CommandText = "use agri_sus;select * from [dbo].[table]";
+    SqlDataReader reader = comm.ExecuteReader();
+    while (reader.Read())
+    {
+        Item item = new Item();
+        item.id = (int)reader["id"];
+        item.name = (string)reader["product_name"];
+        item.price = (float)Convert.ToDouble(reader["price"]);
+        item.quantity = (int)reader["quantity"];
+        byte[] img = (byte[])reader["image"];
+        string img_s = Convert.ToBase64String(img, 0, img.Length);
+        item.image = "data:image/jpg;base64," + img_s;
+        lst.Add(item);
+    }
+    foreach (Item i in lst)
+    {
+        <div class="card">
+            <label>id:</label>@i.id<br />
+            <label>name:</label>@i.name<br />
+            <label>price:</label>@i.price<br />
+            <label>quantity:</label>@i.quantity<br />
+            <img alt="" src="@i.image" height="24.5" width="24.5" /><br />
+        </div>
+    }
+}
