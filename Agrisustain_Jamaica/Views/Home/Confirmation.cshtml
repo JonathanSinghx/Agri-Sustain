@@ -2,6 +2,17 @@
 @{
     ViewData["Title"] = "Confirmation";
 }
-
+@model Agrisustain_Jamaica.Models.order
 <h1>Confirmation</h1>
-
+<p>@Model.id</p>
+@Model.o_date<br />
+@Model.cust_name<br />
+@Model.cust_addr<br />
+@Model.cust_em<br />
+@Model.data<br />
+@Model.card_type<br />
+@{
+    string sub = Model.card_num.Substring(Model.card_num.Length - 4, 4);
+    @sub
+}
+<p>The order has been confirmed for shipping</p>
