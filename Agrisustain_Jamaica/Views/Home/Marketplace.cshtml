@@ -31,7 +31,7 @@
         document.getElementById("total").innerHTML = "0.00";
     }
     function c_o() {
-        document.getElementById("Hidden1").value = document.getElementById("cart").innerHTML;
+        document.getElementById("Hidden1").value = document.getElementById("cart").innerHTML + " " + document.getElementById("total").innerHTML;
         window.alert(document.getElementById("Hidden1").value + " added to the check out");
     }
 </script>
