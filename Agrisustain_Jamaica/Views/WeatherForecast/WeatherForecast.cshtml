@@ -2,6 +2,26 @@
 @using Agrisustain_Jamaica.Services;
 @inject Agrisustain_Jamaica.Services.WeatherService CurrentWeather;
 
+@{
+
+    await CurrentWeather.GetCurrentWeatherData();
+    var currentWeatherCondition = CurrentWeather.GetCurrentWeatherCondition().Result.ElementAt(0);
+
+    var currentForecast = CurrentWeather.GetCurrentMainForecast().Result.ElementAt(0);
+    var currentWind = CurrentWeather.GetCurrentWind().Result.ElementAt(0);
+    var visibility = CurrentWeather.GetCurrentWeatherVisibility().Result.ElementAt(0);
+
+    var currentSunriseAndSunset = CurrentWeather.GetCurrentSunriseAndSunset().Result.ElementAt(0);
+
+    DateTime sunrise = DateTimeOffset.FromUnixTimeSeconds(currentSunriseAndSunset.Sunrise).UtcDateTime;
+    DateTime sunset = DateTimeOffset.FromUnixTimeSeconds(currentSunriseAndSunset.Sunset).UtcDateTime;
+
+    var hourlyWeatherForecast = CurrentWeather.GetHourlyWeatherForecast().Result;
+    var hourlyWeatherForecasts = CurrentWeather.GetHourlyWeatherForecasts().Result;
+
+  
+}
+
 
 <div class="py-3 weather-header">
     <div class="container">
@@ -28,10 +48,10 @@
                 <div class="row">
                     <div class="mb-2 col-left">
                         @{
-                           // string imgIcon = $"http://openweathermap.org/img/w/{currentWeatherData.Icon}.png";
+                           string imgIcon = $"http://openweathermap.org/img/w/{currentWeatherCondition.Icon}.png";
                         }
-                        <p class="text-capitalize mb-0">currentWeatherData.Description<span><img src=imgIcon /> </span> </p>
-                        <p>currentTemperature°C</p>
+                        <p class="text-capitalize mb-0">@currentWeatherCondition.Description<span><img src=@imgIcon /> </span> </p>
+                        <p>@currentForecast.Temperature°C</p>
                     </div>
                 </div>
 
@@ -39,15 +59,15 @@
                     <div class="col weather-detail">
                         <p>Wind</p>
                         @* @{ double windspeed = windData.Speed * 3.6;} *@
-                        <p> windspeed km/h</p>
+                        <p>@currentWind.Speed km/h</p>
                     </div>
                     <div class="col weather-detail">
                         <p>Humidity</p>
-                        <p>weatherHighlightsData.Humidity%</p>
+                        <p>@currentForecast.Humidity%</p>
                     </div>
                     <div class="col weather-detail">
                         <p>Atmospheric Pressure</p>
-                        <p>weatherHighlightsData.Pressure hPa</p>
+                        <p>@currentForecast.Pressure hPa</p>
                     </div>
                 </div>
 
@@ -63,79 +83,85 @@
                     <div class="row flex-column">
                         <div class="lh-1 col border-bottom mb-3">
                             <p class="fw-bold">Now</p>
-                            <p class="fs-4 m-0">currentTemperature °C</p>
-                            <p class="overcast-text">currentWeatherData.Description</p>
+                          @*   <p class="fs-4 m-0">@currentWeather °C</p> *@
+                            <p class="overcast-text">@currentWeatherCondition.Description</p>
                         </div>
                         <div class="col">
-                            <p><span><i class="fa-regular fa-calendar calendar-icon"></i></span>@DateTime.Today</p>
+                            <p><span><i class="fa-regular fa-calendar calendar-icon"></i></span>@DateTime.Now.ToString("dddd, MMMM d, yyyy")</p>
                             <p><span><i class="fa-solid fa-location-dot location-icon"></i></span>Southfield, St. Elizabeth</p>
                         </div>
                     </div>
                 </div>
-                <div class="five-days-forecast-container">
-                    <h3>5 days forecast</h3>
-                    <div class="p-3 weather-card">
-                        <div class="row flex-column five-days-forecast">
-                            <div class="forecast-details">
-                                <div class="forecast">
-                                    <p><span><i class="fa-solid fa-moon"></i></span>25</p>
-                                </div>
-                                <div class="date">
-                                    <p>7 Nov.</p>
-                                </div>
-                                <div class="day">
-                                    <p>Monday</p>
-                                </div>
-                            </div>
-                            <div class="forecast-details">
-                                <div class="forecast">
-                                    <p><span><i class="fa-solid fa-moon"></i></span>25</p>
-                                </div>
-                                <div class="date">
-                                    <p>8 Nov.</p>
-                                </div>
-                                <div class="day">
-                                    <p>Tuesday</p>
-                                </div>
-                            </div>
-                            <div class="forecast-details">
-                                <div class="forecast">
-                                    <p><span><i class="fa-solid fa-moon"></i></span>25</p>
-                                </div>
-                                <div class="date">
-                                    <p>9 Nov.</p>
-                                </div>
-                                <div class="day">
-                                    <p>Wednesday</p>
-                                </div>
-                            </div>
-                            <div class="forecast-details">
-                                <div class="forecast">
-                                    <p><span><i class="fa-solid fa-moon"></i></span>25</p>
-                                </div>
+                <div class="hourly-weather-container">
+                    <div class="container">
+                        <h3>Today at</h3>
+                        <div class="row gap-2 slider-container mb-5">
+                            @{
+                                int count = 0;
+                                foreach(var timeOfDay in hourlyWeatherForecast)
+                                {
+                                   
+                                    DateTime time = DateTimeOffset.FromUnixTimeSeconds(timeOfDay.Time).UtcDateTime;
+                                      if (@time.ToShortDateString() != DateTime.Now.ToShortDateString()) break;
+                                    string icon = $"http://openweathermap.org/img/w/{hourlyWeatherForecasts.ElementAt(count).Icon}.png";
+                                        <div class="slider-item">
+                                        <p>@time.ToShortTimeString()</p>
+                                        <img src=@icon />
+                                        <p>@hourlyWeatherForecasts.ElementAt(count).Description</p>
 
-                                <div class="date">
-                                    <p>10 Nov.</p>
-                                </div>
-                                <div class="day">
-                                    <p>Thursday</p>
-                                </div>
-                            </div>
-                            <div class="forecast-details">
-                                <div class="forecast">
-                                    <p><span><i class="fa-solid fa-moon"></i></span>25</p>
-                                </div>
+                                    </div>
 
-                                <div class="date">
-                                    <p>11 Nov.</p>
-                                </div>
-                                <div class="day">
-                                    <p>Friday</p>
-                                </div>
+                                    count++;
 
+                                 
+                                  // <p>Time: @time.ToShortDateString() | @DateTime.Now.ToShortDateString() </p>
+                                }
+                                
+                            }
+                           @*  <div class="slider-item">
+                                <p>03 PM</p>
+                                <i class="fa-solid fa-cloud-sun"></i>
+                                <p>25°C</p>
                             </div>
+                            <div class="slider-item">
+                                <p>03 PM</p>
+                                <i class="fa-solid fa-cloud-sun"></i>
+                                <p>25°C</p>
+                            </div>
+                            <div class="slider-item">
+                                <p>03 PM</p>
+                                <i class="fa-solid fa-cloud-sun"></i>
+                                <p>25°C</p>
+                            </div>
+                            <div class="slider-item">
+                                <p>03 PM</p>
+                                <i class="fa-solid fa-cloud-sun"></i>
+                                <p>25°C</p>
+                            </div>
+
+                            <div class="slider-item">
+                                <p>03 PM</p>
+                                <i class="fa-solid fa-cloud-sun"></i>
+                                <p>12 km/h</p>
+                            </div>
+                            <div class="slider-item">
+                                <p>03 PM</p>
+                                <i class="fa-solid fa-cloud-sun"></i>
+                                <p>12 km/h</p>
+                            </div>
+                            <div class="slider-item">
+                                <p>03 PM</p>
+                                <i class="fa-solid fa-cloud-sun"></i>
+                                <p>12 km/h</p>
+                            </div>
+                            <div class="slider-item">
+                                <p>03 PM</p>
+                                <i class="fa-solid fa-cloud-sun"></i>
+                                <p>12 km/h</p>
+                            </div> *@
                         </div>
                     </div>
+
                 </div>
             </div>
             <div class="right-col">
@@ -179,14 +205,14 @@
                                         <i class="fa-regular fa-sun"></i>
                                         <div class="d-flex flex-column group-text">
                                             <p class="text-uppercase m-0">Sunrise</p
-                                            <p>sunrise.ToString("hh:mm tt")</p>
+                                            <p>@sunrise.ToString("hh:mm tt")</p>
                                         </div>
                                     </div>
                                     <div class="col d-flex gap-2 align-items-center">
                                         <i class="fa-solid fa-sun"></i>
                                         <div class="d-flex flex-column group-text">
                                             <p class="text-uppercase m-0">Sunset</p>
-                                            <p>sunset.ToString("hh:mm tt")</p>
+                                            <p>@sunset.ToString("hh:mm tt")</p>
                                         </div>
                                     </div>
                                 </div>
@@ -204,7 +230,7 @@
                                 <div class="row align-items-center mt-3 justify-content-between details">
                                     <div class="col d-flex justify-content-between">
                                         <i class="fa-solid fa-droplet"></i>
-                                        <p>weatherHighlightsData.Humidity%</p>
+                                        <p>@currentForecast.Humidity%</p>
                                     </div>
                                 </div>
                             </div>
@@ -218,7 +244,7 @@
                                 <div class="row align-items-center mt-3 justify-content-between details">
                                     <div class="col d-flex justify-content-between">
                                         <i class="fa-brands fa-superpowers"></i>
-                                        <p>weatherHighlightsData.Pressure hPa</p>
+                                        <p>@currentForecast.Pressure hPa</p>
                                     </div>
                                 </div>
                             </div>
@@ -235,7 +261,7 @@
                                     <div class="col d-flex justify-content-between">
                                         <i class="fa-solid fa-eye"></i>
                                         @* @{ decimal visibility = currentWeather[0].Visibility / 1000; } *@
-                                        <p>visibility Km</p>
+                                        <p>@visibility.Visibility Km</p>
                                     </div>
                                 </div>
                             </div>
@@ -250,7 +276,7 @@
                                     <div class="col d-flex justify-content-between">
                                         <i class="fa-solid fa-temperature-three-quarters"></i>
                                         @* @{ double feelsLike = Math.Round(weatherHighlightsData.FeelsLike - 273.15, 2); } *@
-                                        <p>feelsLike °C</p>
+                                        <p>@currentForecast.FeelsLike °C</p>
                                     </div>
                                 </div>
                             </div>
@@ -259,61 +285,39 @@
                         </div>
                     </div>
                 </div>
-                <div class="hourly-weather-container">
-                    <div class="container">
-                        <h3>Today at</h3>
-                        <div class="row gap-2 slider-container">
+                 <div class="five-days-forecast-container">
+                    <h3>5 days forecast</h3>
+                    <div class="p-3 weather-card">
+                        <div class="row five-days-forecast">
+                            @{
+                                 int val = 0;
+                                foreach(var forecast in hourlyWeatherForecast)
+                                {
+                                   
+                                    DateTime date = DateTimeOffset.FromUnixTimeSeconds(forecast.Time).UtcDateTime;
+                                     string forecastIcon = $"http://openweathermap.org/img/w/{hourlyWeatherForecasts.ElementAt(val).Icon}.png";
+                                    if (@date.ToShortDateString() != DateTime.Now.ToShortDateString())
+                                    {
+                                         <div class="col-3 forecast-details">
+                                            <div class="forecast">
+                                                 <img src=@forecastIcon />
+                                            </div>
+                                            <div class="date">
+                                             <p>@date</p>
+                                             </div>
+                                            <div class="day">
+                                             <p>@forecast.Time.ToString("dd")</p>
+                                            </div>
+                                        </div>
 
-                         
-                         
-                         
-                            <div class="slider-item">
-                                <p>03 PM</p>
-                                <i class="fa-solid fa-cloud-sun"></i>
-                                <p>25°C</p>
-                            </div>
-                            <div class="slider-item">
-                                <p>03 PM</p>
-                                <i class="fa-solid fa-cloud-sun"></i>
-                                <p>25°C</p>
-                            </div>
-                            <div class="slider-item">
-                                <p>03 PM</p>
-                                <i class="fa-solid fa-cloud-sun"></i>
-                                <p>25°C</p>
-                            </div>
-                            <div class="slider-item">
-                                <p>03 PM</p>
-                                <i class="fa-solid fa-cloud-sun"></i>
-                                <p>25°C</p>
-                            </div>
-
-                            <div class="slider-item">
-                                <p>03 PM</p>
-                                <i class="fa-solid fa-cloud-sun"></i>
-                                <p>12 km/h</p>
-                            </div>
-                            <div class="slider-item">
-                                <p>03 PM</p>
-                                <i class="fa-solid fa-cloud-sun"></i>
-                                <p>12 km/h</p>
-                            </div>
-                            <div class="slider-item">
-                                <p>03 PM</p>
-                                <i class="fa-solid fa-cloud-sun"></i>
-                                <p>12 km/h</p>
-                            </div>
-                            <div class="slider-item">
-                                <p>03 PM</p>
-                                <i class="fa-solid fa-cloud-sun"></i>
-                                <p>12 km/h</p>
-                            </div>
+                                        val++;
+                                    }    
+                                }
+                            }
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
-       
-        </div>    
+      </div>    
     </div>

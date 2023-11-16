@@ -68,7 +68,7 @@
 }
 
     .weather-card > .five-days-forecast > .forecast-details {
-        display: flex;
+        /*display: flex;*/
         /*justify-content: space-between;*/
         /*gap: 3em;*/
     }
@@ -94,6 +94,13 @@ margin-right: .5em;
         background-color:#f1f1f1;
         border-radius: 1em;
         gap: 2em;
+    }
+    .weather-cards .slider-container {
+
+    }
+    .weather-cards .slider-item {
+        /*max-width: 150px;*/
+        /*max-height: 120px;*/
     }
 
     .weather-card .weather-highlight .group-text > p:first-of-type {
