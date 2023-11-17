@@ -10,11 +10,17 @@ using System.Text.Json;
 
 namespace Agrisustain_Jamaica.Services
 {
-    public class Data
+    public class Location
     {
-        public List<CurrentWeatherConditionModel> CurrentForecast { get; set; }
-        public List<CurrentMainForecastModel> MainForecast { get; set; }
+        public double latitude { get; set; }
+        public double longitude { get; set; }
+
     }
+    //public class Data
+    //{
+    //    public List<CurrentWeatherConditionModel> CurrentForecast { get; set; }
+    //    public List<CurrentMainForecastModel> MainForecast { get; set; }
+    //}
 
     public class WeatherService
     {
@@ -29,10 +35,13 @@ namespace Agrisustain_Jamaica.Services
 
         List<AirQualityIndexModel> airQualityIndex = new List<AirQualityIndexModel>();
         List<AirQualityIndexData> airQualityIndexData = new List<AirQualityIndexData>();
+     // Location location = new Location();
+        //GeolocationModel geolocation = new GeolocationModel();
 
         public async Task GetCurrentWeatherData()
         {
-
+      //     double lat =  location.latitude; 
+          // double lat = geolocation.Latitude;
             string baseUrl = "https://api.openweathermap.org/";
 
             string API_Key = "9aa7f0ef9d7b97bd856b7bf109607d29";
@@ -40,6 +49,8 @@ namespace Agrisustain_Jamaica.Services
 
             using (var client = new HttpClient())
             {
+              //  HttpResponseMessage getRequest = await client.GetAsync("https://localhost:7269/weatherforecast/weatherforecast");
+              
                 client.BaseAddress = new Uri(baseUrl);
 
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
