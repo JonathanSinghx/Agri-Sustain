@@ -19,27 +19,44 @@
     var hourlyWeatherForecast = CurrentWeather.GetHourlyWeatherForecast().Result;
     var hourlyWeatherForecasts = CurrentWeather.GetHourlyWeatherForecasts().Result;
 
-  
+    var airQualityIndex = CurrentWeather.GetAirQualityIndex().Result;
+
+    
+
 }
 
+@* -<p>@airQualityIndex.Index</p> *@
 
-<div class="py-3 weather-header">
+<div class="py-3  weather-header">
     <div class="container">
-        <div class="d-flex weather-search align-items-center mb-4">
-            <div class="text">
+        <div class="weather-search align-items-center position-relative mb-4">
+            <div class="d-flex align-items-center justify-content-center gap-3 text">
                 <h1 class="fw-bold m-0">Weather Forecast</h1>
+                <i class="text-white fa-solid fa-magnifying-glass search-icon"></i>
             </div>
+            
 
-            <div class="d-flex justify-content-end location">
+                    <div class="position-absolute search">
+                        <input type="search" />
+                        <button>Search</button>
+                    </div>
+
+                 
+           
+           @*  <div class="d-flex justify-content-end location">
                  <div class="position-relative search-input">
-                      <input type="search" />
+                    <div class="d-flex search">
+                        <input type="search" />
+                        <button>Search</button>
+                    </div>
+                    
                       <i class="fa-solid fa-magnifying-glass search-icon"></i>
                  </div>
               
                 <i class="fa-solid fa-location-crosshairs location-icon"></i>
-            </div>
+            </div> *@
 
-        </div>
+        </>
         <div class="row flex-column flex-md-row weather-container">
             <div class="col location">
                 <p>Southfield, St. Elizabeth</p>
@@ -78,7 +95,7 @@
 <div class="weather-cards py-3">
     <div class="container">
         <div class="d-grid grid-container">
-            <div class="col-left">
+            <div class="d-flex col-left">
                 <div class="p-3 weather-card now-weather-container">
                     <div class="row flex-column">
                         <div class="lh-1 col border-bottom mb-3">
@@ -113,52 +130,11 @@
 
                                     count++;
 
-                                 
+
                                   // <p>Time: @time.ToShortDateString() | @DateTime.Now.ToShortDateString() </p>
                                 }
-                                
-                            }
-                           @*  <div class="slider-item">
-                                <p>03 PM</p>
-                                <i class="fa-solid fa-cloud-sun"></i>
-                                <p>25°C</p>
-                            </div>
-                            <div class="slider-item">
-                                <p>03 PM</p>
-                                <i class="fa-solid fa-cloud-sun"></i>
-                                <p>25°C</p>
-                            </div>
-                            <div class="slider-item">
-                                <p>03 PM</p>
-                                <i class="fa-solid fa-cloud-sun"></i>
-                                <p>25°C</p>
-                            </div>
-                            <div class="slider-item">
-                                <p>03 PM</p>
-                                <i class="fa-solid fa-cloud-sun"></i>
-                                <p>25°C</p>
-                            </div>
 
-                            <div class="slider-item">
-                                <p>03 PM</p>
-                                <i class="fa-solid fa-cloud-sun"></i>
-                                <p>12 km/h</p>
-                            </div>
-                            <div class="slider-item">
-                                <p>03 PM</p>
-                                <i class="fa-solid fa-cloud-sun"></i>
-                                <p>12 km/h</p>
-                            </div>
-                            <div class="slider-item">
-                                <p>03 PM</p>
-                                <i class="fa-solid fa-cloud-sun"></i>
-                                <p>12 km/h</p>
-                            </div>
-                            <div class="slider-item">
-                                <p>03 PM</p>
-                                <i class="fa-solid fa-cloud-sun"></i>
-                                <p>12 km/h</p>
-                            </div> *@
+                            }
                         </div>
                     </div>
 
@@ -169,11 +145,34 @@
                     <h3>Today's highlights</h3>
                     <div class="row gap-4">
                         <div class="d-flex flex-column flex-md-row gap-4 flex-container">
-                             <div class="col weather-highlight">
-                            <div class="d-flex flex-column air-quality-content">
-                                <div class="d-flex header justify-content-between align-items-center ">
-                                    <h4 class="m-0">Air Quality Index</h4>
-                                    <p class="m-0 btn-highlight">Good</p>
+                            <div class="col weather-highlight">
+                                <div class="d-flex flex-column air-quality-content">
+                                    <div class="d-flex header justify-content-between align-items-center ">
+                                        <h4 class="m-0">Air Quality Index</h4>
+                                        @{
+                                            int index = 3;
+                                            string indexQualityVal = "";
+                                            switch(index)
+                                            {
+                                                case 1:
+                                                    indexQualityVal = "Good";
+                                                    break;
+                                                case 2:
+                                                    indexQualityVal = "Fair";
+                                                    break;
+                                                case 3:
+                                                    indexQualityVal = "Moderate";
+                                                    break;
+                                                case 4:
+                                                    indexQualityVal = "Poor";
+                                                    break;
+                                                case 5:
+                                                    indexQualityVal = "Very Poor";
+                                                    break;
+
+                                                                        }
+                                        }
+                                        <p class="m-0 btn-highlight">@indexQualityVal</p>
                                 </div>
 
                                 <div class="row align-items-center mt-3 details">
@@ -204,7 +203,7 @@
                                     <div class="col d-flex gap-2 align-items-center">
                                         <i class="fa-regular fa-sun"></i>
                                         <div class="d-flex flex-column group-text">
-                                            <p class="text-uppercase m-0">Sunrise</p
+                                            <p class="text-uppercase m-0">Sunrise</p>
                                             <p>@sunrise.ToString("hh:mm tt")</p>
                                         </div>
                                     </div>
@@ -287,8 +286,8 @@
                 </div>
                  <div class="five-days-forecast-container">
                     <h3>5 days forecast</h3>
-                    <div class="p-3 weather-card">
-                        <div class="row five-days-forecast">
+                    <div class="p-3 bg-transparent weather-card">
+                        <div class="d-grid pb-4 five-days-forecast">
                             @{
                                  int val = 0;
                                 foreach(var forecast in hourlyWeatherForecast)
@@ -298,15 +297,16 @@
                                      string forecastIcon = $"http://openweathermap.org/img/w/{hourlyWeatherForecasts.ElementAt(val).Icon}.png";
                                     if (@date.ToShortDateString() != DateTime.Now.ToShortDateString())
                                     {
-                                         <div class="col-3 forecast-details">
-                                            <div class="forecast">
+                                         <div class="forecast-details">
+                                          <div class="date">
+                                                <p class="fw-bold">@date.ToString("dddd, MMMM d, yyyy")</p>
+                                             <p>@date.ToString("hh:mm tt")</p>
+                                             </div>
+                                            <div class="forecast-img">
                                                  <img src=@forecastIcon />
                                             </div>
-                                            <div class="date">
-                                             <p>@date</p>
-                                             </div>
-                                            <div class="day">
-                                             <p>@forecast.Time.ToString("dd")</p>
+                                            <div class="description">
+                                             <p class="fw-bold">@hourlyWeatherForecasts.ElementAt(val).Description</p>
                                             </div>
                                         </div>
 
