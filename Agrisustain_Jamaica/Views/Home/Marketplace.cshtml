@@ -4,7 +4,42 @@
 }
 
 <h1>Marketplace</h1>
+<script type="text/javascript">
+    function atc() {
+        var prd = JSON.parse(document.getElementById("hf").value);
+        var opt = document.getElementById("option").value;
+        var cart = document.getElementById("cart");
+        var quant = parseInt(document.getElementById("quantity").value);
+        var tot = parseFloat(document.getElementById("total").innerHTML);
+        for (var i = 0; i < prd.length; i++) {
+            if (prd[i].id == opt) {
+                //if (quant <= 0) {window.alert("quantity is negative or zero");break; }
+                if (quant <= prd[i].quantity) {
+                    var mult = parseFloat(prd[i].price) * quant;
+                    cart.innerHTML += prd[i].id + " " + prd[i].name + " " + prd[i].price + " * " + quant + " " + mult + "<br/>";
+                    tot = tot + mult;
+                    document.getElementById("total").innerHTML = tot;
+                    window.alert(opt + "added!");
+                    break;
+                }
+                else { window.alert("error in quantity"); }
+            }
+        }
+    }
+    function cc() {
+        document.getElementById("cart").innerHTML = "";
+        document.getElementById("total").innerHTML = "0.00";
+    }
+    function c_o() {
+        document.getElementById("Hidden1").value = document.getElementById("cart").innerHTML + " " + document.getElementById("total").innerHTML;
+        window.alert(document.getElementById("Hidden1").value + " added to the check out");
+    }
+</script>
 @using System.Data.SqlClient
+@using System.Text
+@using System.Text.Json
+@using System.Text.Json.Nodes
+@using System.Text.Json.Serialization
 @{
     List<Item> lst = new List<Item>();
     string constr = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;";
@@ -36,4 +71,38 @@
             <img alt="" src="@i.image" height="24.5" width="24.5" /><br />
         </div>
     }
+    var j_data = JsonSerializer.Serialize(lst);
+    @Html.Hidden("hf",j_data);
+    List<SelectListItem> opt = new List<SelectListItem>();
+    foreach (var option in lst)
+    {
+        opt.Add(new SelectListItem { Text = option.name, Value = option.id.ToString() });
+    }
+    @Html.DropDownList("option",(IEnumerable<SelectListItem>)opt)
+    @Html.TextBox("quantity", null, new { @type = "number" })
+    <input id="atc" type="button" value="add to cart" onclick="atc()" />
+    <input id="cc" type="button" value="clear cart" onclick="cc()" />
+    <input id="c_o" type="button" value="check out" onclick="c_o()" />
+    <br />
+    <hr />
+    <p>The cart</p>
+    <div id="cart"></div>
+    <label id="total">0.00</label>
+    <hr />
+    <p>The checkout</p>
+    <form method="post" action="Confirmation">
+        <label>name</label>@Html.TextBox("cust_name")<br />
+        <label>address</label>@Html.TextBox("cust_addr")<br />
+        <label>email</label>@Html.TextBox("cust_em", null, new { @type = "email" })<br />
+        <label>card number</label>@Html.TextBox("card_num", null, new { @maxlength = "16" })<br />
+        <label>cvv</label>@Html.TextBox("cvv", null, new { @maxlength = "3" })<br />
+        <label>expiry date</label>@Html.TextBox("exp_d", null, new { @type = "date" })<br />
+        <img alt="" src="https://seeklogo.com/images/C/credit-card-icons-logo-9CC8F1BFCD-seeklogo.com.png" height="47.3" />
+        <select id="card_type" name="card_type">
+            <option value="visa">Visa</option>
+            <option value="mastercard">Mastercard</option>
+        </select>
+        @Html.Hidden("Hidden1")
+        <input id="p_o" type="submit" value="place order" />
+    </form>
 }
