@@ -4,10 +4,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Agrisustain_Jamaica</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@200;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     @* <link rel="stylesheet" href="~/Agrisustain_Jamaica.styles.css" asp-append-version="true" /> *@
     <link rel="stylesheet" href="~/css/cropInfoAndTrackingStyles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/weather.css" asp-append-version="true" />
+    
 </head>
 
 <body>
@@ -23,7 +29,9 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
                     <ul class="navbar-nav">
-                        
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">About</a>
+                        </li>
                         <li class="nav-item position-relative">
                             <a class="nav-link text-dark" data-bs-toggle="collapse" data-bs-target=".dropdown" aria-expanded="false" asp-area="" asp-controller="Home" asp-action="Resources">Resources &#11206;</a>
                             <div class="resources-dropdown dropdown dropdown-menu">

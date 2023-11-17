@@ -1,0 +1,183 @@
+﻿@using AgriSustain_Jamaica.Models;
+@model ShareProduce
+<style>
+ 
+    #cardContainer {
+        flex: 1;
+        padding: 20px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: 450px;
+        gap: 20px;
+    }
+
+    .crop-card {
+        border-radius: 20px;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.142);
+        display: flex;
+        flex-direction: column;
+        transition: all ease-in-out 0.3s;
+    }
+
+        .crop-card:hover {
+            transform: translateY(-3px) scale(1.03);
+            z-index: 10;
+            position: relative;
+        }
+
+    .img-wrap {
+        border-radius: 20px;
+        overflow:hidden;
+        height: 250px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        color: white;
+    }
+
+    .img-wrap > img{
+        width: 100%;
+        object-fit: contain;
+        height: 100%;
+    }
+    
+
+    .info {
+        padding: 15px;
+        flex-direction: column;
+        flex: 1;
+        display: grid;
+    }
+
+    .name {
+        text-align: center;
+        align-self: center;
+    }
+
+    .quantity {
+        display: flex;
+        gap: 5px;
+        justify-content: center;
+    }
+
+    .quantity-select {
+        padding: 15px 0;
+        width: 80px;
+        display: none;
+        margin: 0 auto;
+    }
+
+  
+    .number {
+        color: #193631;
+        font-weight: bold;
+    }
+
+    .btn-wrap {
+        display: flex;
+        justify-content: center;
+    }
+
+    button {
+        width: fit-content;
+        height: fit-content;
+        padding: 10px;
+        border: none;
+        outline: none;
+        background-color: #193631;
+        color: white;
+        font-weight: bold;
+        border-radius: 5px;
+        align-self: center;
+    }
+
+    button:hover {
+        background-color: #156725;
+    }
+    .location-wrap {
+        display: flex;
+        justify-content: end;
+    }
+
+    .location {
+        color: #193631;
+        font-weight: bold;
+        font-size: .9em;
+        height: fit-content;
+        align-self: flex-end;
+    }
+
+    h1, h2 {
+        text-align: center;
+    }
+
+</style>
+
+@{
+    var Gardens = new ShareProduce();
+    var crop = new cropInfo();
+    var categories = crop.getCategoryInfo();
+    var data = Gardens.getData().ElementAt(0).CropInventory;
+}
+
+<h1>Produce Available</h1>
+<body>
+    <main>
+        <div id="cardContainer">
+                @foreach (var items in categories)
+                {
+                    <div class="crop-card">
+                        <div class="img-wrap">
+                            <img src="@items.Image">
+                        </div>
+                        <div class="info">
+                            <div class="name">
+                                @items.CropType
+                            </div>
+                            <div class="quantity">
+                                <div class="number">@items.Quantity</div>
+                                <p>units</p>
+                            </div>
+                           
+                            <div class="btn-wrap">
+                                
+                                <button class="reserve-button">Reserve for pickup</button>
+                            </div>
+
+                            <div class="quantity-select">
+                                
+                                <label for="quantity">Select quantity:</label>
+                                <select class="quantity-dropdown" id="quantity" name="quantity">
+                                    @for (int i = 1; i <= items.Quantity; i++)
+                                    {
+                                        <option value="@i">@i</option>
+                                    }
+                                </select>
+                            <button class="submit-button">Submit</button>
+                            </div>
+                            <div class="location-wrap">
+                                <p class="location">@items.Community</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+        </div>
+    </main>
+    <script>
+        const reserveButtons = document.querySelectorAll('.reserve-button');
+        const quantitySelects = document.querySelectorAll('.quantity-select');
+
+        reserveButtons.forEach((button, index) => {
+            button.addEventListener('click', () => {
+                quantitySelects[index].style.display = 'block';
+            });
+        });
+    </script>
+</body>
+
+
+
+
+

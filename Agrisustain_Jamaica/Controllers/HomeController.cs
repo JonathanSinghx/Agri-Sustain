@@ -112,6 +112,57 @@ namespace Agrisustain_Jamaica.Controllers
         {
             return View();
         }
+        public IActionResult farmersHub() 
+        {
+            return View();
+        }
+        public IActionResult agriInfo() 
+        {
+            return View();
+        }
+        public IActionResult weatherData() 
+        {
+            return View();
+        }
+        public IActionResult Marketplace() 
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Confirmation() 
+        {
+            string name = Request.Form["cust_name"], addr = Request.Form["cust_addr"], em = Request.Form["cust_em"], items_tot = Request.Form["Hidden1"], card_type = Request.Form["card_type"], card_num = Request.Form["card_num"];
+            order ord=new order();
+            ord.id = 0;
+            ord.o_date = DateTime.Now;
+            ord.cust_name = name;
+            ord.cust_addr = addr;
+            ord.cust_em = em;
+            ord.data = items_tot;
+            ord.card_type = card_type;
+            ord.card_num = card_num;
+            return View(ord);
+        }
+        public IActionResult UserSelector()
+        {
+            return View();
+        }
+        public IActionResult ManageGarden()
+        {
+            return View();
+        }
+
+        public IActionResult StarterGuide()
+        {
+            return View();
+        }
+
+        public IActionResult ShareProduce()
+        {
+            return View();
+        }
+
+
 
         /// CROP TRACKING DATA - START
 
