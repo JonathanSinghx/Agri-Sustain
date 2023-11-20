@@ -88,7 +88,7 @@
     {
         string weather = null;
         w_info w_Info = new w_info();
-        string info = File.ReadAllText(@"C:\Users\StephenGentles\source\repos\WebApplication4\WebApplication4\weather_data.json");
+        string info = File.ReadAllText("weather_data.json");
         var j_data = JsonSerializer.Deserialize<JsonObject>(info);
         w_Info.t_date = Convert.ToDateTime(j_data["weather"][0]["today_date"].ToString());
         w_Info.w_Data = new w_data { temp = j_data["weather"][0]["temp"].ToString(), precip = j_data["weather"][0]["precip"].ToString(), wind = j_data["weather"][0]["wind"].ToString(), humidity = j_data["weather"][0]["humidity"].ToString() };
@@ -100,7 +100,7 @@
         //string weather = null;
         w_info w_Info = new w_info();
         w_Info.fc_d = new List<d_fc>();
-        string info = File.ReadAllText(@"C:\Users\StephenGentles\source\repos\WebApplication4\WebApplication4\weather_data.json");
+        string info = File.ReadAllText("weather_data.json");
         var j_data = JsonSerializer.Deserialize<JsonObject>(info);
         for (int i = 0; i < 7; i++)
         {
@@ -111,13 +111,13 @@
     public string get_weather_data()
     {
         //string weather = null;
-        string info = File.ReadAllText(@"C:\Users\StephenGentles\source\repos\WebApplication4\WebApplication4\weather_data.json");
+        string info = File.ReadAllText("weather_data.json");
         var j_data = JsonSerializer.Deserialize<JsonObject>(info);
         return j_data.ToString();
     }
     public string get_agri_data()
     {
-        string[] agri_info = File.ReadAllLines(@"C:\Users\StephenGentles\Downloads\MS Leap - AgriSustain\AgriSustain\agriInfo.txt");
+        string[] agri_info = File.ReadAllLines("agriInfo.txt");
         var agri_infoj = JsonSerializer.Serialize(agri_info);
         return agri_infoj.ToString();
     }
