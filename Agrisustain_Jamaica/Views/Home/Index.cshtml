@@ -1,7 +1,11 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"></script>
+</head>
 <style>
     .home {
         scroll-behavior: smooth;
@@ -11,9 +15,91 @@
         border-radius: 10px;
         width: 100%;
     }
+
+    #transparentForm {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+    }
+
+        #transparentForm label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        #transparentForm button {
+            display: block;
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+    #transparentForm {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.8); 
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+    }
+
+        #transparentForm label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        #transparentForm button {
+            display: block;
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
 </style>
 
+
+
+
 <div class="home text-center">
+    <div id="transparentForm">
+       
+        <h3>Notification Preferences</h3>
+        <div>
+            <input type="checkbox" id="pestDiseaseOutbreaks" name="pestDiseaseOutbreaks">
+            <label for="pestDiseaseOutbreaks">Receive notifications of pest and disease outbreaks</label>
+        </div>
+        <div>
+            <input type="checkbox" id="communityNotifications" name="communityNotifications">
+            <label for="communityNotifications">Receive community notifications within 15km radius</label>
+        </div>
+        <div>
+            <input type="checkbox" id="informOthers" name="informOthers">
+            <label for="informOthers">Inform other farmers about your pest and disease issues</label>
+        </div>
+        <div>
+            <button id="submitForm">Submit</button>
+            <button id="closeForm">Close</button>
+        </div>
+    </div>
+
     <section id="#top" class="top-section">
         <h3> Promoting sustainable agricultural practices from farmer to consumer</h3>
     </section>
@@ -138,3 +224,62 @@
         <a class="btn button text-light" href="#top">^</a>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        // Show the form after 5 seconds
+        setTimeout(function () {
+            $('#transparentForm').fadeIn();
+        }, 5000);
+
+        // Close the form on close button click
+        $('#closeForm').click(function () {
+            $('#transparentForm').fadeOut();
+        });
+
+        var notificationMessage = '@TempData["NotificationMessage"]';
+        setTimeout(function () {
+            if (notificationMessage) {
+                toastr.success(notificationMessage, '', {
+                    timeOut: 0,
+                    extendedTimeOut: 0,
+                    closeButton: true
+                });
+            }
+        }, 10000); // 10 seconds delay
+
+        const formSubmit = document.getElementById("transparentForm");
+
+        formSubmit.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            let isCompleted = false;
+            let data = ''; // Initialize the data variable
+
+            const checkboxes = formSubmit.querySelectorAll("input[type='checkbox']");
+
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    data += `${checkbox.id} `;
+                }
+            });
+
+            isCompleted = true;
+
+            if (isCompleted) {
+                checkboxes.forEach(checkbox => checkbox.checked = false);
+
+                // Show Toastr notification
+                toastr.success("Notification preferences saved successfully.", '', {
+                    timeOut: 10000,
+                    closeButton: true
+                });
+
+                // Close the form
+                $('#transparentForm').fadeOut();
+            }
+        });
+    });
+</script>
+
+
