@@ -10,19 +10,13 @@ using System.Text.Json;
 
 namespace Agrisustain_Jamaica.Services
 {
-    public class Data
-    {
-        public List<CurrentWeatherConditionModel> CurrentForecast { get; set; }
-        public List<CurrentMainForecastModel> MainForecast { get; set; }
-    }
-
     public class WeatherService
     {
         List<CurrentWeatherConditionModel> currentWeatherCondition = new List<CurrentWeatherConditionModel>();
         List<CurrentMainForecastModel> currentMainForecast = new List<CurrentMainForecastModel>();
         List<CurrentWindModel> currentWind = new List<CurrentWindModel>();
         List<SunriseAndSunsetModel> sunriseAndSunset = new List<SunriseAndSunsetModel>();
-       List<WeatherModel> weatherData = new List<WeatherModel>();
+        List<WeatherModel> weatherData = new List<WeatherModel>();
 
         List<HourlyWeatherForecastModel> hourlyWeatherForecast = new List<HourlyWeatherForecastModel>();
         List<HourlyWeatherForecasts> hourlyWeatherForecasts = new List<HourlyWeatherForecasts>();
@@ -32,7 +26,9 @@ namespace Agrisustain_Jamaica.Services
 
         public async Task GetCurrentWeatherData()
         {
-
+            
+            //double lat = geolocationModel.Latitude; 
+          // double lat = geolocation.Latitude;
             string baseUrl = "https://api.openweathermap.org/";
 
             string API_Key = "9aa7f0ef9d7b97bd856b7bf109607d29";
@@ -40,6 +36,8 @@ namespace Agrisustain_Jamaica.Services
 
             using (var client = new HttpClient())
             {
+              //  HttpResponseMessage getRequest = await client.GetAsync("https://localhost:7269/weatherforecast/weatherforecast");
+              
                 client.BaseAddress = new Uri(baseUrl);
 
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
@@ -139,11 +137,6 @@ namespace Agrisustain_Jamaica.Services
                      
                        // airQualityIndexData.Add();
                         airQualityIndex.Add(JsonComponents);
-                      
-
-
-
-
                     }
 
                 }
@@ -166,52 +159,38 @@ namespace Agrisustain_Jamaica.Services
 
         public async Task<IEnumerable<CurrentMainForecastModel>>GetCurrentMainForecast()
         {
-            // await GetCurrentWeatherData();
-
             return currentMainForecast;
         }
 
         public async Task<IEnumerable<CurrentWindModel>> GetCurrentWind()
         {
-            // await GetCurrentWeatherData();
-
             return currentWind;
 
         }
 
         public async Task<IEnumerable<SunriseAndSunsetModel>> GetCurrentSunriseAndSunset()
         {
-            // await GetCurrentWeatherData();
-
             return sunriseAndSunset;
         }
 
         public async Task<IEnumerable<WeatherModel>> GetCurrentWeatherVisibility()
         {
-            // await GetCurrentWeatherData();
-
             return weatherData;
         }
 
         public async Task<IEnumerable<HourlyWeatherForecastModel>> GetHourlyWeatherForecast()
         {
-            // await GetCurrentWeatherData();
-
             return hourlyWeatherForecast;
         }
 
         public async Task<IEnumerable<HourlyWeatherForecasts>> GetHourlyWeatherForecasts()
         {
-            // await GetCurrentWeatherData();
-
             return hourlyWeatherForecasts;
         }
 
 
         public async Task<IEnumerable<AirQualityIndexData>> GetAirQualityIndex()
         {
-            // await GetCurrentWeatherData();
-
             return airQualityIndexData;
         }
 

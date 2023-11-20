@@ -58,6 +58,17 @@ svg {
     font-size: 16px;
 }
 
+    .navbar .weather-nav {
+        font-weight: bold;
+        font-size: .7rem;
+        line-height: .1rem;
+        height: 30px;
+        margin-top: -1.5em;
+        margin-left: 2em;
+        /*background: red;*/
+        /*border-radius: 50%*/
+    }
+
 .top-section {
     background-image: url('https://i.ibb.co/Z6ZybsT/dan-meyers-IQVFVH0ajag-unsplash.jpg');
     background-size: 100% 100%;
@@ -310,6 +321,8 @@ footer {
     padding: 5%;
     align-content: center;
 }
-
+.marketplace-text {
+    padding-block: 2em;
+}
 
 

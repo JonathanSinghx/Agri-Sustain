@@ -1,0 +1,146 @@
+{
+  "recipes": [
+    {
+      "title": "Jerk Chicken",
+      "image": "https://foodies.co.uk/wp-content/uploads/2020/02/jerk-chicken-1920x2880.jpg",
+      "cooking_instructions": "1. Marinate chicken in jerk seasoning. 2. Grill or bake until cooked through. 3. Serve with rice and peas.",
+      "ingredients": [
+        "Chicken pieces",
+        "Jerk seasoning",
+        "Scotch bonnet peppers",
+        "Scallions",
+        "Thyme",
+        "Garlic",
+        "Onion",
+        "Allspice",
+        "Soy sauce",
+        "Brown sugar",
+        "Coconut milk",
+        "Rice",
+        "Kidney beans"
+      ],
+      "nutrition_information": {
+        "calories": 380,
+        "carbohydrates": 35,
+        "protein": 25,
+        "fat": 18,
+        "fiber": 6
+      }
+    },
+    {
+      "title": "Ackee and Saltfish",
+      "image": "https://img.theculturetrip.com/1440x/smart/wp-content/uploads/2016/11/ackee-and-saltfish--tastee.jpg",
+      "cooking_instructions": "1. Sauté salted codfish with onions, tomatoes, and peppers. 2. Add boiled ackee fruit. 3. Serve with fried dumplings or breadfruit.",
+      "ingredients": [
+        "Salted codfish",
+        "Ackee fruit",
+        "Onion",
+        "Tomatoes",
+        "Bell peppers",
+        "Scotch bonnet peppers",
+        "Thyme",
+        "Garlic",
+        "Oil",
+        "Dumplings or breadfruit"
+      ],
+      "nutrition_information": {
+        "calories": 320,
+        "carbohydrates": 25,
+        "protein": 20,
+        "fat": 14,
+        "fiber": 5
+      }
+    },
+    {
+      "title": "Jamaican Curry Goat",
+      "image": "https://thenaturalfestival.com/wp-content/uploads/2020/12/1609116556_maxresdefault.jpg",
+      "cooking_instructions": "1. Marinate goat meat in curry powder and spices. 2. Brown the meat with onions, garlic, and ginger. 3. Simmer with coconut milk until tender.",
+      "ingredients": [
+        "Goat meat",
+        "Curry powder",
+        "Onion",
+        "Garlic",
+        "Ginger",
+        "Thyme",
+        "Scotch bonnet peppers",
+        "Potatoes",
+        "Carrots",
+        "Coconut milk",
+        "Vegetable oil"
+      ],
+      "nutrition_information": {
+        "calories": 420,
+        "carbohydrates": 30,
+        "protein": 28,
+        "fat": 20,
+        "fiber": 4
+      }
+    },
+    {
+      "title": "Jamaican Rice and Peas",
+      "image": "https://example.com/rice_peas.jpg",
+      "cooking_instructions": "1. Cook kidney beans with coconut milk, thyme, and Scotch bonnet peppers. 2. Add rice and simmer until rice is cooked.",
+      "ingredients": [
+        "Kidney beans",
+        "Rice",
+        "Coconut milk",
+        "Thyme",
+        "Scotch bonnet peppers",
+        "Garlic",
+        "Onion",
+        "Salt",
+        "Black pepper"
+      ],
+      "nutrition_information": {
+        "calories": 280,
+        "carbohydrates": 50,
+        "protein": 10,
+        "fat": 5,
+        "fiber": 6
+      }
+    },
+    {
+      "title": "Jamaican Callaloo Soup",
+      "image": "https://example.com/callaloo_soup.jpg",
+      "cooking_instructions": "1. Sauté callaloo leaves with onions, garlic, and thyme. 2. Add chicken or vegetable broth and simmer. 3. Serve hot.",
+      "ingredients": [
+        "Callaloo leaves",
+        "Onion",
+        "Garlic",
+        "Thyme",
+        "Scotch bonnet peppers",
+        "Chicken or vegetable broth",
+        "Salt",
+        "Black pepper"
+      ],
+      "nutrition_information": {
+        "calories": 150,
+        "carbohydrates": 15,
+        "protein": 8,
+        "fat": 5,
+        "fiber": 7
+      }
+    },
+    {
+      "title": "Jamaican Jerk Shrimp",
+      "image": "https://example.com/jerk_shrimp.jpg",
+      "cooking_instructions": "1. Marinate shrimp in jerk seasoning. 2. Sauté with Scotch bonnet peppers, garlic, and lime juice. 3. Serve with a side of rice or grilled vegetables.",
+      "ingredients": [
+        "Shrimp",
+        "Jerk seasoning",
+        "Scotch bonnet peppers",
+        "Garlic",
+        "Lime juice",
+        "Oil",
+        "Rice or vegetables for serving"
+      ],
+      "nutrition_information": {
+        "calories": 220,
+        "carbohydrates": 5,
+        "protein": 20,
+        "fat": 12,
+        "fiber": 2
+      }
+    }
+  ]
+}
