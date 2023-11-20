@@ -10,10 +10,10 @@ namespace Agrisustain_Jamaica.Controllers
 
     public class WeatherForecastController : Controller
     {
-        Location geolocation = new Location();
+        //Location geolocation = new Location();
        
         [HttpPost]
-        public IActionResult WeatherForecast([FromBody] Location locationData)
+        public IActionResult WeatherForecast([FromBody] GeolocationModel locationData)
         {
             //Request.EnableBuffering();
             //using var reader = new StreamReader(Request.Body);
@@ -22,15 +22,17 @@ namespace Agrisustain_Jamaica.Controllers
             //Request.Body.Position = 0;
             //return Ok();
 
-            double latitude = locationData.latitude;
-            double longitude = locationData.longitude;
+            double latitude = locationData.Latitude;
+            double longitude = locationData.Longitude;
 
             //  geolocation.Latitude = latitude;
             // geolocation.Longitude = longitude;
 
-            return Json(latitude);
-
-           // return Ok();
+           // return Json(latitude);
+           GeolocationModel geolocationModel = new GeolocationModel();
+            geolocationModel.Latitude = latitude;
+            geolocationModel.Longitude = longitude;
+           return Ok();
             //geolocation.Longitude = longitude;
             //geolocation.Latitude = latitude;
            // return View(viewModel);
