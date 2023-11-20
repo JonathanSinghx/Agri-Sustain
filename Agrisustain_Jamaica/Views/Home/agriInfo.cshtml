@@ -26,7 +26,7 @@
     public string show_abp()
     {
         string abp = null;
-        string info = File.ReadAllText(@"C:\Users\StephenGentles\source\repos\WebApplication4\WebApplication4\best_practices.json");
+        string info = File.ReadAllText("best_practices.json");
         var j_data = JsonSerializer.Deserialize<JsonObject>(info);
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < 3; i++)
@@ -40,7 +40,7 @@
     {
         string tip = null;
         Random rand = new Random();
-        string info = File.ReadAllText(@"C:\Users\StephenGentles\source\repos\WebApplication4\WebApplication4\crop_management.json");
+        string info = File.ReadAllText("crop_management.json");
         var j_data = JsonSerializer.Deserialize<JsonObject>(info);
         int i = rand.Next(3);
         tip = j_data["tips"][i]["tip"].ToString();
@@ -49,7 +49,7 @@
     public string show_pcs()
     {
         string pcs = null;
-        string info = File.ReadAllText(@"C:\Users\StephenGentles\source\repos\WebApplication4\WebApplication4\pest_control.json");
+        string info = File.ReadAllText("pest_control.json");
         var j_data = JsonSerializer.Deserialize<JsonObject>(info);
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < 3; i++)

@@ -1,0 +1,151 @@
+﻿
+@{
+    ViewData["Title"] = "weatherData";
+}
+
+<h1>Weather Data</h1>
+<script>
+    function show_recomm() {
+        var soil_type = document.getElementById("option").value;
+        var json = JSON.parse(document.getElementById("hf").value);
+        var json_two = JSON.parse(document.getElementById("hf_two").value);
+        //const agri_info=[];
+        var recomm = json_two[0];
+        switch (soil_type) {
+            case "0": 
+            {
+                recomm+=json_two[1];
+                break;
+            }
+            case "1": 
+            { 
+                recomm+=json_two[2];
+                break;
+            }
+            case "2": 
+            {
+                recomm+=json_two[3];
+                break;
+            }
+            default: { }
+        }
+        var date = json["weather"][0]["today_date"];
+        var temp = json["weather"][0]["temp"];
+        var precip = json["weather"][0]["precip"];
+        var wind = json["weather"][0]["wind"];
+        var humidity = json["weather"][0]["humidity"];
+        var val = (parseInt(precip) * parseInt(humidity)) / parseInt(temp);
+        if (val <= 50) {
+            recomm += " " + json_two[4];
+        }
+        else {
+            recomm += " " + json_two[5];
+        }
+        document.getElementById("f_r").value = recomm;
+    }
+</script>
+@using System.Text
+@using System.Text.Json
+@using System.Text.Json.Nodes
+@using System.Text.Json.Serialization
+@{
+    <div class="card">@Html.Label("w_d","today's weather:- "+show_weather_data())</div>
+    List<d_fc> w_f = show_weather_updates();
+    <div class="card">
+        @Html.Label("w_u","the weeks forecast:-")<br />
+        <table border="1">
+            @foreach (d_fc f_c in w_f)
+            {
+                <tr>
+                    <td>@f_c.day</td>
+                    <td>@f_c.weather_type</td>
+                </tr>
+
+            }
+        </table>
+    </div>
+    @Html.Hidden("hf",get_weather_data())
+    string[] soil_type = { "clay", "sand", "silt" };
+    List<SelectListItem> opt = new List<SelectListItem>();
+    int i = 0;
+    foreach (var option in soil_type)
+    {
+        opt.Add(new SelectListItem { Text = option, Value = i.ToString() });
+        i++;
+    }
+    <div class="card">
+        @Html.Label("w_r","recommendations:- ")
+        @Html.DropDownList("option",(IEnumerable<SelectListItem>)opt)
+        <input id="get_r" type="button" value="show recommendations" onclick="show_recomm()" />
+        @Html.TextArea("f_r",null,new{rows=3,cols=100})
+    </div>
+    /*string[] agri_info = File.ReadAllLines(@"C:\Users\StephenGentles\Downloads\MS Leap - AgriSustain\AgriSustain\agriInfo.txt");
+    var agri_infoj = JsonSerializer.Serialize(agri_info);*/
+    @Html.Hidden("hf_two",get_agri_data());
+}
+@functions{
+    public string show_weather_data()
+    {
+        string weather = null;
+        w_info w_Info = new w_info();
+        string info = File.ReadAllText("weather_data.json");
+        var j_data = JsonSerializer.Deserialize<JsonObject>(info);
+        w_Info.t_date = Convert.ToDateTime(j_data["weather"][0]["today_date"].ToString());
+        w_Info.w_Data = new w_data { temp = j_data["weather"][0]["temp"].ToString(), precip = j_data["weather"][0]["precip"].ToString(), wind = j_data["weather"][0]["wind"].ToString(), humidity = j_data["weather"][0]["humidity"].ToString() };
+        weather = w_Info.t_date.ToString() + " temperature: " + w_Info.w_Data.temp + " precipitation: " + w_Info.w_Data.precip + " wind speed: " + w_Info.w_Data.wind + " humidity: " + w_Info.w_Data.humidity;
+        return weather;
+    }
+    public List<d_fc> show_weather_updates()
+    {
+        //string weather = null;
+        w_info w_Info = new w_info();
+        w_Info.fc_d = new List<d_fc>();
+        string info = File.ReadAllText("weather_data.json");
+        var j_data = JsonSerializer.Deserialize<JsonObject>(info);
+        for (int i = 0; i < 7; i++)
+        {
+            w_Info.fc_d.Add(new d_fc { day = j_data["weather"][1]["forecast"][i]["day"].ToString(), weather_type = j_data["weather"][1]["forecast"][i]["weather_type"].ToString() });
+        }
+        return w_Info.fc_d;
+    }
+    public string get_weather_data()
+    {
+        //string weather = null;
+        string info = File.ReadAllText("weather_data.json");
+        var j_data = JsonSerializer.Deserialize<JsonObject>(info);
+        return j_data.ToString();
+    }
+    public string get_agri_data()
+    {
+        string[] agri_info = File.ReadAllLines("agriInfo.txt");
+        var agri_infoj = JsonSerializer.Serialize(agri_info);
+        return agri_infoj.ToString();
+    }
+        /*public string show_weather_recommendations()
+    {
+        string recomm = null;
+        string[] rec = new string[3];
+        StringBuilder stringBuilder = new StringBuilder();
+        recomm = stringBuilder.ToString();
+        return recomm;
+    }*/
+    public class w_info
+    {
+        public DateTime t_date { get; set; }
+        public w_data w_Data { get; set; }
+        public List<d_fc> fc_d { get; set; }
+    }
+    public struct w_data
+    {
+        public string temp;
+        public string precip;
+        public string wind;
+        public string humidity;
+    }
+    public class d_fc
+    {
+        public string day { get; set; }
+        public string weather_type { get; set; }
+    }
+}
+

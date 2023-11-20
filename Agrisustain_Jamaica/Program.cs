@@ -19,7 +19,7 @@ builder.Services.AddDbContext<Agrisustain_JamaicaContext>(options =>
 builder.Services.AddTransient<JSONFileIrrigationService, JSONFileIrrigationService>();
 builder.Services.AddTransient<JSONFilePlantingGuidesService, JSONFilePlantingGuidesService>();
 builder.Services.AddTransient<JSONFileCropCareService, JSONFileCropCareService>();
-
+builder.Services.AddTransient<WeatherService, WeatherService>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
