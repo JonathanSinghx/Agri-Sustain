@@ -136,12 +136,31 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
             transition: box-shadow 0.3s;
             padding: 2%;
+            width: auto;
     }
 
     .hidden-badge {
         display: none;
     }
 
+    .expandable-container .pdsubmission{
+        overflow: hidden;
+        transition: height 0.3s;
+        height: 5px;
+      
+    }
+
+     .expandable-container .badge-input-container {
+            overflow: hidden;
+            transition: height 0.3s;
+            height: 5px;
+     }
+
+    .expandable-title {
+        cursor: pointer;
+        font-size: 1.5em;
+        margin-bottom: 10px;
+    }
    
     </style>
 </head>
@@ -262,9 +281,9 @@
         </div>
 
             @* Track your badges *@
-
-            <div class="container badge-input-container">
-                <h3>Track your badges</h3>
+            <div id="trackBadgesContainer expandable-container" class="container badge-container">        
+                <div class="expandable-title" onclick="toggleBadgeContainer()">Track Your Badges</div>
+                @* <div id="trackBadgesContainer" class="container badge-container"> *@
                 <form>
                     <div class="row">
                         <div class="col-12">
@@ -429,16 +448,18 @@
                         </div>
                     </div>
                 </form>
+            </>
             </div>
-
-        </div>
+            </div>
+       </div>
 
         @*Pest and Disease Sighting Submission Form*@
 
-        <div class="container mt-5 pdsubmission">
-            <h2>Pest and Disease Submission Form</h2>
+    <div class="container expandable-container mt-5 pdsubmission">
+        <div class="expandable-title" onclick="togglePestDiseaseContainer()">Pest and Disease Submission</div>
+            <div id="pestDiseaseContainer" class="container pest-disease-container">
 
-            <form action="/Farm/SubmitForm" method="post" enctype="multipart/form-data">
+            <form action="/Farm/SubmitForm" method="post" enctype="multipart/form-data" onsubmit="submitForm()">
                 <!-- Farm Location -->
                 <div class="form-group">
                     <label for="farmLocation">Farm Location</label>
@@ -516,94 +537,100 @@
 
                 <!-- Photo Upload -->
                 <div class="form-group">
-                    <label for="photo">Upload Photo</label>
+                    <label for="photo">Upload Photo</label><br />
                     <input type="file" class="form-control-file" id="photo" name="photo" accept="image/*" required>
                 </div>
 
                 <!-- Submit Button -->
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
-        </div>
+            </div>
+            
+        
 
 </div>
 
     <script>
-        
-         $(document).ready(function () {
-             // Hide all criteria checkboxes initially
-             $(".criteria-check").hide();
+        $(document).ready(function () {
+            $(".criteria-check").hide();
 
-             // Listen for changes in the badge select dropdown
-             $("#badgeSelect").change(function () {
-                 // Hide all criteria checkboxes
-                 $(".criteria-check").hide();
+            $("#badgeSelect").change(function () {
+                $(".criteria-check").hide();
 
-                 // Show criteria for the selected badge
-                 var selectedBadge = $(this).val();
-                 $("#" + selectedBadge + "-criteria").show();
-             });
+                var selectedBadge = $(this).val();
+                $("#" + selectedBadge + "-criteria").show();
+            });
 
-             // Attach a click event handler to all elements with the "add-badge" class
-             $(".btn-container button").click(function () {
-                 // Get the selected badge name from the dropdown
-                 var selectedBadgeName = $("#badgeSelect option:selected").text();
+            $(".btn-container button").click(function () {
+                var selectedBadgeName = $("#badgeSelect option:selected").text();
 
-                 // Create a container for the badge
-                 var badgeElement = $("<div class='badge d-flex flex-column justify-content-center align-items-center'></div>");
-                 var iconElement = $("<i class='fa'></i>");
+                var badgeElement = $("<div class='badge d-flex flex-column justify-content-center align-items-center'></div>");
+                var iconElement = $("<i class='fa'></i>");
 
-                 // Assign the appropriate class based on the badge name
-                 switch (badgeName) {
-                     case "Drip Irrigation":
-                         iconElement.addClass("fa-tint");
-                         break;
-                     case "Organic Farming":
-                         iconElement.addClass("fa-leaf");
-                         break;
-                     case "Crop Rotation":
-                         iconElement.addClass("fa-retweet");
-                         break;
-                     case "Rainwater Harvesting":
-                         iconElement.addClass("fa-cloud-showers-heavy");
-                         break;
-                     case "Mulching":
-                         iconElement.addClass("fa-magic");
-                         break;
-                     case "Reducing Food Waste":
-                         iconElement.addClass("fa-sync");
-                         break;
-                     case "Hydroponics and Aquaponics":
-                         iconElement.addClass("fa-seedling");
-                         break;
-                     case "Composting":
-                         iconElement.addClass("fa-recycle");
-                         break;
-                     case "Natural Pest Management":
-                         iconElement.addClass("fa-bug");
-                         break;
-                 }
+                var badgeName = selectedBadgeName.trim();
 
-                 // Add the icon to the badge element but hide it initially
-                 iconElement.hide();
-                 badgeElement.append(iconElement);
+                switch (badgeName) {
+                    case "Drip Irrigation":
+                        iconElement.addClass("fa-tint");
+                        break;
+                    case "Organic Farming":
+                        iconElement.addClass("fa-leaf");
+                        break;
+                    case "Crop Rotation":
+                        iconElement.addClass("fa-retweet");
+                        break;
+                    case "Rainwater Harvesting":
+                        iconElement.addClass("fa-cloud-showers-heavy");
+                        break;
+                    case "Mulching":
+                        iconElement.addClass("fa-magic");
+                        break;
+                    case "Reducing Food Waste":
+                        iconElement.addClass("fa-sync");
+                        break;
+                    case "Hydroponics and Aquaponics":
+                        iconElement.addClass("fa-seedling");
+                        break;
+                    case "Composting":
+                        iconElement.addClass("fa-recycle");
+                        break;
+                    case "Natural Pest Management":
+                        iconElement.addClass("fa-bug");
+                        break;
+                }
 
-                 // Add the badge name to the badge element
-                 badgeElement.append("<p class='text-light text-center badge-name'>" + selectedBadgeName + "</p>");
+                iconElement.hide();
+                badgeElement.append(iconElement);
+                badgeElement.append("<p class='text-light text-center badge-name'>" + selectedBadgeName + "</p>");
+                $("#user-badges").append(badgeElement);
+            });
 
-                 // Append the badge element to the user-badges container
-                 $("#user-badges").append(badgeElement);
-             });
+            $("#addBadgeButton").click(function () {
+                var selectedBadgeName = $("#badgeSelect").val();
 
-             // Attach a click event handler to the "Add to my badges" button
-             $("#addBadgeButton").click(function () {
-                 // Get the selected badge name
-                 var selectedBadgeName = $("#badgeSelect").val();
+                var selectedBadge = $(".badge-name:contains('" + selectedBadgeName + "')");
+                selectedBadge.siblings("i.fa").show();
+            });
+        });
 
-                 // Find the badge with the corresponding name and unhide its icon
-                 var selectedBadge = $(".badge-name:contains('" + selectedBadgeName + "')");
-                 selectedBadge.siblings("i.fa").show();
-             });
-         });
+        function toggleContainer(containerId) {
+            var container = document.getElementById(containerId);
+            if (container.style.display === "none" || container.style.display === "") {
+                container.style.display = "block";
+            } else {
+                container.style.display = "none";
+            }
+        }
+         
+        // Function to toggle the Pest and Disease Submission container
+        function togglePestDiseaseContainer() {
+            toggleContainer('pestDiseaseContainer');
+        }
+
+        // Function to toggle the Track Your Badges container
+        function toggleBadgeContainer() {
+            toggleContainer('trackBadgesContainer');
+        }
     </script>
 
 

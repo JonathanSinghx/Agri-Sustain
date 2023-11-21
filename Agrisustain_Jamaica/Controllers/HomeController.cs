@@ -59,6 +59,11 @@ namespace Agrisustain_Jamaica.Controllers
             return View();
         }
 
+        public IActionResult About()
+        {
+            return View();
+        }
+
         public IActionResult Resources()
         {
             return View();
@@ -70,6 +75,11 @@ namespace Agrisustain_Jamaica.Controllers
         }
 
         public IActionResult SignUpForm()
+        {
+            return View();
+        }
+
+        public IActionResult PestDiseaseNotifications()
         {
             return View();
         }
@@ -152,6 +162,22 @@ namespace Agrisustain_Jamaica.Controllers
             ord.card_type = card_type;
             ord.card_num = card_num;
             return View(ord);
+        }
+        public IActionResult R_sys() 
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult R_Confirmation() 
+        {
+            string id = Request.Form["id"], name = Request.Form["name"], r_amt = Request.Form["r_amt"], rev = Request.Form["rev"];
+            Item_r rating = new Item_r();
+            rating.id = Convert.ToInt16(id);
+            rating.name = name;
+            rating.r_amt = Convert.ToInt16(r_amt);
+            rating.rev = rev;
+            rating.dateTime = DateTime.Now;
+            return View(rating);
         }
         public IActionResult UserSelector()
         {
