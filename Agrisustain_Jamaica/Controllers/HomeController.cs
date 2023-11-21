@@ -1,6 +1,7 @@
 ﻿using Agrisustain_Jamaica.Models;
 using Agrisustain_Jamaica.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Data.SqlClient;
 using System.Diagnostics;
 
 namespace Agrisustain_Jamaica.Controllers
@@ -161,6 +162,7 @@ namespace Agrisustain_Jamaica.Controllers
             ord.data = items_tot;
             ord.card_type = card_type;
             ord.card_num = card_num;
+            write_db(ord);
             return View(ord);
         }
         public IActionResult R_sys() 
@@ -177,7 +179,39 @@ namespace Agrisustain_Jamaica.Controllers
             rating.r_amt = Convert.ToInt16(r_amt);
             rating.rev = rev;
             rating.dateTime = DateTime.Now;
+            write_db(rating);
             return View(rating);
+        }
+        public void write_db(object obj)
+        {
+            string constr = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;";
+            SqlConnection conn = new SqlConnection(constr);
+            conn.Open();
+            SqlCommand comm = new SqlCommand(constr, conn);
+            comm.Connection = conn;
+            if (obj.GetType() == typeof(order))
+            {
+                order order = (order)obj;
+                comm.CommandText = "use agri_sus;insert into [dbo].[order] (o_date,cust_name,cust_addr,cust_em,data,card_type) values (@o_date,@cust_name,@cust_addr,@cust_em,@data,@card_type)";
+                comm.Parameters.AddWithValue("@o_date", order.o_date);
+                comm.Parameters.AddWithValue("@cust_name", order.cust_name);
+                comm.Parameters.AddWithValue("@cust_addr", order.cust_addr);
+                comm.Parameters.AddWithValue("@cust_em", order.cust_em);
+                comm.Parameters.AddWithValue("@data", order.data);
+                comm.Parameters.AddWithValue("@card_type", order.card_type);
+            }
+            else if (obj.GetType() == typeof(Item_r))
+            {
+                Item_r item = (Item_r)obj;
+                comm.CommandText = "use agri_sus;insert into [dbo].[R_Table] (Id,prod_name,r_amt,rev,dateTime) values (@Id,@prod_name,@r_amt,@rev,@dateTime)";
+                comm.Parameters.AddWithValue("@Id", item.id);
+                comm.Parameters.AddWithValue("@prod_name", item.name);
+                comm.Parameters.AddWithValue("@r_amt", item.r_amt);
+                comm.Parameters.AddWithValue("@rev", item.rev);
+                comm.Parameters.AddWithValue("@dateTime", item.dateTime);
+            }
+            else { }
+            comm.ExecuteNonQuery();
         }
         public IActionResult UserSelector()
         {
