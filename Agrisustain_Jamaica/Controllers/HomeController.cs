@@ -59,6 +59,11 @@ namespace Agrisustain_Jamaica.Controllers
             return View();
         }
 
+        public IActionResult About()
+        {
+            return View();
+        }
+
         public IActionResult Resources()
         {
             return View();
@@ -70,6 +75,11 @@ namespace Agrisustain_Jamaica.Controllers
         }
 
         public IActionResult SignUpForm()
+        {
+            return View();
+        }
+
+        public IActionResult PestDiseaseNotifications()
         {
             return View();
         }

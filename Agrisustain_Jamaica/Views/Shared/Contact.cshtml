@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+       /*  display: flex; */
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .contact-container {
+        text-align: center;
+        background-color: #f0f0f0;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 100%;
+        transition: all 0.3s ease;
+        margin: 5% 35%;
+    }
+
+        .contact-container h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+    input, textarea {
+        width: 100%;
+        margin-bottom: 15px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    button {
+        background-color: #193631;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+
+        button:hover {
+            background-color: #193631;
+        }
+
+    #successMessage {
+        margin-top: 15px;
+        padding: 10px;
+        background-color: #193631;
+        color: white;
+        display: none;
+        border-radius: 5px;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    h1 {
+        padding: 5%;
+        color: white;
+    }
+
+    .header {
+        background-color: #193631;
+    }
+
+</style>
+
+<body>
+    <div class="header">
+        <h1 class="text-center">Contact Us</h1>
+    </div>
+    <div class="contact-container">
+        <form id="contactForm">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="email" id="email" placeholder="Your Email" required>
+            <textarea id="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send</button>
+        </form>
+        <div id="successMessage" class="hidden">Message Sent Successfully!</div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+
+</html>
+<script>
+    document.getElementById('contactForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+        var name = document.getElementById('name').value;
+        var email = document.getElementById('email').value;
+        var message = document.getElementById('message').value;
+
+        // Simulating a successful message submission (you can integrate your backend here)
+        setTimeout(function () {
+            document.getElementById('successMessage').style.display = 'block';
+            document.getElementById('contactForm').reset();
+            setTimeout(function () {
+                document.getElementById('successMessage').style.opacity = '0';
+            }, 3000);
+        }, 2000);
+    });
+</script>
