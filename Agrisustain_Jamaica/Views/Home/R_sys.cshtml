@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewData["Title"] = "R_sys";
+}
+
+<h1>R_sys</h1>
+<script type="text/javascript">
+    function a_i_r() {
+        var prd = JSON.parse(document.getElementById("hf").value);
+        var opt = document.getElementById("option").value;
+        var r_opt = document.getElementById("r_option").value;
+        document.getElementById("id").value = opt;
+        for (var i = 0; i < prd.length; i++) {
+            if (prd[i].id == opt) {
+                document.getElementById("name").value = prd[i].name;
+                break;
+            }
+        }
+        document.getElementById("r_amt").value = r_opt;
+    }
+    function aver_r() { }
+</script>
+@using System.Data.SqlClient
+@using System.Text
+@using System.Text.Json
+@using System.Text.Json.Nodes
+@using System.Text.Json.Serialization
+@{
+    List<Item> lst = new List<Item>();
+    string constr = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;";
+    SqlConnection conn = new SqlConnection(constr);
+    conn.Open();
+    SqlCommand comm = new SqlCommand(constr, conn);
+    comm.Connection = conn;
+    comm.CommandText = "use agri_sus;select * from [dbo].[table]";
+    SqlDataReader reader = comm.ExecuteReader();
+    while (reader.Read())
+    {
+        Item item = new Item();
+        item.id = (int)reader["id"];
+        item.name = (string)reader["product_name"];
+        lst.Add(item);
+    }
+    var j_data = JsonSerializer.Serialize(lst);
+    @Html.Hidden("hf",j_data);
+    List<SelectListItem> opt = new List<SelectListItem>();
+    foreach (var option in lst)
+    {
+        opt.Add(new SelectListItem { Text = option.name, Value = option.id.ToString() });
+    }
+    @Html.DropDownList("option",(IEnumerable<SelectListItem>)opt)
+    List<SelectListItem> r_opt = new List<SelectListItem>();
+    int[] r_bar = { 1, 2, 3, 4, 5 };
+    foreach(int option in r_bar)
+    {
+        r_opt.Add(new SelectListItem { Text = option.ToString(), Value = option.ToString() });
+    }
+    @Html.DropDownList("r_option",(IEnumerable<SelectListItem>)r_opt)
+        <input type="button" value="add item rating" onclick="a_i_r()" />
+        <input type="button" value="average rating" />
+        <form method="post" action="R_Confirmation">
+            @Html.TextBox("id")<br />
+            @Html.TextBox("name")<br />
+            @Html.TextBox("r_amt")<br />
+            @Html.TextArea("rev")<br />
+            <input type="submit" />
+        </form>
+}
