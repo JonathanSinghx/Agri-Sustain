@@ -24,31 +24,22 @@ namespace Agrisustain_Jamaica.Services
         List<AirQualityIndexModel> airQualityIndex = new List<AirQualityIndexModel>();
         List<AirQualityIndexData> airQualityIndexData = new List<AirQualityIndexData>();
 
-        public async Task GetCurrentWeatherData()
+        public async Task GetCurrentWeatherData(double latitude, double longitude)
         {
-            
-            //double lat = geolocationModel.Latitude; 
-          // double lat = geolocation.Latitude;
             string baseUrl = "https://api.openweathermap.org/";
-
             string API_Key = "9aa7f0ef9d7b97bd856b7bf109607d29";
-
 
             using (var client = new HttpClient())
             {
               //  HttpResponseMessage getRequest = await client.GetAsync("https://localhost:7269/weatherforecast/weatherforecast");
               
                 client.BaseAddress = new Uri(baseUrl);
-
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-
-
                 client.DefaultRequestHeaders.Clear();
 
                 HttpResponseMessage currentWeatherResponseMessage = await client.GetAsync($"{baseUrl}data/2.5/weather?lat=44.34&lon=10.99&appid={API_Key}&units=metric");
                 HttpResponseMessage hourlyWeatherResponseMessage = await client.GetAsync($"{baseUrl}data/2.5/forecast?lat=44.34&lon=10.99&appid={API_Key}");
                 HttpResponseMessage AirQualityResponseMessage = await client.GetAsync($"{baseUrl}data/2.5/air_pollution?lat=44.34&lon=10.99&appid={API_Key}");
-               
 
                 if (currentWeatherResponseMessage.IsSuccessStatusCode)
                 {
@@ -86,8 +77,6 @@ namespace Agrisustain_Jamaica.Services
 
                 }
 
-
-
                 if (hourlyWeatherResponseMessage.IsSuccessStatusCode)
                 {
                     using (JsonDocument document = JsonDocument.Parse(await hourlyWeatherResponseMessage.Content.ReadAsStringAsync()))
@@ -117,7 +106,6 @@ namespace Agrisustain_Jamaica.Services
 
                 }
 
-
                 if(AirQualityResponseMessage.IsSuccessStatusCode)
                 {
                     using (JsonDocument document = JsonDocument.Parse(await AirQualityResponseMessage.Content.ReadAsStringAsync()))
@@ -144,10 +132,10 @@ namespace Agrisustain_Jamaica.Services
             }
         }
 
-        public async Task WeatherForecastResult()
-        {
-          // await GetCurrentWeatherData();
-        }
+        //public async Task WeatherForecastResult()
+        //{
+        //  // await GetCurrentWeatherData();
+        //}
 
         public async Task<IEnumerable<CurrentWeatherConditionModel>>GetCurrentWeatherCondition()
         {
@@ -187,7 +175,6 @@ namespace Agrisustain_Jamaica.Services
         {
             return hourlyWeatherForecasts;
         }
-
 
         public async Task<IEnumerable<AirQualityIndexData>> GetAirQualityIndex()
         {

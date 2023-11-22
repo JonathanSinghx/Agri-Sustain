@@ -1,7 +1,7 @@
 ﻿@inject Agrisustain_Jamaica.Services.WeatherService CurrentWeather;
 @{
-    await CurrentWeather.GetCurrentWeatherData();
-    var currentWeatherCondition = CurrentWeather.GetCurrentWeatherCondition().Result.ElementAt(0);
+   // await CurrentWeather.GetCurrentWeatherData();
+   // var currentWeatherCondition = CurrentWeather.GetCurrentWeatherCondition().Result.ElementAt(0);
 }
 
 <!DOCTYPE html>
@@ -80,10 +80,10 @@
                             </a>
 
                         </li>
-                            @{
+                            @* @{
                                 string weatherIconUrl = $"http://openweathermap.org/img/w/{currentWeatherCondition.Icon}.png";
-                            }
-                            <li class="weather-nav">
+                            } *@
+                          @*   <li class="weather-nav">
                            
                             <a class="text-black" asp-area="" asp-controller="WeatherForecast" asp-action="WeatherForecast">
                                
@@ -91,7 +91,7 @@
                                     @currentWeatherCondition.Description
                             </a>
                         
-                        </li>
+                        </li> *@
 
                             @* <li class="nav-item">
                         <a class="nav-link text-dark btn-light" asp-area="" asp-controller="Home" asp-action="Weather">
