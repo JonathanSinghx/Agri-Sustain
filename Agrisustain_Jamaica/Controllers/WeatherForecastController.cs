@@ -97,7 +97,9 @@ namespace Agrisustain_Jamaica.Controllers
 
             };
 
-            return View(weatherViewModel);
+            return await Task.Run(() => View(weatherViewModel));
+
+            //return View(weatherViewModel);
         }
     }
 
