@@ -20,6 +20,7 @@ builder.Services.AddTransient<JSONFileIrrigationService, JSONFileIrrigationServi
 builder.Services.AddTransient<JSONFilePlantingGuidesService, JSONFilePlantingGuidesService>();
 builder.Services.AddTransient<JSONFileCropCareService, JSONFileCropCareService>();
 builder.Services.AddTransient<WeatherService, WeatherService>();
+builder.Services.AddScoped<IWeatherService, WeatherForecastService>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

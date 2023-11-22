@@ -9,5 +9,8 @@ namespace Agrisustain_Jamaica.Models.WeatherForecastDataModels
 
         [JsonPropertyName("sunset")]
         public long Sunset { get; set; }
+
+        [JsonPropertyName("country")]
+        public string Country { get; set; }
     }
 }
