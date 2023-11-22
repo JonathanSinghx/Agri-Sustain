@@ -13,6 +13,9 @@ namespace Agrisustain_Jamaica.Models.WeatherForecastDataModels
         [JsonPropertyName("dt")]
         public long CurrentWeatherDateTime { get; set; }
 
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
         public override string ToString()
         {
             return JsonSerializer.Serialize<WeatherModel>(this);

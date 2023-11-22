@@ -1,26 +1,35 @@
 ﻿@* @using Agrisustain_Jamaica.Models.Weather *@
 @using Agrisustain_Jamaica.Services;
-@using Agrisustain_Jamaica.Models.WeatherForecastDataModels
+@using Agrisustain_Jamaica.Models.WeatherForecastDataModels;
 @inject Agrisustain_Jamaica.Services.WeatherService CurrentWeather;
+@inject Agrisustain_Jamaica.Services.IWeatherService Data;
+@model Agrisustain_Jamaica.Controllers.WeatherViewModel;
+@* @model WeatherViewModel; *@
+@* @inject Agrisustain_Jamaica.Services.WeatherForecastService WeatherService; *@
+@* @model List<Agrisustain_Jamaica.Services.IWeatherService> *@
 
 @{
 
-    await CurrentWeather.GetCurrentWeatherData();
-    var currentWeatherCondition = CurrentWeather.GetCurrentWeatherCondition().Result.ElementAt(0);
+  
+    // <p>@Model.</p>
+    
 
-    var currentForecast = CurrentWeather.GetCurrentMainForecast().Result.ElementAt(0);
-    var currentWind = CurrentWeather.GetCurrentWind().Result.ElementAt(0);
-    var visibility = CurrentWeather.GetCurrentWeatherVisibility().Result.ElementAt(0);
+    //await CurrentWeather.GetCurrentWeatherData();
+   //  var currentWeatherCondition = CurrentWeather.GetCurrentWeatherCondition().Result.ElementAt(0);
 
-    var currentSunriseAndSunset = CurrentWeather.GetCurrentSunriseAndSunset().Result.ElementAt(0);
+   //  var currentForecast = CurrentWeather.GetCurrentMainForecast().Result.ElementAt(0);
+   //  var currentWind = CurrentWeather.GetCurrentWind().Result.ElementAt(0);
+   //  var visibility = CurrentWeather.GetCurrentWeatherVisibility().Result.ElementAt(0);
 
-    DateTime sunrise = DateTimeOffset.FromUnixTimeSeconds(currentSunriseAndSunset.Sunrise).UtcDateTime;
-    DateTime sunset = DateTimeOffset.FromUnixTimeSeconds(currentSunriseAndSunset.Sunset).UtcDateTime;
+   //  var currentSunriseAndSunset = CurrentWeather.GetCurrentSunriseAndSunset().Result.ElementAt(0);
 
-    var hourlyWeatherForecast = CurrentWeather.GetHourlyWeatherForecast().Result;
-    var hourlyWeatherForecasts = CurrentWeather.GetHourlyWeatherForecasts().Result;
+   // // DateTime sunrise = DateTimeOffset.FromUnixTimeSeconds(currentSunriseAndSunset.Sunrise).UtcDateTime;
+   // // DateTime sunset = DateTimeOffset.FromUnixTimeSeconds(currentSunriseAndSunset.Sunset).UtcDateTime;
 
-    var airQualityIndex = CurrentWeather.GetAirQualityIndex().Result;
+   //  var hourlyWeatherForecast = CurrentWeather.GetHourlyWeatherForecast().Result;
+   //  var hourlyWeatherForecasts = CurrentWeather.GetHourlyWeatherForecasts().Result;
+
+   //  var airQualityIndex = CurrentWeather.GetAirQualityIndex().Result;
 
 }
 @* <p></p>
@@ -58,10 +67,10 @@
                
                     <div class="mb-2 col-left">
                         @{
-                            string imgIcon = $"http://openweathermap.org/img/w/{currentWeatherCondition.Icon}.png";
+                            string imgIcon = $"http://openweathermap.org/img/w/{Model.CurrentWeatherConditionModel.ElementAt(0).Icon}.png";
                         }
-                        <p class="text-capitalize mb-0 ">@currentWeatherCondition.Description<span><img src=@imgIcon /> </span> </p>
-                        <p class="fs-1 fw-bold current-temperature">@currentForecast.Temperature°C</p>
+                    <p class="text-capitalize mb-0 ">@Model.CurrentWeatherConditionModel.ElementAt(0).Description<span><img src=@imgIcon /> </span> </p>
+                    <p class="fs-1 fw-bold current-temperature">@Model.CurrentMainForecastModel.ElementAt(0).Temperature°C</p>
                     </div>
              
               
@@ -72,15 +81,15 @@
                     <div class="col weather-detail">
                         <p>Wind</p>
                         @* @{ double windspeed = windData.Speed * 3.6;} *@
-                        <p>@currentWind.Speed km/h</p>
+                        <p>@Model.CurrentWindModel.ElementAt(0).Speed km/h</p>
                     </div>
                     <div class="col weather-detail">
                         <p>Humidity</p>
-                        <p>@currentForecast.Humidity%</p>
+                        <p>@Model.CurrentMainForecastModel.ElementAt(0).Humidity%</p>
                     </div>
                     <div class="col weather-detail">
                         <p>Pressure</p>
-                        <p>@currentForecast.Pressure hPa</p>
+                        <p>@Model.CurrentMainForecastModel.ElementAt(0).Pressure hPa</p>
                     </div>
                 </div>
             </div> 
@@ -101,10 +110,10 @@
                             <p class="fw-bold fs-2 ">Now</p>
                             @*   <p class="fs-4 m-0">@currentWeather °C</p> *@
                             @{
-                                string nowWeatherIcon = $"http://openweathermap.org/img/w/{currentWeatherCondition.Icon}.png";
+                                string nowWeatherIcon = $"http://openweathermap.org/img/w/{Model.CurrentWeatherConditionModel.ElementAt(0).Icon}.png";
                             }
                                              
-                            <p class="fs-4 overcast-text">@currentWeatherCondition.Description <span> <img src=@nowWeatherIcon /></span></p>
+                            <p class="fs-4 overcast-text">@Model.CurrentWeatherConditionModel.ElementAt(0).Description <span> <img src=@nowWeatherIcon /></span></p>
                         </div>
                         <div class="col">
                             <p><span><i class="fa-regular fa-calendar calendar-icon"></i></span>@DateTime.Now.ToString("dddd, MMMM d, yyyy")</p>
@@ -118,16 +127,16 @@
                         <div class="row gap-2 slider-container mb-5">
                             @{
                                 int count = 0;
-                                foreach (var timeOfDay in hourlyWeatherForecast)
+                                foreach (var timeOfDay in Model.HourlyWeatherForecastModel)
                                 {
 
                                     DateTime time = DateTimeOffset.FromUnixTimeSeconds(timeOfDay.Time).UtcDateTime;
                                     if (@time.ToShortDateString() != DateTime.Now.ToShortDateString()) break;
-                                    string icon = $"http://openweathermap.org/img/w/{hourlyWeatherForecasts.ElementAt(count).Icon}.png";
+                                    string icon = $"http://openweathermap.org/img/w/{Model.HourlyWeatherForecastsModel.ElementAt(count).Icon}.png";
                                     <div class="slider-item">
                                         <p class="fw-bold">@time.ToShortTimeString()</p>
                                         <img src=@icon />
-                                        <p>@hourlyWeatherForecasts.ElementAt(count).Description</p>
+                                        <p>@Model.HourlyWeatherForecastsModel.ElementAt(count).Description</p>
 
                                     </div>
 
@@ -200,9 +209,11 @@
                                     </div>
 
                                     <div class="row align-items-center mt-3 details">
-                                        @*   <div class="col">
-                                        <i class="fa-solid fa-wind"></i>
-                                        </div> *@
+                                       @{
+
+                                            DateTime sunrise = DateTimeOffset.FromUnixTimeSeconds(Model.SunriseAndSunsetModel.ElementAt(0).Sunrise).UtcDateTime;
+                                            DateTime sunset = DateTimeOffset.FromUnixTimeSeconds(Model.SunriseAndSunsetModel.ElementAt(0).Sunset).UtcDateTime;
+                                       }
                                         <div class="col d-flex gap-2 align-items-center">
                                             <i class="fa-regular fa-sun"></i>
                                             <div class="d-flex flex-column group-text">
@@ -232,7 +243,7 @@
                                         <div class="row align-items-center mt-3 justify-content-between details">
                                             <div class="col d-flex justify-content-between">
                                                 <i class="fa-solid fa-droplet"></i>
-                                                <p>@currentForecast.Humidity%</p>
+                                                <p>@Model.CurrentMainForecastModel.ElementAt(0).Humidity%</p>
                                             </div>
                                         </div>
                                     </div>
@@ -246,7 +257,7 @@
                                         <div class="row align-items-center mt-3 justify-content-between details">
                                             <div class="col d-flex justify-content-between">
                                                 <i class="fa-brands fa-superpowers"></i>
-                                                <p>@currentForecast.Pressure hPa</p>
+                                                <p>@Model.CurrentMainForecastModel.ElementAt(0).Pressure hPa</p>
                                             </div>
                                         </div>
                                     </div>
@@ -262,7 +273,7 @@
                                         <div class="row align-items-center mt-3 justify-content-between details">
                                             <div class="col d-flex justify-content-between">
                                                 <i class="fa-solid fa-eye"></i>
-                                                @{ decimal visibilityVal = visibility.Visibility / 1000; } 
+                                                @{ decimal visibilityVal = Model.WeatherDataModel.ElementAt(0).Visibility / 1000; } 
                                                 <p>@visibilityVal Km</p>
                                             </div>
                                         </div>
@@ -278,7 +289,7 @@
                                             <div class="col d-flex justify-content-between">
                                                 <i class="fa-solid fa-temperature-three-quarters"></i>
                                                 @* @{ double feelsLike = Math.Round(weatherHighlightsData.FeelsLike - 273.15, 2); } *@
-                                                <p>@currentForecast.FeelsLike °C</p>
+                                                <p>@Model.CurrentMainForecastModel.ElementAt(0).FeelsLike °C</p>
                                             </div>
                                         </div>
                                     </div>
@@ -293,11 +304,11 @@
                         <div class="d-grid pb-4 five-days-forecast">
                             @{
                                 int val = 0;
-                                foreach (var forecast in hourlyWeatherForecast)
+                                foreach (var forecast in Model.HourlyWeatherForecastModel)
                                 {
 
                                     DateTime date = DateTimeOffset.FromUnixTimeSeconds(forecast.Time).UtcDateTime;
-                                    string forecastIcon = $"http://openweathermap.org/img/w/{hourlyWeatherForecasts.ElementAt(val).Icon}.png";
+                                    string forecastIcon = $"http://openweathermap.org/img/w/{Model.HourlyWeatherForecastsModel.ElementAt(val).Icon}.png";
                                     if (@date.ToShortDateString() != DateTime.Now.ToShortDateString())
                                     {
                                         <div class="forecast-details">
@@ -309,7 +320,7 @@
                                                 <img src=@forecastIcon />
                                             </div>
                                             <div class="description">
-                                                <p class="fw-bold">@hourlyWeatherForecasts.ElementAt(val).Description</p>
+                                                <p class="fw-bold">@Model.HourlyWeatherForecastsModel.ElementAt(val).Description</p>
                                             </div>
                                         </div>
 
