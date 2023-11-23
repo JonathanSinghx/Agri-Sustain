@@ -93,23 +93,25 @@
     }
     j_data = JsonSerializer.Serialize(lst_r);
     @Html.Hidden("hf_two", j_data)
-    <table border="1">
-        <tr>
-            <th>Id</th>
-            <th>item</th>
-            <th>rating</th>
-            <th>review</th>
-            <th>date posted</th>
-        </tr>
-        @foreach (Item_r r in lst_r)
-        {
+    <div class="card">
+        <table border="1">
             <tr>
-                <td>@r.id</td>
-                <td>@r.name</td>
-                <td>@r.r_amt</td>
-                <td>@r.rev</td>
-                <td>@r.dateTime</td>
+                <th>Id</th>
+                <th>item</th>
+                <th>rating</th>
+                <th>review</th>
+                <th>date posted</th>
             </tr>
-        }
-    </table>
+            @foreach (Item_r r in lst_r)
+            {
+                <tr>
+                    <td>@r.id</td>
+                    <td>@r.name</td>
+                    <td>@r.r_amt</td>
+                    <td>@r.rev</td>
+                    <td>@r.dateTime</td>
+                </tr>
+            }
+        </table>
+    </div>
 }
