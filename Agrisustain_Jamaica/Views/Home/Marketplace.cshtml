@@ -2,8 +2,16 @@
 @{
     ViewData["Title"] = "Marketplace";
 }
-
-<h1>Marketplace</h1>
+<style>
+    .header{
+        background-color: #193631;
+        color: white;
+    }
+    h1{
+        text-align: center;
+    }
+</style>
+<h1 class="header container">Marketplace</h1>
 <script type="text/javascript">
     function atc() {
         var prd = JSON.parse(document.getElementById("hf").value);
@@ -106,4 +114,4 @@
         <input id="p_o" type="submit" value="place order" />
     </form>
 }
-<a asp-controller="Home" asp-action="R_sys">Ratings</a>
+<a asp-controller="Home" asp-action="R_sys">Rate the items</a>
