@@ -2,8 +2,16 @@
 @{
     ViewData["Title"] = "R_sys";
 }
-
-<h1>R_sys</h1>
+<style>
+    .header{
+        background-color: #193631;
+        color: white;
+    }
+    h1{
+        text-align: center;
+    }
+</style>
+<h1 class="header container">Rate your crops</h1>
 <script type="text/javascript">
     function a_i_r() {
         var prd = JSON.parse(document.getElementById("hf").value);
@@ -18,7 +26,19 @@
         }
         document.getElementById("r_amt").value = r_opt;
     }
-    function aver_r() { }
+    function aver_r() {
+        var i_r = JSON.parse(document.getElementById("hf_two").value);
+        var opt = document.getElementById("option").value;
+        var count=0,r_amt=0,aver=0;
+        for (var i = 0; i < i_r.length; i++) {
+            if (i_r[i].id == opt) {
+                count++;
+                r_amt += i_r[i].r_amt;
+            }
+        }
+        aver = r_amt / count;
+        window.alert(aver);
+    }
 </script>
 @using System.Data.SqlClient
 @using System.Text
@@ -41,6 +61,7 @@
         item.name = (string)reader["product_name"];
         lst.Add(item);
     }
+    reader.Close();
     var j_data = JsonSerializer.Serialize(lst);
     @Html.Hidden("hf",j_data);
     List<SelectListItem> opt = new List<SelectListItem>();
@@ -56,13 +77,49 @@
         r_opt.Add(new SelectListItem { Text = option.ToString(), Value = option.ToString() });
     }
     @Html.DropDownList("r_option",(IEnumerable<SelectListItem>)r_opt)
-        <input type="button" value="add item rating" onclick="a_i_r()" />
-        <input type="button" value="average rating" />
-        <form method="post" action="R_Confirmation">
-            @Html.TextBox("id")<br />
-            @Html.TextBox("name")<br />
-            @Html.TextBox("r_amt")<br />
-            @Html.TextArea("rev")<br />
-            <input type="submit" />
-        </form>
+    <input type="button" value="add item rating" onclick="a_i_r()" />
+    <input type="button" value="average rating" onclick="aver_r()" />
+    <form method="post" action="R_Confirmation">
+        @Html.TextBox("id")<br />
+        @Html.TextBox("name")<br />
+        @Html.TextBox("r_amt")<br />
+        @Html.TextArea("rev")<br />
+        <input type="submit" />
+    </form>
+    List<Item_r> lst_r = new List<Item_r>();
+    comm.CommandText = "select * from [dbo].[R_Table]";
+    reader = comm.ExecuteReader();
+    while (reader.Read())
+    {
+        Item_r rating = new Item_r();
+        rating.id = (int)reader["Id"];
+        rating.name = (string)reader["prod_name"];
+        rating.r_amt = (int)reader["r_amt"];
+        rating.rev = (string)reader["rev"];
+        rating.dateTime = (DateTime)reader["dateTime"];
+        lst_r.Add(rating);
+    }
+    j_data = JsonSerializer.Serialize(lst_r);
+    @Html.Hidden("hf_two", j_data)
+    <div class="card">
+        <table border="1">
+            <tr>
+                <th>Id</th>
+                <th>item</th>
+                <th>rating</th>
+                <th>review</th>
+                <th>date posted</th>
+            </tr>
+            @foreach (Item_r r in lst_r)
+            {
+                <tr>
+                    <td>@r.id</td>
+                    <td>@r.name</td>
+                    <td>@r.r_amt</td>
+                    <td>@r.rev</td>
+                    <td>@r.dateTime</td>
+                </tr>
+            }
+        </table>
+    </div>
 }

@@ -5,6 +5,8 @@ VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agrisustain_Jamaica", "Agrisustain_Jamaica\Agrisustain_Jamaica.csproj", "{0FFA112C-B7CC-4D28-814D-314651B5DFB8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agri_Sustain", "Agri_Sustain\Agri_Sustain.csproj", "{271A234F-5CA9-4E27-B7B7-CE848C5FB06E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{0FFA112C-B7CC-4D28-814D-314651B5DFB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FFA112C-B7CC-4D28-814D-314651B5DFB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FFA112C-B7CC-4D28-814D-314651B5DFB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{271A234F-5CA9-4E27-B7B7-CE848C5FB06E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{271A234F-5CA9-4E27-B7B7-CE848C5FB06E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{271A234F-5CA9-4E27-B7B7-CE848C5FB06E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{271A234F-5CA9-4E27-B7B7-CE848C5FB06E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -85,6 +85,11 @@ namespace Agrisustain_Jamaica.Controllers
             return View();
         }
 
+        public IActionResult PestDiseaseMitigation()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
