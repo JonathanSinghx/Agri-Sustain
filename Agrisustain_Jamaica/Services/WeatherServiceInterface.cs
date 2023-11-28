@@ -1,10 +1,13 @@
 ﻿using Agrisustain_Jamaica.Models.WeatherForecastDataModels;
+using Microsoft.AspNetCore.Mvc;
+using System.Net;
 using System.Text.Json;
 
 namespace Agrisustain_Jamaica.Services
 {
     public interface IWeatherService
     {
+        List<double> GetCoordinates(double latitude, double longitude);
         Task GetWeather(double latitude, double longitude);
         Task<IEnumerable<CurrentWeatherConditionModel>> GetCurrentWeatherCondition();
         Task<IEnumerable<CurrentMainForecastModel>> GetCurrentMainForecast();
@@ -19,6 +22,7 @@ namespace Agrisustain_Jamaica.Services
 
     public class WeatherForecastService : IWeatherService
     {
+
         List<CurrentWeatherConditionModel> currentWeatherCondition = new List<CurrentWeatherConditionModel>();
         List<CurrentMainForecastModel> currentMainForecast = new List<CurrentMainForecastModel>();
         List<CurrentWindModel> currentWind = new List<CurrentWindModel>();
@@ -31,15 +35,32 @@ namespace Agrisustain_Jamaica.Services
         List<AirQualityIndexModel> airQualityIndex = new List<AirQualityIndexModel>();
         List<AirQualityIndexData> airQualityIndexData = new List<AirQualityIndexData>();
         public string AddressModel { get; set; }
+        public List<double> Coordinates = new List<double>();
+
+        public List<double>GetCoordinates(double latitude, double longitude)
+        {
+            List<double> coordinates = new List<double>();
+            coordinates.Add(latitude);
+            coordinates.Add(longitude);
+            return coordinates;
+        }
 
         public async Task GetWeather(double latitude, double longitude)
         {
-                string baseUrl = "https://api.openweathermap.org/";
+             
+           // IPHostEntry ipAddressInfo = Dns.GetHostEntry(Dns.GetHostName());
+           // var homeAddress = ipAddressInfo.AddressList.ElementAt(3).Address;
+            string baseUrl = "https://api.openweathermap.org/";
                 string API_Key = "9aa7f0ef9d7b97bd856b7bf109607d29";
-                string geoCodingUrl = $"geo/1.0/reverse?lat={latitude}&lon=-{longitude}&limit=5&appid={API_Key}";
+            //if(latitude != 0 && longitude  != 0)
+            //{
+            //    string geoCodingUrl = $"geo/1.0/reverse?lat={latitude}&lon=-{longitude}&limit=5&appid={API_Key}";
+            //}
+               
 
                 using (var client = new HttpClient())
                 {
+             
                     //  HttpResponseMessage getRequest = await client.GetAsync("https://localhost:7269/weatherforecast/weatherforecast");
 
                     client.BaseAddress = new Uri(baseUrl);
@@ -49,7 +70,7 @@ namespace Agrisustain_Jamaica.Services
                     HttpResponseMessage currentWeatherResponseMessage = await client.GetAsync($"{baseUrl}data/2.5/weather?lat={latitude}&lon={longitude}&appid={API_Key}&units=metric");
                     HttpResponseMessage hourlyWeatherResponseMessage = await client.GetAsync($"{baseUrl}data/2.5/forecast?lat={latitude}&lon={longitude}&appid={API_Key}");
                     HttpResponseMessage AirQualityResponseMessage = await client.GetAsync($"{baseUrl}data/2.5/air_pollution?lat={latitude}&lon={longitude}&appid={API_Key}");
-                    HttpResponseMessage addressResponseMessage = await client.GetAsync($"{baseUrl}geo/1.0/reverse?lat={latitude}&lon=-{longitude}&limit=3&appid={API_Key}");
+                   // HttpResponseMessage addressResponseMessage = await client.GetAsync($"{baseUrl}geo/1.0/reverse?lat={latitude}&lon=-{longitude}&limit=3&appid={API_Key}");
 
                     if (currentWeatherResponseMessage.IsSuccessStatusCode)
                     {
@@ -125,6 +146,7 @@ namespace Agrisustain_Jamaica.Services
                     }
                    
                 }
+           // return new object { latitude, longitude };
         }
 
         public async Task<IEnumerable<CurrentWeatherConditionModel>> GetCurrentWeatherCondition()
