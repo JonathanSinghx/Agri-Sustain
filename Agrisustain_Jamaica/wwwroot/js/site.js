@@ -42,15 +42,17 @@ async function showPosition(position) {
 }
 
 //Event Listeners
-getLocation()
-locationIcon.addEventListener("click", () => {
+
+    //getLocation()
+
+//locationIcon.addEventListener("click", () => {
     
-})
+//})
 
 
-searchIcon.addEventListener("click", () => {
-    const afterElement = window.getComputedStyle(
-        document.querySelector('.weather-header'), '::after');
+//searchIcon.addEventListener("click", () => {
+//    const afterElement = window.getComputedStyle(
+//        document.querySelector('.weather-header'), '::after');
 
-        afterElement.style.display = "block"
-})
+//        afterElement.style.display = "block"
+//})
