@@ -4,6 +4,9 @@ using Agrisustain_Jamaica.Models.WeatherForecastDataModels;
 
 using System.Xml.Linq;
 using System.Collections;
+using System.Net;
+using Microsoft.CodeAnalysis;
+using System.Text.Json;
 
 namespace Agrisustain_Jamaica.Controllers
 {
@@ -22,69 +25,137 @@ namespace Agrisustain_Jamaica.Controllers
         // ...
     }
 
-    [ApiController]
+  
+   // [ApiController]
     [Route("weatherforecast/[controller]")]
+   // [Route("weatherforecast/[controller]")]
 
     public class WeatherForecastController : Controller
     {
-      List<Double> coords = new List<Double>();
+       
+        // List<object> coords = new List<object>();
+        //GeolocationModel location = new GeolocationModel();
+        //public double Lat { get; set; } = 18.0367;
+        //public double Lng { get; set; } = -77.4859;
 
-        public double Latitude {get; set;}
-        public double Longitude { get; set;}
+        public double Lat { get; set; }
+        public double Lng { get; set; }
+        public IEnumerable<CurrentWeatherConditionModel> CurrentWeatherListItems { get; set; }
+        public IEnumerable<CurrentMainForecastModel> CurrentForecastListItems { get; set; }
+        public IEnumerable<CurrentWindModel> CurrentWindListItems { get; set; }
+        public IEnumerable<SunriseAndSunsetModel> CurrentSunriseAndSunsetListItems { get; set; }
+        public IEnumerable<WeatherModel> CurrentVisibilityAndTimeListItems { get; set; }
+        public IEnumerable<HourlyWeatherForecastModel> CurrentHourlyForecastListItems { get; set; }
+        public IEnumerable<HourlyWeatherForecasts> FiveDaysHourlyForecastListItems { get; set; }
+
+        // public object getData = new object();
 
         private readonly IWeatherService _weatherService;
         
+
         public WeatherForecastController(IWeatherService weatherForecast)
         {
-            _weatherService = weatherForecast; 
-        }
-        //Location geolocation = new Location();
-
-        [HttpPost]
-        public async Task<IActionResult> WeatherForecast([FromBody] GeolocationModel locationData)
-        {
-            double latitude = locationData.Latitude;
-            double longitude = locationData.Longitude;
-
-            Latitude = latitude;
-            Longitude = longitude;
-            
-            coords.Add(latitude);
-            coords.Add(longitude);
-
-           // await _weatherService.GetWeather(Latitude, Longitude);
-            return Ok(coords);
+            _weatherService = weatherForecast;       
           
         }
 
+        //[HttpGet]
+        //public IActionResult WeatherForecast()
+        //{
+        //    return View();
+        //}
+
+        //[HttpPost("PostCoordinates")]
+        
+        [HttpPost]
+        public JsonResult PostCoordinates(GeolocationModel data)
+        {
+            double latitude = data.Latitude;
+            double longitude = data.Longitude;
+
+            GeolocationModel geolocation = new GeolocationModel()
+            {
+                Latitude = latitude,
+                Longitude = longitude
+            };
+
+            // _weatherService.GetCoordinates(latitude, longitude);
+            // await _weatherService.GetWeather(latitude, longitude);
+             _weatherService.GetWeather(
+             latitude, longitude);
+
+            var currentWeatherData =  _weatherService.GetCurrentWeatherCondition();
+            //var currentForecastData = await _weatherService.GetCurrentMainForecast();
+            //var currentWindForecastData = await _weatherService.GetCurrentWind();
+            //var currentSunriseAndSunsetData = await _weatherService.GetCurrentSunriseAndSunset();
+            //var visibilityAndTimeData = await _weatherService.GetCurrentWeatherVisibility();
+            //var currentHourlyForecastData = await _weatherService.GetHourlyWeatherForecast();
+            //var fiveDaysHourlyForecastsData = await _weatherService.GetHourlyWeatherForecasts();
+
+            // CurrentWeatherListItems = currentWeatherData;
+            // CurrentForecastListItems = currentForecastData;
+            // CurrentWindListItems = currentWindForecastData;
+            // CurrentSunriseAndSunsetListItems = currentSunriseAndSunsetData;
+            // CurrentVisibilityAndTimeListItems = visibilityAndTimeData;
+            // CurrentHourlyForecastListItems = currentHourlyForecastData;
+            // FiveDaysHourlyForecastListItems = fiveDaysHourlyForecastsData;
+
+            //var weatherViewModel = new WeatherViewModel
+            //{
+            //    CurrentWeatherConditionModel = CurrentWeatherListItems,
+            //    CurrentMainForecastModel = CurrentForecastListItems,
+            //    CurrentWindModel = CurrentWindListItems,
+            //    SunriseAndSunsetModel = CurrentSunriseAndSunsetListItems,
+            //    WeatherDataModel = CurrentVisibilityAndTimeListItems,
+            //    HourlyWeatherForecastModel = CurrentHourlyForecastListItems,
+            //    HourlyWeatherForecastsModel = FiveDaysHourlyForecastListItems
+
+            //};
+
+            //return View("weatherforecast/weatherforecast", weatherViewModel);
+            //HttpContext.Items["GeolocationData"] = geolocation;
+
+            //HttpContext.Items["GeolocationData"] = geolocation;
+
+            // return View(weatherViewModel);
+            return Json(currentWeatherData);
+
+        }
+
+
         public async Task<IActionResult> WeatherForecast()
         {
-            await _weatherService.GetWeather(Latitude, Longitude);
 
-            var currentWeatherData = _weatherService.GetCurrentWeatherCondition();
-            var currentForecastData = _weatherService.GetCurrentMainForecast();
-            var currentWindForecastData = _weatherService.GetCurrentWind();
-            var currentSunriseAndSunsetData = _weatherService.GetCurrentSunriseAndSunset();
-            var visibilityAndTimeData = _weatherService.GetCurrentWeatherVisibility();
-            var currentHourlyForecastData = _weatherService.GetHourlyWeatherForecast();
-            var fiveDaysHourlyForecastsData = _weatherService.GetHourlyWeatherForecasts();
+            //    // GeolocationModel data = Lat;
+            //    //CoordinatesModel coordinatesModel = new CoordinatesModel();
+            //    //double res1 = coordinatesModel.AccessGeolocationData()
+            await _weatherService.GetWeather(
+                Lat, Lng);
 
-            Task.WhenAll(currentWeatherData, 
-                        currentForecastData, 
-                        currentWindForecastData, 
-                        currentSunriseAndSunsetData, 
-                        visibilityAndTimeData, 
-                        currentHourlyForecastData, 
-                        fiveDaysHourlyForecastsData);
+            var currentWeatherData = await _weatherService.GetCurrentWeatherCondition();
+            var currentForecastData = await _weatherService.GetCurrentMainForecast();
+            var currentWindForecastData = await _weatherService.GetCurrentWind();
+            var currentSunriseAndSunsetData = await _weatherService.GetCurrentSunriseAndSunset();
+            var visibilityAndTimeData = await _weatherService.GetCurrentWeatherVisibility();
+            var currentHourlyForecastData = await _weatherService.GetHourlyWeatherForecast();
+            var fiveDaysHourlyForecastsData = await _weatherService.GetHourlyWeatherForecasts();
 
-            var currentWeatherListItems = await currentWeatherData;
-            var currentForecastListItems = await currentForecastData;
-            var currentWindListItems = await currentWindForecastData;
-            var currentSunriseAndSunsetListItems = await currentSunriseAndSunsetData;
-            var currentVisibilityAndTimeListItems = await visibilityAndTimeData;
-            var currentHourlyForecastListItems = await currentHourlyForecastData;
-            var fiveDaysHourlyForecastListItems = await fiveDaysHourlyForecastsData;
-            // var current =  _currentWeatherCondition.GetCurrentWeatherCondition().Result;
+            //    //Task.WhenAll(currentWeatherData, 
+            //    //            currentForecastData, 
+            //    //            currentWindForecastData, 
+            //    //            currentSunriseAndSunsetData, 
+            //    //            visibilityAndTimeData, 
+            //    //            currentHourlyForecastData, 
+            //    //            fiveDaysHourlyForecastsData);
+
+            var currentWeatherListItems = currentWeatherData;
+            var currentForecastListItems = currentForecastData;
+            var currentWindListItems = currentWindForecastData;
+            var currentSunriseAndSunsetListItems = currentSunriseAndSunsetData;
+            var currentVisibilityAndTimeListItems = visibilityAndTimeData;
+            var currentHourlyForecastListItems = currentHourlyForecastData;
+            var fiveDaysHourlyForecastListItems = fiveDaysHourlyForecastsData;
+
             var weatherViewModel = new WeatherViewModel
             {
                 CurrentWeatherConditionModel = currentWeatherListItems,
@@ -97,12 +168,12 @@ namespace Agrisustain_Jamaica.Controllers
 
             };
 
-            return await Task.Run(() => View(weatherViewModel));
+            //    //return await Task.Run(() => View(weatherViewModel));
 
-            //return View(weatherViewModel);
+            return View(weatherViewModel);
         }
     }
 
-   
-   
+
+
 }

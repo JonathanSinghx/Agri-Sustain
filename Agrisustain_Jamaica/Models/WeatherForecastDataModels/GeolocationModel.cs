@@ -4,20 +4,24 @@
     {
         public double Latitude { get; set; }
         public double Longitude { get; set; }
-        public string Address { get; set; }
+        // public string Address { get; set; }
 
         //public GeolocationModel() 
         //{ 
-            
+
         //}
-        //public object GetLocation()
-        //{
-        //    List<object> coords = new List<object>();
-        //    coords.Add(Latitude);
-        //    coords.Add(Longitude);
-        //    return coords;
-            
-        //}
+        
     }
+
+    //public class CoordinatesModel
+    //{
+    //    public void AccessGeolocationData(GeolocationModel geolocation)
+    //    {
+    //        double latitude = geolocation.Latitude;
+    //        double longitude = geolocation.Longitude;
+
+    //    }
+    //}
+
 
 }

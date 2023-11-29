@@ -1,8 +1,8 @@
 ﻿@* @using Agrisustain_Jamaica.Models.Weather *@
 @using Agrisustain_Jamaica.Services;
 @using Agrisustain_Jamaica.Models.WeatherForecastDataModels;
-@inject Agrisustain_Jamaica.Services.WeatherService CurrentWeather;
-@inject Agrisustain_Jamaica.Services.IWeatherService Data;
+@* @inject Agrisustain_Jamaica.Services.WeatherService CurrentWeather; *@
+@* @inject Agrisustain_Jamaica.Services.IWeatherService Data; *@
 @model Agrisustain_Jamaica.Controllers.WeatherViewModel;
 @* @model WeatherViewModel; *@
 @* @inject Agrisustain_Jamaica.Services.WeatherForecastService WeatherService; *@
@@ -10,11 +10,7 @@
 
 @{
 
-  
-    // <p>@Model.</p>
-    
-
-    //await CurrentWeather.GetCurrentWeatherData();
+   //  await CurrentWeather.GetCurrentWeatherData();
    //  var currentWeatherCondition = CurrentWeather.GetCurrentWeatherCondition().Result.ElementAt(0);
 
    //  var currentForecast = CurrentWeather.GetCurrentMainForecast().Result.ElementAt(0);
@@ -32,8 +28,6 @@
    //  var airQualityIndex = CurrentWeather.GetAirQualityIndex().Result;
 
 }
-@* <p></p>
- *@@* -<p>@airQualityIndex.Index</p> *@
 
 <div class=" py-3 weather-header">
     <div class="container">
@@ -67,7 +61,7 @@
                
                     <div class="mb-2 col-left">
                         @{
-                            string imgIcon = $"http://openweathermap.org/img/w/{Model.CurrentWeatherConditionModel.ElementAt(0).Icon}.png";
+                            string imgIcon = $"https://openweathermap.org/img/w/{Model.CurrentWeatherConditionModel.ElementAt(0).Icon}.png";
                         }
                     <p class="text-capitalize mb-0 ">@Model.CurrentWeatherConditionModel.ElementAt(0).Description<span><img src=@imgIcon /> </span> </p>
                     <p class="fs-1 fw-bold current-temperature">@Model.CurrentMainForecastModel.ElementAt(0).Temperature°C</p>
@@ -76,7 +70,7 @@
               
             </div>
             <div class="col location">
-                <p class="fs-3">Southfield, St. Elizabeth</p>
+                <p class="fs-3">@Model.WeatherDataModel.ElementAt(0).Name, St. Elizabeth</p>
                 <div class="row lh-1 right-col flex-container">
                     <div class="col weather-detail">
                         <p>Wind</p>
@@ -103,21 +97,21 @@
 <div class="weather-cards py-3">
     <div class="container">
         <div class="d-grid grid-container">
-            <div class="d-flex flex-column flex-sm-row justify-content-sm-between col-left">
+            <div class="d-flex flex-column flex-sm-row justify-content-sm-between gap-3 col-left">
                 <div class="p-3 weather-card now-weather-container">
                     <div class="row flex-column">
                         <div class="lh-1 col border-bottom mb-3">
-                            <p class="fw-bold fs-2 ">Now</p>
+                            <p class="fw-bold ">Now</p>
                             @*   <p class="fs-4 m-0">@currentWeather °C</p> *@
                             @{
-                                string nowWeatherIcon = $"http://openweathermap.org/img/w/{Model.CurrentWeatherConditionModel.ElementAt(0).Icon}.png";
+                                string nowWeatherIcon = $"https://openweathermap.org/img/w/{Model.CurrentWeatherConditionModel.ElementAt(0).Icon}.png";
                             }
                                              
-                            <p class="fs-4 overcast-text">@Model.CurrentWeatherConditionModel.ElementAt(0).Description <span> <img src=@nowWeatherIcon /></span></p>
+                            <p class="overcast-text">@Model.CurrentWeatherConditionModel.ElementAt(0).Description <span> <img src=@nowWeatherIcon /></span></p>
                         </div>
                         <div class="col">
                             <p><span><i class="fa-regular fa-calendar calendar-icon"></i></span>@DateTime.Now.ToString("dddd, MMMM d, yyyy")</p>
-                            <p><span><i class="fa-solid fa-location-dot location-icon"></i></span>Southfield, St. Elizabeth</p>
+                            <p><span><i class="fa-solid fa-location-dot location-icon"></i></span>@Model.WeatherDataModel.ElementAt(0).Name, St. Elizabeth</p>
                         </div>
                     </div>
                 </div>
@@ -132,7 +126,7 @@
 
                                     DateTime time = DateTimeOffset.FromUnixTimeSeconds(timeOfDay.Time).UtcDateTime;
                                     if (@time.ToShortDateString() != DateTime.Now.ToShortDateString()) break;
-                                    string icon = $"http://openweathermap.org/img/w/{Model.HourlyWeatherForecastsModel.ElementAt(count).Icon}.png";
+                                    string icon = $"https://openweathermap.org/img/w/{Model.HourlyWeatherForecastsModel.ElementAt(count).Icon}.png";
                                     <div class="slider-item">
                                         <p class="fw-bold">@time.ToShortTimeString()</p>
                                         <img src=@icon />
@@ -308,7 +302,7 @@
                                 {
 
                                     DateTime date = DateTimeOffset.FromUnixTimeSeconds(forecast.Time).UtcDateTime;
-                                    string forecastIcon = $"http://openweathermap.org/img/w/{Model.HourlyWeatherForecastsModel.ElementAt(val).Icon}.png";
+                                    string forecastIcon = $"https://openweathermap.org/img/w/{Model.HourlyWeatherForecastsModel.ElementAt(val).Icon}.png";
                                     if (@date.ToShortDateString() != DateTime.Now.ToShortDateString())
                                     {
                                         <div class="forecast-details">
@@ -335,3 +329,65 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+
+         document.addEventListener("DOMContentLoaded", () =>
+         {
+             // console.log("test")
+             if (navigator.geolocation)
+             {
+                 navigator.geolocation.getCurrentPosition((position) =>
+                 {
+                     const latitude = position.coords.latitude;
+                     const longitude = position.coords.longitude;
+
+                     // Call the function to send the coordinates to the backend
+                     sendCoordinatesToServer(latitude, longitude);
+                 });
+             } else {
+                     console.log('Geolocation is not supported by this browser.');
+                    }
+         });
+
+         function sendCoordinatesToServer(latitude, longitude) {
+             const data = {
+                 latitude: latitude,
+                 longitude: longitude
+             };
+
+             // Send the coordinates to the server using Ajax (Assuming jQuery is used)
+             $.ajax({
+                 type: 'POST',
+                //url: "/weatherforecast/weatherforecast",
+                url: "@Url.Action("PostCoordinates")", // Replace with your controller/action URL
+                 data: JSON.stringify(data),
+                 contentType: 'application/json',
+                 //contentType: 'html',
+                 success: function (response) {
+
+                     console.log('Coordinates sent successfully');
+                     console.log(response); // Log the response from the server
+                 },
+                 error: function (error) {
+                     console.error('Error sending coordinates:', error);
+                 }
+             });
+
+            // $.ajax({
+            //     type: 'Get',
+            //     url: "@Url.Action("WeatherForecast")", // Replace with your controller/action URL
+            //     data: JSON.stringify(data),
+            //     contentType: 'application/json',
+            //     success: function (response) {
+            //         console.log('Coordinates received successfully');
+            //         console.log(response); // Log the response from the server
+            //     },
+            //     error: function (error) {
+            //         console.error('Error receiving coordinates:', error);
+            //     }
+            // });
+         }
+    </script>
+}
