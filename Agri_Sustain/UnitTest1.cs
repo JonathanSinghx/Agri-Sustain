@@ -19,5 +19,24 @@ namespace Agri_Sustain
             Assert.AreEqual("25/9/2023 10:06:06 pm", dt);
             Assert.AreEqual("33", j_data["temp"].ToString());
         }
+        [TestMethod]
+        public void TestMethod2() 
+        {
+            List<d_fc> d_Fcs = new List<d_fc>();
+            d_Fcs.Add(new d_fc { day = "Monday", weather_type = "light rain" });
+            d_Fcs.Add(new d_fc { day = "Tuesday", weather_type = "over cast clouds" });
+            d_Fcs.Add(new d_fc { day = "Wednesday", weather_type = "broken clouds" });
+            d_Fcs.Add(new d_fc { day = "Thursday", weather_type = " clear sky" });
+            d_Fcs.Add(new d_fc { day = "Friday", weather_type = "clear sky" });
+            d_Fcs.Add(new d_fc { day = "Saturday", weather_type = "moderate rain" });
+            d_Fcs.Add(new d_fc { day = "Sunday", weather_type = "over cast clouds" });
+            var j_data = JsonSerializer.Serialize(d_Fcs);
+            Assert.IsNotNull(j_data);
+        }
+        public class d_fc
+        {
+            public string day { get; set; }
+            public string weather_type { get; set; }
+        }
     }
 }
