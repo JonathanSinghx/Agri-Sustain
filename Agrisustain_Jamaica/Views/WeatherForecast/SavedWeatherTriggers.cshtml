@@ -1,0 +1,24 @@
+﻿
+@using Agrisustain_Jamaica.Models.WeatherForecastDataModels;
+@model Agrisustain_Jamaica.Models.WeatherForecastDataModels.SavedTriggerEventsModel;
+
+
+
+<section class="saved-trigger-events p-3">
+    <div class="row events-container p-3">
+        @foreach (var data in Model.triggerEvents)
+        {
+            <div class="col col-6 p-3 event-container">
+                <div class="d-flex justify-content-between align-items-center p-3 rounded-3 event-header bg-black text-white">
+                    <h3 class="fs-6">@data.CreatedAt.ToString("dddd, MMMM d, yyyy")</h3>
+                    <span class="btn btn-success">1 event</span>
+                </div>
+                <div class="event-body p-3 bg-gradient">
+                    <p>@data.TriggerName</p>
+                    <p>@data.WeatherCondition falls below @data.ConditionLevel @data.Units</p>
+                    <p>@data.Duration days event</p>
+                </div>
+            </div>
+        }
+    </div>
+</section>

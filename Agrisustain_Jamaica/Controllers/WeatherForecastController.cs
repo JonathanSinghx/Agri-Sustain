@@ -7,6 +7,8 @@ using System.Collections;
 using System.Net;
 using Microsoft.CodeAnalysis;
 using System.Text.Json;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace Agrisustain_Jamaica.Controllers
 {
@@ -27,7 +29,7 @@ namespace Agrisustain_Jamaica.Controllers
 
   
    // [ApiController]
-    [Route("weatherforecast/[controller]")]
+   // [Route("weatherforecast/[controller]")]
    // [Route("weatherforecast/[controller]")]
 
     public class WeatherForecastController : Controller
@@ -51,23 +53,18 @@ namespace Agrisustain_Jamaica.Controllers
         // public object getData = new object();
 
         private readonly IWeatherService _weatherService;
+        private readonly IConfiguration _configuration;
         
-
-        public WeatherForecastController(IWeatherService weatherForecast)
+        public WeatherForecastController(IWeatherService weatherForecast, IConfiguration configuration)
         {
-            _weatherService = weatherForecast;       
+            _weatherService = weatherForecast;    
+            _configuration = configuration;
           
         }
-
-        //[HttpGet]
-        //public IActionResult WeatherForecast()
-        //{
-        //    return View();
-        //}
-
+        /*
         //[HttpPost("PostCoordinates")]
-        
-        [HttpPost]
+
+        //[HttpPost]
         public JsonResult PostCoordinates(GeolocationModel data)
         {
             double latitude = data.Latitude;
@@ -122,7 +119,7 @@ namespace Agrisustain_Jamaica.Controllers
 
         }
 
-
+        */
         public async Task<IActionResult> WeatherForecast()
         {
 
@@ -172,8 +169,111 @@ namespace Agrisustain_Jamaica.Controllers
 
             return View(weatherViewModel);
         }
+
+
+        //Weather Trigger Events
+
+       // [HttpGet]
+        public IActionResult CreateWeatherTrigger()
+        {
+
+           return View();
+           
+        }
+
+        [HttpPost]
+        public async Task<IActionResult>CreateWeatherTrigger(WeatherTriggerModel trigger)
+        {
+            // List<SavedTriggerEventsModel> savedTriggerEventsModel = new List<SavedTriggerEventsModel>();
+
+            WeatherTriggerViewModel weatherTrigger = new WeatherTriggerViewModel
+            {
+                TriggerName = trigger.TriggerName,
+                WeatherCondition = trigger.WeatherCondition,
+                ConditionLevel = trigger.ConditionLevel,
+                Condition = trigger.Condition,
+                Units = trigger.Units,
+                Duration = trigger.Duration,
+            };
+
+            SqlConnection sqlConnection = new SqlConnection(_configuration.GetConnectionString("Agri_Sus"));
+            SqlCommand createTrigger = new SqlCommand("insert into WEATHERTRIGGER values ('" +Guid.NewGuid()+"','"+trigger.TriggerName+"', '"+trigger.WeatherCondition+"','"+trigger.ConditionLevel+"', '"+trigger.Condition+"', '"+trigger.Units+"', '"+trigger.Duration+"', '"+trigger.CreatedAt+"')", sqlConnection);
+            
+            sqlConnection.Open();
+            createTrigger.ExecuteNonQuery();
+            sqlConnection.Close();
+         
+            return PartialView("_FormSubmitModal", weatherTrigger);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult>SavedWeatherTriggers()
+        {
+            SavedTriggerEventsModel triggers = new SavedTriggerEventsModel();
+          //  List<WeatherTriggerViewModel> weatherTriggers = new List<WeatherTriggerViewModel>();
+
+
+            DataTable dataTable = new DataTable();
+            SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("Agri_Sus"));
+           connection.Open();
+            SqlCommand sqlCommand = new SqlCommand("SELECT * FROM WEATHERTRIGGER", connection);
+            //SqlDataReader reader = sqlCommand.ExecuteReader();
+            //while(reader.Read())
+            //{
+            //    WeatherTriggerViewModel newTrigger = new WeatherTriggerViewModel();
+            //    newTrigger.TriggerName = (string)reader["TriggerName"];
+            //}
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(sqlCommand);
+            dataAdapter.Fill(dataTable);
+            if (dataTable.Rows.Count > 0)
+            {
+                for (int i = 0; i < dataTable.Rows.Count; i++)
+                {
+                    WeatherTriggerViewModel newTrigger = new WeatherTriggerViewModel();
+                    newTrigger.TriggerName = dataTable.Rows[i]["TriggerName"].ToString();
+                    newTrigger.WeatherCondition = dataTable.Rows[i]["WeatherCondition"].ToString();
+                    newTrigger.ConditionLevel = (int)dataTable.Rows[i]["ConditionLevel"];
+                    newTrigger.Condition = dataTable.Rows[i]["Condition"].ToString();
+                    newTrigger.Units = dataTable.Rows[i]["Units"].ToString();
+                    newTrigger.Duration = (int)dataTable.Rows[i]["Duration"];
+                    newTrigger.CreatedAt = Convert.ToDateTime(dataTable.Rows[i]["CreatedAt"]);
+
+                    triggers.triggerEvents.Add(newTrigger);
+                   // triggers.AddTriggerEvent(newTrigger);
+                }
+                connection.Close();
+               // triggers
+            }
+
+            return View(triggers);
+        }
+
+        //[HttpGet("DisplayPopup")]
+        //public async Task<IActionResult> DisplayPopup()
+        //{
+        //    List<WeatherTriggersModel> weatherTriggers = new List<WeatherTriggersModel>();
+        //    DataTable dataTable = new DataTable();
+        //    SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("Agrisustain_WeatherDatabase"));
+        //    SqlCommand sqlCommand = new SqlCommand("SELECT * FROM WEATHERTRIGGER", connection);
+        //    SqlDataAdapter dataAdapter = new SqlDataAdapter(sqlCommand);
+        //    dataAdapter.Fill(dataTable);
+        //    if(dataTable.Rows.Count > 0)
+        //    {
+        //        for (int i = 0; i < dataTable.Rows.Count; i++)
+        //        {
+        //            WeatherTriggersModel trigger = new WeatherTriggersModel();
+        //            trigger.TriggerName = dataTable.Rows[i]["TriggerName"].ToString();
+        //            trigger.WeatherCondition = dataTable.Rows[i]["WeatherCondition"].ToString();
+        //            trigger.ConditionLevel = (int)dataTable.Rows[i]["ConditionLevel"];
+        //            trigger.Condition = dataTable.Rows[i]["Condition"].ToString();
+        //            trigger.Units = dataTable.Rows[i]["Units"].ToString();
+        //            trigger.Duration = (int)dataTable.Rows[i]["Duration"];
+        //            weatherTriggers.Add(trigger);
+        //        }
+        //    }
+          
+        //    return View("CreateWeatherTrigger", weatherTriggers);
+        //}
     }
-
-
 
 }
