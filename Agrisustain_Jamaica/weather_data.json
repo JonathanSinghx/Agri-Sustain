@@ -1,0 +1,43 @@
+{
+  "weather": [
+    {
+      "today_date": "25/9/2023 10:06:06 pm",
+      "temp": "33",
+      "precip": "20",
+      "wind": "5 km/h",
+      "humidity": "82"
+    },
+    {
+      "forecast": [
+        {
+          "day": "Monday",
+          "weather_type": "light rain"
+        },
+        {
+          "day": "Tuesday",
+          "weather_type": "over cast clouds"
+        },
+        {
+          "day": "Wednesday",
+          "weather_type": "broken clouds"
+        },
+        {
+          "day": "Thursday",
+          "weather_type": "clear sky"
+        },
+        {
+          "day": "Friday",
+          "weather_type": "clear sky"
+        },
+        {
+          "day": "Saturday",
+          "weather_type": "moderate rain"
+        },
+        {
+          "day": "Sunday",
+          "weather_type": "over cast clouds"
+        }
+      ]
+    }
+  ]
+}

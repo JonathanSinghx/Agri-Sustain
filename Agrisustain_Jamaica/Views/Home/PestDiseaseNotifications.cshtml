@@ -1,18 +1,122 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-</head>
-<script>
-    // Check for notification message and display Toastr notification
-    $(document).ready(function () {
-        var notificationMessage = '@TempData["NotificationMessage"]';
-        if (notificationMessage) {
-            toastr.success(notificationMessage);
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js">
+    <!--Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <!-- Bootstrap JS link -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="toastr.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
         }
-    });
-</script>
+
+        .notification-preferences {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h3 {
+            text-align: center;
+            color: #007bff;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        .btn-submit {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .btn-submit:hover {
+                background-color: #0056b3;
+            }
+    </style>
+</head>
+<body>
+
+    <form id="handleSubmit" class="notification-preferences">
+        <h3>Notification Preferences</h3>
+        <div class="form-group">
+            <input type="checkbox" id="pestDiseaseOutbreaks" name="pestDiseaseOutbreaks">
+            <label for="pestDiseaseOutbreaks">Receive notifications of pest and disease outbreaks</label>
+        </div>
+        <div class="form-group">
+            <input type="checkbox" id="communityNotifications" name="communityNotifications">
+            <label for="communityNotifications">Receive community notifications within 15km radius</label>
+        </div>
+        <div class="form-group">
+            <input type="checkbox" id="informOthers" name="informOthers">
+            <label for="informOthers">Inform other farmers about your pest and disease issues</label>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-submit">Submit</button>
+        </div>
+    </form>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Function to show Toastr notification
+            function showNotification() {
+                toastr.success("Welcome! Check out our latest updates.");
+            }
+
+            // Delay showing the notification by 10 seconds
+            setTimeout(showNotification, 10000);
+
+            const formSubmit = document.getElementById("handleSubmit");
+
+            formSubmit.addEventListener("submit", function (e) {
+                e.preventDefault();
+
+                let isCompleted = false;
+                let data = ``;
+
+                const div = document.createElement("div");
+                const checkboxes = formSubmit.querySelectorAll("input[type='checkbox']");
+
+                checkboxes.forEach(checkbox => {
+                    if (checkbox.checked) {
+                        data += `${checkbox.id} `;
+                    }
+                });
+
+                div.innerHTML = data;
+                document.body.append(div);
+
+                isCompleted = true;
+
+                if (isCompleted) {
+                    checkboxes.forEach(checkbox => checkbox.checked = false);
+                }
+
+                // Show Toastr notification
+                toastr.success("Notification preferences saved successfully.");
+            });
+        });
+    </script>
+
+</body>
+</html>

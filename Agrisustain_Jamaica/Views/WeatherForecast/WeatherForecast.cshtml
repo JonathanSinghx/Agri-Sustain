@@ -1,111 +1,117 @@
 ﻿@* @using Agrisustain_Jamaica.Models.Weather *@
 @using Agrisustain_Jamaica.Services;
-@inject Agrisustain_Jamaica.Services.WeatherService CurrentWeather;
+@using Agrisustain_Jamaica.Models.WeatherForecastDataModels;
+@* @inject Agrisustain_Jamaica.Services.WeatherService CurrentWeather; *@
+@* @inject Agrisustain_Jamaica.Services.IWeatherService Data; *@
+@model Agrisustain_Jamaica.Controllers.WeatherViewModel;
+@* @model WeatherViewModel; *@
+@* @inject Agrisustain_Jamaica.Services.WeatherForecastService WeatherService; *@
+@* @model List<Agrisustain_Jamaica.Services.IWeatherService> *@
 
 @{
 
-    await CurrentWeather.GetCurrentWeatherData();
-    var currentWeatherCondition = CurrentWeather.GetCurrentWeatherCondition().Result.ElementAt(0);
+   //  await CurrentWeather.GetCurrentWeatherData();
+   //  var currentWeatherCondition = CurrentWeather.GetCurrentWeatherCondition().Result.ElementAt(0);
 
-    var currentForecast = CurrentWeather.GetCurrentMainForecast().Result.ElementAt(0);
-    var currentWind = CurrentWeather.GetCurrentWind().Result.ElementAt(0);
-    var visibility = CurrentWeather.GetCurrentWeatherVisibility().Result.ElementAt(0);
+   //  var currentForecast = CurrentWeather.GetCurrentMainForecast().Result.ElementAt(0);
+   //  var currentWind = CurrentWeather.GetCurrentWind().Result.ElementAt(0);
+   //  var visibility = CurrentWeather.GetCurrentWeatherVisibility().Result.ElementAt(0);
 
-    var currentSunriseAndSunset = CurrentWeather.GetCurrentSunriseAndSunset().Result.ElementAt(0);
+   //  var currentSunriseAndSunset = CurrentWeather.GetCurrentSunriseAndSunset().Result.ElementAt(0);
 
-    DateTime sunrise = DateTimeOffset.FromUnixTimeSeconds(currentSunriseAndSunset.Sunrise).UtcDateTime;
-    DateTime sunset = DateTimeOffset.FromUnixTimeSeconds(currentSunriseAndSunset.Sunset).UtcDateTime;
+   // // DateTime sunrise = DateTimeOffset.FromUnixTimeSeconds(currentSunriseAndSunset.Sunrise).UtcDateTime;
+   // // DateTime sunset = DateTimeOffset.FromUnixTimeSeconds(currentSunriseAndSunset.Sunset).UtcDateTime;
 
-    var hourlyWeatherForecast = CurrentWeather.GetHourlyWeatherForecast().Result;
-    var hourlyWeatherForecasts = CurrentWeather.GetHourlyWeatherForecasts().Result;
+   //  var hourlyWeatherForecast = CurrentWeather.GetHourlyWeatherForecast().Result;
+   //  var hourlyWeatherForecasts = CurrentWeather.GetHourlyWeatherForecasts().Result;
 
-    var airQualityIndex = CurrentWeather.GetAirQualityIndex().Result;
-
-    
+   //  var airQualityIndex = CurrentWeather.GetAirQualityIndex().Result;
 
 }
 
-@* -<p>@airQualityIndex.Index</p> *@
-
-<div class="py-3  weather-header">
+<div class=" py-3 weather-header">
     <div class="container">
         <div class="weather-search align-items-center position-relative mb-4">
             <div class="d-flex align-items-center justify-content-center gap-3 text">
                 <h1 class="fw-bold m-0">Weather Forecast</h1>
                 <i class="text-white fa-solid fa-magnifying-glass search-icon"></i>
             </div>
-            
-
-                    <div class="position-absolute search">
-                        <input type="search" />
-                        <button>Search</button>
-                    </div>
-
-                 
-           
-           @*  <div class="d-flex justify-content-end location">
-                 <div class="position-relative search-input">
-                    <div class="d-flex search">
-                        <input type="search" />
-                        <button>Search</button>
-                    </div>
-                    
-                      <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                 </div>
-              
-                <i class="fa-solid fa-location-crosshairs location-icon"></i>
-            </div> *@
-
-        </>
-        <div class="row flex-column flex-md-row weather-container">
-            <div class="col location">
-                <p>Southfield, St. Elizabeth</p>
+            <div class="position-absolute search">
+                <input type="search" />
+                <button>Search</button>
             </div>
+
+            <i asp-area="" asp-controller="Geolocation" asp-action="" class="fa-solid fa-location-crosshairs location-icon"></i>
+
+            @*  <div class="d-flex justify-content-end location">
+            <div class="position-relative search-input">
+            <div class="d-flex search">
+            <input type="search" />
+            <button>Search</button>
+            </div>
+
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            </div>
+
+            <i class="fa-solid fa-location-crosshairs location-icon"></i>*@
+        </div>
+   
+        <div class="row flex-column flex-md-row weather-container">
             <div class="col weather-details">
-                <div class="row">
+               
                     <div class="mb-2 col-left">
                         @{
-                           string imgIcon = $"http://openweathermap.org/img/w/{currentWeatherCondition.Icon}.png";
+                            string imgIcon = $"https://openweathermap.org/img/w/{Model.CurrentWeatherConditionModel.ElementAt(0).Icon}.png";
                         }
-                        <p class="text-capitalize mb-0">@currentWeatherCondition.Description<span><img src=@imgIcon /> </span> </p>
-                        <p>@currentForecast.Temperature°C</p>
+                    <p class="text-capitalize mb-0 ">@Model.CurrentWeatherConditionModel.ElementAt(0).Description<span><img src=@imgIcon /> </span> </p>
+                    <p class="fs-1 fw-bold current-temperature">@Model.CurrentMainForecastModel.ElementAt(0).Temperature°C</p>
                     </div>
-                </div>
-
+             
+              
+            </div>
+            <div class="col location">
+                <p class="fs-3">@Model.WeatherDataModel.ElementAt(0).Name, St. Elizabeth</p>
                 <div class="row lh-1 right-col flex-container">
                     <div class="col weather-detail">
                         <p>Wind</p>
                         @* @{ double windspeed = windData.Speed * 3.6;} *@
-                        <p>@currentWind.Speed km/h</p>
+                        <p>@Model.CurrentWindModel.ElementAt(0).Speed km/h</p>
                     </div>
                     <div class="col weather-detail">
                         <p>Humidity</p>
-                        <p>@currentForecast.Humidity%</p>
+                        <p>@Model.CurrentMainForecastModel.ElementAt(0).Humidity%</p>
                     </div>
                     <div class="col weather-detail">
-                        <p>Atmospheric Pressure</p>
-                        <p>@currentForecast.Pressure hPa</p>
+                        <p>Pressure</p>
+                        <p>@Model.CurrentMainForecastModel.ElementAt(0).Pressure hPa</p>
                     </div>
                 </div>
-
-            </div>
-        </div>
+            </div> 
+    </div>
     </div>
 </div>
+
+
+
+
 <div class="weather-cards py-3">
     <div class="container">
         <div class="d-grid grid-container">
-            <div class="d-flex col-left">
+            <div class="d-flex flex-column flex-sm-row justify-content-sm-between gap-3 col-left">
                 <div class="p-3 weather-card now-weather-container">
                     <div class="row flex-column">
                         <div class="lh-1 col border-bottom mb-3">
-                            <p class="fw-bold">Now</p>
-                          @*   <p class="fs-4 m-0">@currentWeather °C</p> *@
-                            <p class="overcast-text">@currentWeatherCondition.Description</p>
+                            <p class="fw-bold ">Now</p>
+                            @*   <p class="fs-4 m-0">@currentWeather °C</p> *@
+                            @{
+                                string nowWeatherIcon = $"https://openweathermap.org/img/w/{Model.CurrentWeatherConditionModel.ElementAt(0).Icon}.png";
+                            }
+                                             
+                            <p class="overcast-text">@Model.CurrentWeatherConditionModel.ElementAt(0).Description <span> <img src=@nowWeatherIcon /></span></p>
                         </div>
                         <div class="col">
                             <p><span><i class="fa-regular fa-calendar calendar-icon"></i></span>@DateTime.Now.ToString("dddd, MMMM d, yyyy")</p>
-                            <p><span><i class="fa-solid fa-location-dot location-icon"></i></span>Southfield, St. Elizabeth</p>
+                            <p><span><i class="fa-solid fa-location-dot location-icon"></i></span>@Model.WeatherDataModel.ElementAt(0).Name, St. Elizabeth</p>
                         </div>
                     </div>
                 </div>
@@ -115,23 +121,23 @@
                         <div class="row gap-2 slider-container mb-5">
                             @{
                                 int count = 0;
-                                foreach(var timeOfDay in hourlyWeatherForecast)
+                                foreach (var timeOfDay in Model.HourlyWeatherForecastModel)
                                 {
-                                   
+
                                     DateTime time = DateTimeOffset.FromUnixTimeSeconds(timeOfDay.Time).UtcDateTime;
-                                      if (@time.ToShortDateString() != DateTime.Now.ToShortDateString()) break;
-                                    string icon = $"http://openweathermap.org/img/w/{hourlyWeatherForecasts.ElementAt(count).Icon}.png";
-                                        <div class="slider-item">
-                                        <p>@time.ToShortTimeString()</p>
+                                    if (@time.ToShortDateString() != DateTime.Now.ToShortDateString()) break;
+                                    string icon = $"https://openweathermap.org/img/w/{Model.HourlyWeatherForecastsModel.ElementAt(count).Icon}.png";
+                                    <div class="slider-item">
+                                        <p class="fw-bold">@time.ToShortTimeString()</p>
                                         <img src=@icon />
-                                        <p>@hourlyWeatherForecasts.ElementAt(count).Description</p>
+                                        <p>@Model.HourlyWeatherForecastsModel.ElementAt(count).Description</p>
 
                                     </div>
 
                                     count++;
 
 
-                                  // <p>Time: @time.ToShortDateString() | @DateTime.Now.ToShortDateString() </p>
+                                    // <p>Time: @time.ToShortDateString() | @DateTime.Now.ToShortDateString() </p>
                                 }
 
                             }
@@ -152,7 +158,7 @@
                                         @{
                                             int index = 3;
                                             string indexQualityVal = "";
-                                            switch(index)
+                                            switch (index)
                                             {
                                                 case 1:
                                                     indexQualityVal = "Good";
@@ -170,148 +176,150 @@
                                                     indexQualityVal = "Very Poor";
                                                     break;
 
-                                                                        }
+                                            }
                                         }
                                         <p class="m-0 btn-highlight">@indexQualityVal</p>
-                                </div>
+                                    </div>
 
-                                <div class="row align-items-center mt-3 details">
-                                    <div class="col">
-                                        <i class="fs-1 fa-solid fa-wind"></i>
-                                    </div>
-                                    <div class="col">
-                                        <p>23.3 PM25</p>
-                                        <p>23.3 PM25</p>
-                                    </div>
-                                    <div class="col">
-                                        <p>23.3 PM25</p>
-                                        <p>23.3 PM25</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                             <div class="col weather-highlight">
-                            <div class="d-flex flex-column air-quality-content">
-                                <div class="d-flex header justify-content-between align-items-center ">
-                                    <h4 class="m-0">Sunset and Sunrise</h4>
-                                </div>
-
-                                <div class="row align-items-center mt-3 details">
-                                    @*   <div class="col">
-                                    <i class="fa-solid fa-wind"></i>
-                                    </div> *@
-                                    <div class="col d-flex gap-2 align-items-center">
-                                        <i class="fa-regular fa-sun"></i>
-                                        <div class="d-flex flex-column group-text">
-                                            <p class="text-uppercase m-0">Sunrise</p>
-                                            <p>@sunrise.ToString("hh:mm tt")</p>
+                                    <div class="row align-items-center mt-3 details">
+                                        <div class="col">
+                                            <i class="fs-1 fa-solid fa-wind"></i>
                                         </div>
-                                    </div>
-                                    <div class="col d-flex gap-2 align-items-center">
-                                        <i class="fa-solid fa-sun"></i>
-                                        <div class="d-flex flex-column group-text">
-                                            <p class="text-uppercase m-0">Sunset</p>
-                                            <p>@sunset.ToString("hh:mm tt")</p>
+                                        <div class="col">
+                                            <p>23.3 PM25</p>
+                                            <p>23.3 PM25</p>
+                                        </div>
+                                        <div class="col">
+                                            <p>23.3 PM25</p>
+                                            <p>23.3 PM25</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                            <div class="col weather-highlight">
+                                <div class="d-flex flex-column air-quality-content">
+                                    <div class="d-flex header justify-content-between align-items-center ">
+                                        <h4 class="m-0">Sunset and Sunrise</h4>
+                                    </div>
+
+                                    <div class="row align-items-center mt-3 details">
+                                       @{
+
+                                            DateTime sunrise = DateTimeOffset.FromUnixTimeSeconds(Model.SunriseAndSunsetModel.ElementAt(0).Sunrise).UtcDateTime;
+                                            DateTime sunset = DateTimeOffset.FromUnixTimeSeconds(Model.SunriseAndSunsetModel.ElementAt(0).Sunset).UtcDateTime;
+                                       }
+                                        <div class="col d-flex gap-2 align-items-center">
+                                            <i class="fa-regular fa-sun"></i>
+                                            <div class="d-flex flex-column group-text">
+                                                <p class="text-uppercase m-0">Sunrise</p>
+                                                <p>@sunrise.ToString("hh:mm tt")</p>
+                                            </div>
+                                        </div>
+                                        <div class="col d-flex gap-2 align-items-center">
+                                            <i class="fa-solid fa-sun"></i>
+                                            <div class="d-flex flex-column group-text">
+                                                <p class="text-uppercase m-0">Sunset</p>
+                                                <p>@sunset.ToString("hh:mm tt")</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="d-flex flex-column gap-4 flex-md-row justify-content-md-between flex-container">
                             <div class="d-flex flex-column gap-4 w-100 flex-md-row flex-col">
-                                 <div class="col weather-highlight">
-                            <div class="d-flex flex-column humidity-content">
-                                <div class="d-flex header justify-content-between align-items-center ">
-                                    <h4 class="m-0">Humidity</h4>
-                                </div>
+                                <div class="col weather-highlight">
+                                    <div class="d-flex flex-column humidity-content">
+                                        <div class="d-flex header justify-content-between align-items-center ">
+                                            <h4 class="m-0">Humidity</h4>
+                                        </div>
 
-                                <div class="row align-items-center mt-3 justify-content-between details">
-                                    <div class="col d-flex justify-content-between">
-                                        <i class="fa-solid fa-droplet"></i>
-                                        <p>@currentForecast.Humidity%</p>
+                                        <div class="row align-items-center mt-3 justify-content-between details">
+                                            <div class="col d-flex justify-content-between">
+                                                <i class="fa-solid fa-droplet"></i>
+                                                <p>@Model.CurrentMainForecastModel.ElementAt(0).Humidity%</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col weather-highlight">
+                                    <div class="d-flex flex-column pressure-content">
+                                        <div class="d-flex header justify-content-between align-items-center ">
+                                            <h4 class="m-0">Pressure</h4>
+                                        </div>
+
+                                        <div class="row align-items-center mt-3 justify-content-between details">
+                                            <div class="col d-flex justify-content-between">
+                                                <i class="fa-brands fa-superpowers"></i>
+                                                <p>@Model.CurrentMainForecastModel.ElementAt(0).Pressure hPa</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col weather-highlight">
-                            <div class="d-flex flex-column pressure-content">
-                                <div class="d-flex header justify-content-between align-items-center ">
-                                    <h4 class="m-0">Pressure</h4>
-                                </div>
+                            <div class="d-flex flex-column gap-4 w-100 flex-md-row flex-col">
+                                <div class="col weather-highlight">
+                                    <div class="d-flex flex-column visibility-content">
+                                        <div class="d-flex header justify-content-between align-items-center ">
+                                            <h4 class="m-0">Visibility</h4>
+                                        </div>
 
-                                <div class="row align-items-center mt-3 justify-content-between details">
-                                    <div class="col d-flex justify-content-between">
-                                        <i class="fa-brands fa-superpowers"></i>
-                                        <p>@currentForecast.Pressure hPa</p>
+                                        <div class="row align-items-center mt-3 justify-content-between details">
+                                            <div class="col d-flex justify-content-between">
+                                                <i class="fa-solid fa-eye"></i>
+                                                @{ decimal visibilityVal = Model.WeatherDataModel.ElementAt(0).Visibility / 1000; } 
+                                                <p>@visibilityVal Km</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col weather-highlight">
+                                    <div class="d-flex flex-column feels-like-content">
+                                        <div class="d-flex header justify-content-between align-items-center ">
+                                            <h4 class="m-0">Feels like</h4>
+                                        </div>
+
+                                        <div class="row align-items-center mt-3 justify-content-between details">
+                                            <div class="col d-flex justify-content-between">
+                                                <i class="fa-solid fa-temperature-three-quarters"></i>
+                                                @* @{ double feelsLike = Math.Round(weatherHighlightsData.FeelsLike - 273.15, 2); } *@
+                                                <p>@Model.CurrentMainForecastModel.ElementAt(0).FeelsLike °C</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                            </div>
-                             <div class="d-flex flex-column gap-4 w-100 flex-md-row flex-col">
-                            <div class="col weather-highlight">
-                            <div class="d-flex flex-column visibility-content">
-                                <div class="d-flex header justify-content-between align-items-center ">
-                                    <h4 class="m-0">Visibility</h4>
-                                </div>
-
-                                <div class="row align-items-center mt-3 justify-content-between details">
-                                    <div class="col d-flex justify-content-between">
-                                        <i class="fa-solid fa-eye"></i>
-                                        @* @{ decimal visibility = currentWeather[0].Visibility / 1000; } *@
-                                        <p>@visibility.Visibility Km</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                            <div class="col weather-highlight">
-                            <div class="d-flex flex-column feels-like-content">
-                                <div class="d-flex header justify-content-between align-items-center ">
-                                    <h4 class="m-0">Feels like</h4>
-                                </div>
-
-                                <div class="row align-items-center mt-3 justify-content-between details">
-                                    <div class="col d-flex justify-content-between">
-                                        <i class="fa-solid fa-temperature-three-quarters"></i>
-                                        @* @{ double feelsLike = Math.Round(weatherHighlightsData.FeelsLike - 273.15, 2); } *@
-                                        <p>@currentForecast.FeelsLike °C</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        </div>
                         </div>
                     </div>
                 </div>
-                 <div class="five-days-forecast-container">
-                    <h3>5 days forecast</h3>
+                <div class="five-days-forecast-container">
+                    <h3>5 days forecast/ 3 Hours Interval</h3>
                     <div class="p-3 bg-transparent weather-card">
                         <div class="d-grid pb-4 five-days-forecast">
                             @{
-                                 int val = 0;
-                                foreach(var forecast in hourlyWeatherForecast)
+                                int val = 0;
+                                foreach (var forecast in Model.HourlyWeatherForecastModel)
                                 {
-                                   
+
                                     DateTime date = DateTimeOffset.FromUnixTimeSeconds(forecast.Time).UtcDateTime;
-                                     string forecastIcon = $"http://openweathermap.org/img/w/{hourlyWeatherForecasts.ElementAt(val).Icon}.png";
+                                    string forecastIcon = $"https://openweathermap.org/img/w/{Model.HourlyWeatherForecastsModel.ElementAt(val).Icon}.png";
                                     if (@date.ToShortDateString() != DateTime.Now.ToShortDateString())
                                     {
-                                         <div class="forecast-details">
-                                          <div class="date">
+                                        <div class="forecast-details">
+                                            <div class="date">
                                                 <p class="fw-bold">@date.ToString("dddd, MMMM d, yyyy")</p>
-                                             <p>@date.ToString("hh:mm tt")</p>
-                                             </div>
+                                                <p>@date.ToString("hh:mm tt")</p>
+                                            </div>
                                             <div class="forecast-img">
-                                                 <img src=@forecastIcon />
+                                                <img src=@forecastIcon />
                                             </div>
                                             <div class="description">
-                                             <p class="fw-bold">@hourlyWeatherForecasts.ElementAt(val).Description</p>
+                                                <p class="fw-bold">@Model.HourlyWeatherForecastsModel.ElementAt(val).Description</p>
                                             </div>
                                         </div>
 
                                         val++;
-                                    }    
+                                    }
                                 }
                             }
                         </div>
@@ -319,5 +327,67 @@
                 </div>
             </div>
         </div>
-      </div>    
     </div>
+</div>
+
+@section Scripts {
+    <script>
+
+         document.addEventListener("DOMContentLoaded", () =>
+         {
+             // console.log("test")
+             if (navigator.geolocation)
+             {
+                 navigator.geolocation.getCurrentPosition((position) =>
+                 {
+                     const latitude = position.coords.latitude;
+                     const longitude = position.coords.longitude;
+
+                     // Call the function to send the coordinates to the backend
+                     sendCoordinatesToServer(latitude, longitude);
+                 });
+             } else {
+                     console.log('Geolocation is not supported by this browser.');
+                    }
+         });
+
+         function sendCoordinatesToServer(latitude, longitude) {
+             const data = {
+                 latitude: latitude,
+                 longitude: longitude
+             };
+
+             // Send the coordinates to the server using Ajax (Assuming jQuery is used)
+             $.ajax({
+                 type: 'POST',
+                //url: "/weatherforecast/weatherforecast",
+                url: "@Url.Action("PostCoordinates")", // Replace with your controller/action URL
+                 data: JSON.stringify(data),
+                 contentType: 'application/json',
+                 //contentType: 'html',
+                 success: function (response) {
+
+                     console.log('Coordinates sent successfully');
+                     console.log(response); // Log the response from the server
+                 },
+                 error: function (error) {
+                     console.error('Error sending coordinates:', error);
+                 }
+             });
+
+            // $.ajax({
+            //     type: 'Get',
+            //     url: "@Url.Action("WeatherForecast")", // Replace with your controller/action URL
+            //     data: JSON.stringify(data),
+            //     contentType: 'application/json',
+            //     success: function (response) {
+            //         console.log('Coordinates received successfully');
+            //         console.log(response); // Log the response from the server
+            //     },
+            //     error: function (error) {
+            //         console.error('Error receiving coordinates:', error);
+            //     }
+            // });
+         }
+    </script>
+}

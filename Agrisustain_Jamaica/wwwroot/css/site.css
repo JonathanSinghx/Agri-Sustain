@@ -58,6 +58,17 @@ svg {
     font-size: 16px;
 }
 
+    .navbar .weather-nav {
+        font-weight: bold;
+        font-size: .7rem;
+        line-height: .1rem;
+        height: 30px;
+        margin-top: -1.5em;
+        margin-left: 2em;
+        /*background: red;*/
+        /*border-radius: 50%*/
+    }
+
 .top-section {
     background-image: url('https://i.ibb.co/Z6ZybsT/dan-meyers-IQVFVH0ajag-unsplash.jpg');
     background-size: 100% 100%;
@@ -276,12 +287,19 @@ a {
     background-color: #a4c3b2;
     color: white;
     width: 45%;
-    padding: 2%;
+    padding: 5%;
     border-radius: 20px;
     margin: 10% 30%;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
     transition: box-shadow 0.3s;
-    
+}
+
+.pdsubmission .form-group {
+    margin-top: 3%;
+}
+
+.pdsubmission form .btn {
+    margin-top: 5%;
 }
 
 
@@ -310,6 +328,8 @@ footer {
     padding: 5%;
     align-content: center;
 }
-
+.marketplace-text {
+    padding-block: 2em;
+}
 
 

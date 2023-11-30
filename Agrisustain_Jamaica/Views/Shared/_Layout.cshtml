@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿
+@{
+   // await CurrentWeather.GetCurrentWeatherData();
+   // var currentWeatherCondition = CurrentWeather.GetCurrentWeatherCondition().Result.ElementAt(0);
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -10,6 +16,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <!-- Toastr CSS from CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastr@2.1.4/dist/toastr.min.css">
+    <!-- Toastr JS from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/dist/toastr.min.js"></script>
     @* <link rel="stylesheet" href="~/Agrisustain_Jamaica.styles.css" asp-append-version="true" /> *@
     <link rel="stylesheet" href="~/css/cropInfoAndTrackingStyles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/weather.css" asp-append-version="true" />
@@ -36,11 +46,12 @@
                             <a class="nav-link text-dark" data-bs-toggle="collapse" data-bs-target=".dropdown" aria-expanded="false" asp-area="" asp-controller="Home" asp-action="Resources">Resources &#11206;</a>
                             <div class="resources-dropdown dropdown dropdown-menu">
                                 <ul class="list-unstyled">
-                                    <li class="nav-item dropdown-item"><a asp-controller="SustainableFarmingTechniques" asp-action="SustainableFarmingTechniques">Sustainable Farming</a></li>
-                                    <li class="nav-item dropdown-item"><a>Garden Management</a></li>
+                                    <li class="nav-item dropdown-item"><a asp-area="" asp-controller="Home" asp-action="SustainableFarmingTechniques">Sustainable Farming</a></li>
+                                    <li class="nav-item dropdown-item"><a asp-area="" asp-controller="Home" asp-action="ManageGarden">Garden Management</a></li>
                                     <li class="nav-item dropdown-item"><a>Nutrition</a></li>
                                     <li class="nav-item dropdown-item"><a asp-area="" asp-controller="Home" asp-action="CropInfoBlogs">Crop Information</a></li>
                                     <li class="nav-item dropdown-item"><a>Farmer's Hub</a></li>
+                                    <li class="nav-item dropdown-item"><a asp-area="" asp-controller="Home" asp-action="PestDiseaseMitigation">Pest and Disease Mitigation</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -74,7 +85,18 @@
                             </a>
 
                         </li>
-
+                            @* @{
+                                string weatherIconUrl = $"http://openweathermap.org/img/w/{currentWeatherCondition.Icon}.png";
+                            } *@
+                          @*   <li class="weather-nav">
+                           
+                            <a class="text-black" asp-area="" asp-controller="WeatherForecast" asp-action="WeatherForecast">
+                               
+                                <img class="d-block" src=@weatherIconUrl />
+                                    @currentWeatherCondition.Description
+                            </a>
+                        
+                        </li> *@
 
                             @* <li class="nav-item">
                         <a class="nav-link text-dark btn-light" asp-area="" asp-controller="Home" asp-action="Weather">
