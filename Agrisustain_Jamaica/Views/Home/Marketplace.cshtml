@@ -72,11 +72,22 @@
     foreach (Item i in lst)
     {
         <div class="card">
-            <label>id:</label>@i.id<br />
-            <label>name:</label>@i.name<br />
-            <label>price:</label>@i.price<br />
-            <label>quantity:</label>@i.quantity<br />
-            <img alt="" src="@i.image" height="24.5" width="24.5" /><br />
+            <table border="1">
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>price</th>
+                    <th>quantity</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>@i.id</td>
+                    <td>@i.name</td>
+                    <td>@i.price</td>
+                    <td>@i.quantity</td>
+                    <td><img alt="" src="@i.image" height="14.5%" width="14.5%" /></td>
+                </tr>
+            </table>
         </div>
     }
     var j_data = JsonSerializer.Serialize(lst);
