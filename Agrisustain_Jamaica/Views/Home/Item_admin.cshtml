@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewData["Title"] = "Item_admin";
+}
+<style>
+    .header{
+        background-color: #193631;
+        color: white;
+    }
+    h1{
+        text-align: center;
+    }
+</style>
+<h1 class="header container">Item_admin</h1>
+<form method="post" asp-action="add_item" enctype="multipart/form-data">
+    <label>name</label>
+    @Html.TextBox("name")<br />
+    <label>price</label>
+    @Html.TextBox("price")<br />
+    <label>quantity</label>
+    @Html.TextBox("quantity")<br />
+    <input type="file" name="img_file" /><br />
+    <input type="submit" />
+</form>
+

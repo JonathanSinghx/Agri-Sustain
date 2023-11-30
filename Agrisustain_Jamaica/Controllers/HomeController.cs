@@ -192,6 +192,20 @@ namespace Agrisustain_Jamaica.Controllers
             write_db(rating);
             return View(rating);
         }
+        public IActionResult Item_admin() 
+        {
+            return View(); 
+        }
+        [HttpPost]
+        public IActionResult add_item([Bind(include: "name,price,quantity")]Item item) 
+        {
+            var filestream = Request.Form.Files[0].OpenReadStream();
+            MemoryStream memoryStream = new MemoryStream();
+            filestream.CopyTo(memoryStream);
+            item.img = memoryStream.ToArray();
+            write_db(item);
+            return View("Item_admin");
+        }
         public void write_db(object obj)
         {
             string constr = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;";
@@ -219,6 +233,15 @@ namespace Agrisustain_Jamaica.Controllers
                 comm.Parameters.AddWithValue("@r_amt", item.r_amt);
                 comm.Parameters.AddWithValue("@rev", item.rev);
                 comm.Parameters.AddWithValue("@dateTime", item.dateTime);
+            }
+            else if (obj.GetType() == typeof(Item)) 
+            {
+                Item item = (Item)obj;
+                comm.CommandText = "use agri_sus;insert into [dbo].[Table] (product_name,price,quantity,image) values (@product_name,@price,@quantity,@image)";
+                comm.Parameters.AddWithValue("@product_name", item.name);
+                comm.Parameters.AddWithValue("@price", item.price);
+                comm.Parameters.AddWithValue("@quantity", item.quantity);
+                comm.Parameters.AddWithValue("@image", item.img);
             }
             else { }
             comm.ExecuteNonQuery();
