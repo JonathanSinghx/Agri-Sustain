@@ -1,5 +1,5 @@
 ﻿@* @using Agrisustain_Jamaica.Models.Weather *@
-@using Agrisustain_Jamaica.Services;
+@* @using Agrisustain_Jamaica.Services; *@
 @using Agrisustain_Jamaica.Models.WeatherForecastDataModels;
 @* @inject Agrisustain_Jamaica.Services.WeatherService CurrentWeather; *@
 @* @inject Agrisustain_Jamaica.Services.IWeatherService Data; *@
@@ -32,8 +32,12 @@
 <div class=" py-3 weather-header">
     <div class="container">
         <div class="weather-search align-items-center position-relative mb-4">
-            <div class="d-flex align-items-center justify-content-center gap-3 text">
+            <div class="d-flex align-items-center justify-content-between gap-3 text">
                 <h1 class="fw-bold m-0">Weather Forecast</h1>
+                <div class="btn btn-group flex-column gap-2 flex-md-row trigger-btns">
+                    <a class="btn" asp-area="" asp-controller="WeatherForecast" asp-action="CreateWeatherTrigger">Create Weather Trigger</a>
+                    <a class="btn" asp-area="" asp-controller="WeatherForecast" asp-action="SavedWeatherTriggers">View Weather Triggers</a>
+                </div>
                 <i class="text-white fa-solid fa-magnifying-glass search-icon"></i>
             </div>
             <div class="position-absolute search">
@@ -330,64 +334,52 @@
     </div>
 </div>
 
-@section Scripts {
-    <script>
+@* @section Scripts {
+//     <script>
 
-         document.addEventListener("DOMContentLoaded", () =>
-         {
-             // console.log("test")
-             if (navigator.geolocation)
-             {
-                 navigator.geolocation.getCurrentPosition((position) =>
-                 {
-                     const latitude = position.coords.latitude;
-                     const longitude = position.coords.longitude;
+//          document.addEventListener("DOMContentLoaded", () =>
+//          {
+//              console.log("test")
+//              if (navigator.geolocation)
+//              {
+//                  navigator.geolocation.getCurrentPosition((position) =>
+//                  {
+//                      const latitude = position.coords.latitude;
+//                      const longitude = position.coords.longitude;
 
-                     // Call the function to send the coordinates to the backend
-                     sendCoordinatesToServer(latitude, longitude);
-                 });
-             } else {
-                     console.log('Geolocation is not supported by this browser.');
-                    }
-         });
+//                      Call the function to send the coordinates to the backend
+//                      sendCoordinatesToServer(latitude, longitude);
+//                  });
+//              } else {
+//                      console.log('Geolocation is not supported by this browser.');
+//                     }
+//          });
 
-         function sendCoordinatesToServer(latitude, longitude) {
-             const data = {
-                 latitude: latitude,
-                 longitude: longitude
-             };
+//          function sendCoordinatesToServer(latitude, longitude) {
+//              const data = {
+//                  latitude: latitude,
+//                  longitude: longitude
+//              };
 
-             // Send the coordinates to the server using Ajax (Assuming jQuery is used)
-             $.ajax({
-                 type: 'POST',
-                //url: "/weatherforecast/weatherforecast",
-                url: "@Url.Action("PostCoordinates")", // Replace with your controller/action URL
-                 data: JSON.stringify(data),
-                 contentType: 'application/json',
-                 //contentType: 'html',
-                 success: function (response) {
+//              Send the coordinates to the server using Ajax (Assuming jQuery is used)
+//              $.ajax({
+//                  type: 'POST',
+//                 url: "/weatherforecast/weatherforecast",
+//                 url: "@Url.Action("PostCoordinates")", Replace with your controller/action URL
+//                  data: JSON.stringify(data),
+//                  contentType: 'application/json',
+//                  contentType: 'html',
+//                  success: function (response) {
 
-                     console.log('Coordinates sent successfully');
-                     console.log(response); // Log the response from the server
-                 },
-                 error: function (error) {
-                     console.error('Error sending coordinates:', error);
-                 }
-             });
+//                      console.log('Coordinates sent successfully');
+//                      console.log(response); Log the response from the server
+//                  },
+//                  error: function (error) {
+//                      console.error('Error sending coordinates:', error);
+//                  }
+//              });
 
-            // $.ajax({
-            //     type: 'Get',
-            //     url: "@Url.Action("WeatherForecast")", // Replace with your controller/action URL
-            //     data: JSON.stringify(data),
-            //     contentType: 'application/json',
-            //     success: function (response) {
-            //         console.log('Coordinates received successfully');
-            //         console.log(response); // Log the response from the server
-            //     },
-            //     error: function (error) {
-            //         console.error('Error receiving coordinates:', error);
-            //     }
-            // });
-         }
-    </script>
-}
+//          }
+//     </script>
+// } 
+*@
