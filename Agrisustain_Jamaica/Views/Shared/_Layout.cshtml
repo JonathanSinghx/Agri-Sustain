@@ -1,4 +1,4 @@
-﻿
+﻿@* @model Agrisustain_Jamaica.Controllers.WeatherViewModel; *@
 @{
    // await CurrentWeather.GetCurrentWeatherData();
    // var currentWeatherCondition = CurrentWeather.GetCurrentWeatherCondition().Result.ElementAt(0);
@@ -23,6 +23,7 @@
     @* <link rel="stylesheet" href="~/Agrisustain_Jamaica.styles.css" asp-append-version="true" /> *@
     <link rel="stylesheet" href="~/css/cropInfoAndTrackingStyles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/weather.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/marketplace.css" asp-append-version="true" />
     
 </head>
 
@@ -85,6 +86,9 @@
                             </a>
 
                         </li>
+                      @*   <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="WeatherForecast" asp-action="WeatherForecast">@Model.CurrentMainForecastModel.ElementAt(0).Temperature</a>
+                        </li> *@
                             @* @{
                                 string weatherIconUrl = $"http://openweathermap.org/img/w/{currentWeatherCondition.Icon}.png";
                             } *@
