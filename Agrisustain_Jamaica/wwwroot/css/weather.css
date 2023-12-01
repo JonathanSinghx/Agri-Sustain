@@ -283,3 +283,88 @@ margin-right: .5em;
     /*flex-basis: 33.33%;*/
     /*}*/
 
+
+    /*Create Weather trigger*/
+
+.weather-header .trigger-btns > .btn {
+    /*color: var(--clr-neutral-light);*/
+    background-color: var(--clr-accent);
+}
+
+.weather-header .trigger-btns > .btn:last-of-type {
+   background-color: var(--clr-neutral-light);
+}
+    .trigger-header {
+        color: var(--clr-neutral-light);
+        background-color: var(--clr-primary);
+        padding: 5%;
+    }
+
+.trigger-header > p {
+    max-width: 65ch;
+}
+
+form {
+    max-width: 600px;
+    margin-inline: auto;
+    padding: 1.2em;
+    /* border: 1px solid #000;*/
+    border-radius: 1em;
+    box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+}
+
+form input,
+form select {
+    line-height: 1;
+    padding: .25em;
+    outline: 0;
+    border: 1px solid var(--clr-primary);
+    border-radius: .25em;
+}
+
+.form-container {
+    background-color: transparent;
+    border-top-left-radius: 2em;
+    border-top-right-radius: 2em;
+}
+
+.form-container button {
+    color: var(--clr-neutral-light);
+    background-color: var(--clr-primary);
+}
+
+.form-container button:hover {
+    color: var(--clr-primary);
+    background-color: var(--clr-accent);
+}
+
+    .img-container {
+        position: absolute;
+        right: 0;
+    }
+
+.img-container > img {
+    max-width: 350px;
+    opacity: 0.1;
+}
+
+.trigger-condition, 
+.notification-details {
+    margin-top: 2em;
+    padding-block: 1em;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    
+}
+
+.trigger-condition {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1)
+}
+
+.notification-details select {
+    width: 50px !important;
+}
+
+.trigger-condition .flex-container > * {
+    flex-basis: 100%;
+}
+
