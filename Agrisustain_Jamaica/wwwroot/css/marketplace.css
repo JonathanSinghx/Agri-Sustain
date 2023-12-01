@@ -1,0 +1,29 @@
+﻿.marketplace-hero {
+    background-image: url('/fresh-amp-colorful-fruits-and-vegetables.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    background-color: #193631;
+    background-blend-mode: overlay;
+}
+
+.shop-now-btn {
+    color: #193631;
+    background-color: #a4c3b2;
+}
+
+    .shop-now-btn:hover {
+        color: #a4c3b2;
+        background-color: #193631;
+    }
+
+.featured img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product {
+    
+}

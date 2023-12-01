@@ -34,10 +34,9 @@
         <div class="weather-search align-items-center position-relative mb-4">
             <div class="d-flex align-items-center justify-content-between gap-3 text">
                 <h1 class="fw-bold m-0">Weather Forecast</h1>
-                <div class="btn btn-group flex-column gap-2 flex-md-row trigger-btns">
-                    <a class="btn" asp-area="" asp-controller="WeatherForecast" asp-action="CreateWeatherTrigger">Create Weather Trigger</a>
-                    <a class="btn" asp-area="" asp-controller="WeatherForecast" asp-action="SavedWeatherTriggers">View Weather Triggers</a>
-                </div>
+
+                <a class="btn dashboard-btn" asp-area="" asp-controller="WeatherForecast" asp-action="ClimateSmart">Get climate-smart</a>
+                
                 <i class="text-white fa-solid fa-magnifying-glass search-icon"></i>
             </div>
             <div class="position-absolute search">
