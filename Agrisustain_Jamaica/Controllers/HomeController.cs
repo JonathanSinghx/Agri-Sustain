@@ -159,6 +159,11 @@ namespace Agrisustain_Jamaica.Controllers
         {
             return View();
         }
+        public IActionResult HealthyEating()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult Confirmation() 
         {
