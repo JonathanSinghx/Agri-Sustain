@@ -248,6 +248,10 @@ namespace Agrisustain_Jamaica.Controllers
             return View(triggers);
         }
 
+        public IActionResult ClimateSmart()
+        {
+            return View();
+        }
         //[HttpGet("DisplayPopup")]
         //public async Task<IActionResult> DisplayPopup()
         //{
