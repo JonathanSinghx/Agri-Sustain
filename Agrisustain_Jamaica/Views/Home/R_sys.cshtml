@@ -79,12 +79,13 @@
         r_opt.Add(new SelectListItem { Text = option.ToString(), Value = option.ToString() });
     }
     @Html.DropDownList("r_option",(IEnumerable<SelectListItem>)r_opt)
+    <label>one being the lowest</label>
     <input type="button" value="add item rating" onclick="a_i_r()" />
     <input type="button" value="average rating" onclick="aver_r()" />
     <form method="post" action="R_Confirmation">
-        @Html.TextBox("id")<br />
-        @Html.TextBox("name")<br />
-        @Html.TextBox("r_amt")<br />
+        @Html.TextBox("id", null, new { placeholder ="id"})<br />
+        @Html.TextBox("name", null, new { placeholder ="item"})<br />
+        @Html.TextBox("r_amt", null, new { placeholder ="rating amount"})<br />
         @Html.TextArea("rev")<br />
         <input type="submit" />
     </form>
