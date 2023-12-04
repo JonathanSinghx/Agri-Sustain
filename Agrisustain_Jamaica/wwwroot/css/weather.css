@@ -283,22 +283,140 @@ margin-right: .5em;
     /*flex-basis: 33.33%;*/
     /*}*/
 
+    /*climate smart*/
+
+.wrapper {
+    max-width: 1440px;
+    margin-inline: auto;
+}
+
+.bg-gradient {
+    line-height: 1.5;
+    color: white;
+    /*min-height: 100vh;*/
+    /*padding: 2em;*/
+    background-color: rgb(25,54,49);
+    background-image: radial-gradient(circle, rgba(25,54,49,1) 0%, rgba(162,212,203,1) 100%);
+}
+
+    .bg-gradient .btn:hover {
+        color: var(--clr-primary);
+        background-color: var(--clr-accent);
+    }
+
+    .bg-gradient .btn-primary {
+        border-color: var(--clr-neutral-light);
+    }
+
+
+.bg-gradient .big-text,
+.cta-text-content {
+    line-height: 1.2
+}
+
+    .bg-gradient span {
+        color: #a2d4cb;
+        text-shadow: 0px 0px 3px black;
+    }
+
+    .bg-gradient img {
+        width: 100%;
+        max-width: 450px;
+    }
+
+    .bg-gradient .button-group {
+        gap: 1em;
+        margin-bottom: 3em;
+    }
+
+        .bg-gradient .button-group > * {
+            width: 100%;
+            padding: 1em;
+            border-radius: 2em;
+        }
+
+.icons-container img {
+    max-width: 150px;
+}
+
+.icons-container {
+    background-color: rgba(162, 212, 203, 0.1);
+    padding-block: 2em;
+    border-radius: 4em;
+    margin-block: 4em;
+}
+
+    .icons-container .col {
+        font-weight: bold;
+        text-align: center;
+        text-transform: uppercase;
+        /*background-color: #a2d4cb;*/
+        /*padding-block: 2em;*/
+        /*border-radius: 99vw;*/
+    }
+
+        .icons-container .col > p {
+            margin-top: 1em;
+        }
+
+.why-smart-agriculture .intro-text,
+.why-smart-agriculture .cta-text-content,
+.why-smart-agriculture .how-to-start {
+    max-width: 130ch;
+    margin-inline: auto;
+}
+
+.cta-text-content {
+    padding-block: 4em;
+    /*height: 50vh;*/
+}
+
+    .cta-text-content .text-outline {
+        color: #fff;
+        background-color: #193631;
+        padding: 1em;
+        border-radius: 2em;
+    }
+
+.how-to-start {
+}
+
+    .how-to-start ol {
+        text-align: left;
+        list-style: none;
+        counter-reset: counter;
+    }
+
+    .how-to-start li {
+        counter-increment: counter;
+        margin: 0.25rem;
+    }
+
+        .how-to-start li::before {
+            content: counter(counter);
+            background: #a2d4cb;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: inline-block;
+            line-height: 2rem;
+            color: white;
+            text-align: center;
+            margin-right: 1em;
+        }
+
 
     /*Create Weather trigger*/
-
-.weather-header .trigger-btns > .btn {
-    /*color: var(--clr-neutral-light);*/
+.dashboard-btn {
+    font-weight: bold;
+    color: var(--clr-primary);
     background-color: var(--clr-accent);
 }
-
-.weather-header .trigger-btns > .btn:last-of-type {
-   background-color: var(--clr-neutral-light);
+.trigger-header {
+    color: var(--clr-neutral-light);
+    background-color: var(--clr-primary);
+    padding: 5%;
 }
-    .trigger-header {
-        color: var(--clr-neutral-light);
-        background-color: var(--clr-primary);
-        padding: 5%;
-    }
 
 .trigger-header > p {
     max-width: 65ch;
@@ -368,3 +486,8 @@ form select {
     flex-basis: 100%;
 }
 
+/*saved trigger events*/
+
+.event-container .event-body {
+    border: 1px solid var(--clr-accent);
+}

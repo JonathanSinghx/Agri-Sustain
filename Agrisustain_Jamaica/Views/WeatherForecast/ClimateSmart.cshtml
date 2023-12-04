@@ -1,0 +1,77 @@
+﻿@{
+    ViewData["Title"] = "Climate Smart";
+}
+
+<section class="bg-gradient p-5">
+    <div class="wrapper">
+        <div class="row flex-column flex-md-row justify-content-md-between flex-container">
+            <div class="col col-left">
+                <p class="fs-1 fw-bold big-text">
+                    Want to practice <span>climate-smart</span> agriculture?
+                    Learn how you can get started today
+                </p>
+                <p>
+                    Erat tempor eirmod diam eum rebum duo et eum dignissim diam liber magna amet esse duis amet vero facilisi kasd
+                </p>
+                <div class="d-flex button-group">
+                    <a class="btn btn-secondary" asp-area="" asp-controller="WeatherForecast" asp-action="SavedWeatherTriggers">Go to weather dashboard</a>
+                    <a class="btn btn-primary" asp-area="" asp-controller="WeatherForecast" asp-action="CreateWeatherTrigger">
+                        Create weather trigger
+                    </a>
+                </div>
+            </div>
+            <div class="col d-flex justify-content-center justify-content-md-end align-items-start right-col">
+                <img src="~/climate-smart-transformed.png" alt="" />
+            </div>
+        </div>
+    </div>
+</section>
+<section class="px-4 py-5 why-smart-agriculture">
+    <div class="wrapper">
+        <div class="text-center intro-text">
+            <h1>Why climate-smart agriculture?</h1>
+            <p class="mt-4">
+                Agriculture is crucial for food security and rural incomes as well as other essential products. Climate-smart agriculture is a pathway towards development and food security built on three pillars:
+            </p>
+        </div>
+
+        <div class="row flex-column gap-4 flex-md-row flex-container icons-container">
+            <div class="col">
+                <img src="~/productivity.png" alt="productivity" />
+                <p>Increasing productivity and incomes</p>
+            </div>
+            <div class="col">
+                <img src="~/resilience.png" alt="resilience" />
+                <p>Enhancing resilience of livelihoods and ecosystems </p>
+            </div>
+            <div class="col">
+                <img src="~/emission.png" alt="emission" />
+                <p>Removing greenhouse gas emissions from the atmosphere </p>
+            </div>
+        </div>
+        <div class="text-center cta-text-content">
+            <div class="wrapper">
+                <p class="fw-bold fs-2 ">Practice climate-smart agriculture to overcome challenges of food security and accelerating climate change.</p>
+                <p class="text-outline">Get personalized notifications of weather updates and put your plan in action when you create weather triggers tailored to your farming needs.</p>
+            </div>
+        </div>
+        <div class="text-center how-to-start">
+            <div class="wrapper">
+                <div class="text-content d-flex flex-column align-items-center">
+                    <p class="fs-3 text-decoration-underline">How to start getting weather updates</p>
+                    <p> It is easy to start working with the Dashboard. Here are 3 simple steps:</p>
+                    <ol class="">
+                        <li>Click on this <a asp-area="" asp-controller="" asp-action="">link</a> to navigate to the weather dashboard</li>
+                        <li>Create a weather trigger to receive weather updates</li>
+                        <li>View saved weather triggers</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    @* <a asp-area="" asp-action="" asp-controller="">Get started now</a> *@
+</section>

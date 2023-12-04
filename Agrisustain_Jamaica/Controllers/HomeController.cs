@@ -159,6 +159,11 @@ namespace Agrisustain_Jamaica.Controllers
         {
             return View();
         }
+        public IActionResult HealthyEating()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult Confirmation() 
         {
@@ -208,7 +213,9 @@ namespace Agrisustain_Jamaica.Controllers
         }
         public void write_db(object obj)
         {
-            string constr = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;";
+            //string constr = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;";
+            var builder = WebApplication.CreateBuilder();
+            string constr = builder.Configuration.GetConnectionString("Agri_Sus");
             SqlConnection conn = new SqlConnection(constr);
             conn.Open();
             SqlCommand comm = new SqlCommand(constr, conn);
