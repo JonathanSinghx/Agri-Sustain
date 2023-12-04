@@ -4,21 +4,68 @@
 
 
 
-<section class="saved-trigger-events p-3">
-    <div class="row events-container p-3">
-        @foreach (var data in Model.triggerEvents)
-        {
-            <div class="col col-6 p-3 event-container">
-                <div class="d-flex justify-content-between align-items-center p-3 event-header bg-black text-white">
-                    <h3 class="fs-6">@data.CreatedAt.ToString("dddd, MMMM d, yyyy")</h3>
-                    <span class="btn btn-success">1 event</span>
+<section class="position-relative saved-trigger-events bg-gradient">
+    <div class="row flex-column flex-sm-row flex-container">
+        <div class="col col-sm-3 col-lg-2 saved-trigger-events-header p-3 p-sm-0">
+            <nav class="navbar navbar-expand-lg bg-body-tertiary p-sm-0">
+                <div class="container-fluid flex-sm-column align-items-sm-start px-0">
+                    <h1 class="fs-5 mb-sm-3 trigger-events-text">Trigger Events</h1>
+                    <button class="navbar-toggler d-flex flex-column gap-1 bg-transparent d-sm-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon navbar-toggler-icon-long"></span>
+                        <span class="navbar-toggler-icon navbar-toggler-icon-short"></span>
+                    </button>
+                    <div class="collapse navbar-collapse d-sm-flex p-sm-4 trigger-events-nav-container" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0 flex-sm-column gap-sm-3">
+                            <li class="nav-item" aria-current="true">
+                                Dashboard
+                            </li>
+                            <li class="nav-item">
+                               Precipitation
+                            </li>
+                            <li class="nav-item">
+                               Wind
+                            </li>
+                            <li class="nav-item">
+                                Temperature
+                            </li>
+                        </ul>
+                     
+                    </div>
                 </div>
-                <div class="event-body p-3">
-                    <p>@data.TriggerName</p>
-                    <p>@data.WeatherCondition falls below @data.ConditionLevel @data.Units</p>
-                    <p>@data.Duration days event</p>
-                </div>
+            </nav>
+           
+        </div>
+        <div class="col col-sm-9 p-3 saved-trigger-events-container">
+            <h2>Weather Dashboard</h2>
+            <div class="row flex-column gap-3 flex-md-row card-container p-3">
+                @{int count = 0; }
+                @if(Model.triggerEvents.Count <= 0)
+                {
+                    <p>You have no trigger events saved.</p>
+                } else
+                {
+                    @foreach (var data in Model.triggerEvents)
+                    {
+                        count++;
+                        <div class="col col-md-3 event-container">
+                            <div class="d-flex justify-content-between align-items-center p-3 event-header bg-black text-white">
+                                <h class="created-at">@data.CreatedAt.ToString("dddd, MMMM d, yyyy")</h>
+                                <span class="btn btn-event">event @count</span>
+                            </div>
+                            <div class="event-body p-3">
+                                <p class="fw-bold">@data.TriggerName</p>
+                                <p>@data.WeatherCondition falls below @data.ConditionLevel @data.Units</p>
+                                @{
+                                    string day = "day";
+                                    if (data.Duration > 1) day = "days";
+                                }
+                                <p>@data.Duration @day event</p>
+                            </div>
+                        </div>
+                    }
+                }
             </div>
-        }
+        </div>
+       
     </div>
 </section>
