@@ -17,16 +17,12 @@
 
     header code
     h1 {
-        padding: 5%;
+        /* padding: 5%; */
         color: white;
     }
 
     .header {
         background-color: #193631;
-    }
-
-    main {
-        padding: 1rem;
     }
 
     .card h3 {
@@ -56,11 +52,11 @@
     }
 
     h1 {
-        padding: 5%;
+        /* padding: 5%; */
     }
 
 
-    .title, h1, h3 {
+    .title {
         text-align: center;
     }
 
@@ -89,19 +85,27 @@
         align-self: center;
     }
 
-    h1,h2 {
-        text-align: center;
-    }
-
 </style>
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-
-<header>
+<section class="bg-gradient p-5 mb-5 banner resources-banner">
+    <div class="wrapper">
+        <div class="row flex-column flex-md-row justify-content-md-between align-items-md-center flex-container">
+            <div class="col col-left">
+                <h1 class="fw-bolder lh-1">Farm Crop Management</h1>
+                <p class="mt-3">This tool will allow you to manage your crops by tracking location, supplies, tools and comments on tasks to be done.</p>
+            </div>
+            <div class="col d-flex justify-content-center justify-content-md-end align-items-start right-col">
+                <img src="/crop-management.png" alt="" />
+            </div>
+        </div>
+    </div>
+</section>
+@* <header>
 <h1>Farm Crop Management</h1>
 <h2>This tool will allow you to manage your crops by tracking location, supplies, tools and comments on tasks to be done. </h2>
-</header>
+</header> *@
     <table id="cropTable">
         <thead>
             <tr>
