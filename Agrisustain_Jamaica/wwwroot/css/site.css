@@ -16,6 +16,16 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/* Global styles*/
+
+.banner .right-col {
+    max-height: 330px;
+    overflow: hidden;
+}
+
+
+
 /*main{
     padding:1rem;
 }*/
