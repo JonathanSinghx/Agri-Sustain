@@ -8,22 +8,20 @@
 
 <style>
     body {
-        font-family: Arial, sans-serif;
+        /* font-family: Arial, sans-serif; */
        /*  display: flex; */
-        justify-content: center;
+      /*   justify-content: center;
         align-items: center;
         height: 100vh;
-        margin: 0;
+        margin: 0; */
     }
 
     .contact-container {
-        background-image: url(~/wwwroot/crops-clipart-planting-4.png);
-        background-repeat: no-repeat;
         /* text-align: center; */
         /* background-color: #f0f0f0; */
-        padding: 40px;
+        /* padding: 40px; */
         border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+       /*  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
         /* max-width: 400px; */
         max-width: 800px;
         /* width: 100%; */
@@ -33,19 +31,25 @@
         margin-bottom: 2em;
         /* margin: 5% 35%; */
         border-radius: 2em;
+        overflow: hidden;
+        box-shadow: 5px 10px 38px -9px rgba(0,0,0,0.46);
+        -webkit-box-shadow: 5px 10px 38px -9px rgba(0,0,0,0.46);
+        -moz-box-shadow: 5px 10px 38px -9px rgba(0,0,0,0.46);
     }
 
     #contactForm {
+        background-color: transparent;
         /* max-width: 600px; */
         margin-inline: auto;
         /* padding: 1.2em; */
         padding: 2em;
         /* border: 1px solid #000;*/
-        border-radius: 1em;
-        box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+      /*   border-radius: 1em;
+        box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff; */
     }
 
         .contact-container h1 {
+        color: white;
             margin-bottom: 20px;
             color: #333;
         }
@@ -80,16 +84,21 @@
         border-radius: 5px;
     }
 
-    .hidden {
+    .form-container .hidden {
         display: none;
     }
 
-    h1 {
-        /* padding: 5%; */
-        color: white;
+    .contact-container .bg-container {
+        padding: 1em;
+        background-color: var(--clr-accent);
+        border-top-left-radius: 2em;
+        border-bottom-left-radius: 2em;
     }
 
-   /*  .header {
+    .contact-container .content {
+        max-width: 35ch;
+    }
+    /*  .header {
         background-color: #193631;
     } */
 
@@ -110,24 +119,35 @@
         </div>
     </section>
     <div class="wrapper">
-        <div class="contact-container">
-            <form id="contactForm">
-                <div class="mb-3">
-                    <label for="name">Full Name:</label>
-                    <input type="text" id="name" placeholder="Enter your name" required>
+        <div class="contact-container d-flex flex-column flex-md-row">
+            <div class="form-container flex-grow-1 order-2">
+                <form id="contactForm">
+                    <div class="mb-3">
+                        <label for="name">Full Name:</label>
+                        <input type="text" id="name" placeholder="Enter your name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label>Email Address: </label>
+                        <input type="email" id="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label>Message:</label>
+                        <textarea id="message" placeholder="Your Message" required></textarea>
+                    </div>
+
+                    <button type="submit">Send</button>
+                </form>
+                <div id="successMessage" class="hidden">Message Sent Successfully!  </div>
+            </div>
+            <div class="d-flex flex-column align-items-center order-md-2 bg-container">
+                <img width="150" src="/contact-animation.gif" alt="" />
+                <div class="content text-center">
+                    <h3>Hello, there!</h3>
+                    <p>We are so grateful that you decided to get in touch with us.</p>
                 </div>
-                <div class="mb-3">
-                    <label>Email Address: </label>
-                    <input type="email" id="email" placeholder="Enter your email" required>
-                </div>
-                <div class="mb-3">
-                    <label>Message:</label>
-                    <textarea id="message" placeholder="Your Message" required></textarea>
-                </div>
-               
-                <button type="submit">Send</button>
-            </form>
-            <div id="successMessage" class="hidden">Message Sent Successfully!</div>
+                
+            </div>
+          
         </div>
 
     </div>
