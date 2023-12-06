@@ -139,110 +139,42 @@
                 <div class="name">
                     <h2>Jamaican Jerk Chicken</h2>
                 </div>
-                <div class="instructions">
+                <div class="btn-wrap">
+                    <a asp-controller="Home" asp-action="JerkChicken" class="view-button">View Recipe</a>      
                 </div>
-
-                
-
+            </div>
+        </div>
+        <div class="card">
+            <div class="img-wrap">
+                <img src="https://shorturl.at/bhmUZ">
+            </div>
+            <div class="info">
+                <div class="name">
+                    <h2>Ackee and Salfish</h2>
+                </div>
                 <div class="btn-wrap">
                     <a asp-controller="Home" asp-action="JerkChicken" class="view-button">View Recipe</a>
-
-       
                 </div>
-
-                <div class="ingredients">
+            </div>
+        </div>
+        <div class="card">
+            <div class="img-wrap">
+                <img src="https://shorturl.at/pqCN1">
+            </div>
+            <div class="info">
+                <div class="name">
+                    <h2>Corn Soup</h2>
+                </div>
+                <div class="btn-wrap">
+                    <a asp-controller="Home" asp-action="JerkChicken" class="view-button">View Recipe</a>
                 </div>
             </div>
         </div>
     </div>
 </main>
 
+    <script>
 
-
-
-
-
-
-
-@* <body>
-    <main>
-        <div id="cardContainer">
-                    <div class="crop-card">
-                        <div class="img-wrap">
-                            <img src="e">
-                        </div>
-                        <div class="info">
-                            <div class="name">
-                             
-                            </div>
-                            <div class="instructions">
-                            </div>
-                          
-                            <div class="btn-wrap">
-                               
-                                <button class="create-button">Learn Now</button>
-                            </div>
-
-                            <div class="ingredients">
-                               
-                            </div>
-                        </div>
-                    </div>
-                }
-        </div>
-    </main> *@
-    <script src="RecipeScript.js"></script>
+    </script>
         
-@* 
-        // const searchMeal = async (e) => {
-        //     e.preventDefault();
 
-        //     //select elements
-        //     const input = document.querySelector('.input')
-        //     const title = document.querySelector('.title')
-        //     const info = document.querySelector('.info')
-        //     const img = document.querySelector('.img')
-        //     const ingredientsOutput = document.querySelector('.ingredients')
-
-        //     const showMealInfo = (meal) => {
-        //         console.log(meal);
-        //     }
-
-
-        //     const showAlert = () => {
-        //         alert('Meal not found')
-        //     }
-
-        //     //fetch data
-        //     const fetchMealData = async (val) => {
-        //         const res = await fetch('www.themealdb.com/api/json/v1/1/search.php?s=${val}')
-        //     };
-
-        //     const { meals } = await res.json();
-        //     return meals;
-
-        //     //get the user value
-
-        //     const val = input.value.trim()
-
-        //     if (val) {
-        //         const meals = await fetchMealData(val)
-        //         if (!meals) {
-        //             showAlert()
-        //             return;
-        //         }
-
-        //         meals.forEach(showMealInfo)
-        //     } else {
-        //         alert("Please try searching for meal");
-        //     }
-        // };
-
-
-        // const form = document.querySelector('form');
-        // form.addEventListener('submit', searchMeal);
-
-        // const magnifier = document.querySelector('.magnifier');
-        // magnifier.addEventListener('click', searchMeal);
-    // </script>
-@* //</body> *@ 
