@@ -212,7 +212,6 @@ namespace Agrisustain_Jamaica.Controllers
             SavedTriggerEventsModel triggers = new SavedTriggerEventsModel();
           //  List<WeatherTriggerViewModel> weatherTriggers = new List<WeatherTriggerViewModel>();
 
-
             DataTable dataTable = new DataTable();
             SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("Agri_Sus"));
            connection.Open();
@@ -252,6 +251,7 @@ namespace Agrisustain_Jamaica.Controllers
         {
             return View();
         }
+
         //[HttpGet("DisplayPopup")]
         //public async Task<IActionResult> DisplayPopup()
         //{
