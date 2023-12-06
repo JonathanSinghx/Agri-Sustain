@@ -147,6 +147,11 @@ namespace Agrisustain_Jamaica.Controllers
         {
             return View();
         }
+
+        public IActionResult ackeesaltfish()
+        {
+            return View();
+        }
         public IActionResult agriInfo() 
         {
             return View();
