@@ -42,7 +42,7 @@
 
     <section class="plantingGuides-page article-page">
         <div class="container py-5">
-            <aritcle>
+            <article>
                 <div class="header-container mb-4">
                     <h1 class="fw-bold | main-heading">@mainHeading</h1>
                     <div class="d-flex justify-content-between | flex-container">
@@ -50,64 +50,56 @@
                         <a class="read-next-btn">Read next</a>
                     </div>
                 </div>
-                <img class="img-fluid w-100 | article-img" src="~/plantingGuidesImg.jpg" alt="corn fields" />
-                <div class="col col-md-6 px-3 pt-3 py-md-0">
-                    <h1 class="fw-bold lh-1 mb-4 [ main-heading ]">@mainHeading</h1>
-                    <div class="main-intro-text">
-                        @{
-                            foreach (string text in blogIntroText)
-                            {
-                                <p>@text</p>
+                <img class="img-fluid w-100 | article-img" src="~/planting-guides-img.jpg" alt="corn fields" />
+                <div class="fs-5 | article-content">
+                        <div class="mt-5 | main-intro-text">
+                            @{
+                                foreach (string text in blogIntroText)
+                                {
+                                    <p>@text</p>
+                                }
                             }
-                        }
+                        </div>
+                    <div class="sub-sections">
+                        <div class="content-section">
+                            @{
+                                if (CropsInfo != null)
+                                {
+                                    string season = "";
+                                    foreach (var crop in CropsInfo)
+                                    {
+                                        if (crop.CropInfo != null && crop.Seasons.Length > 1) { season = "seasons"; } else { season = "season"; }
+
+                                        <div class="col mb-3 p-0 |">
+                                            <h2 class=" fw-bold fs-3">@crop.CropName</h2>
+                                            <div class="row">
+                                                <p class="fw-bold">Best @season for planting:</p>
+                                                <ul class="d-flex justify-content-center gap-2 p-2 rounded-1 mx-md-auto">
+                                                    @for (int i = 0; i < crop.Seasons.Length; i++)
+                                                    {
+                                                        <li class="fs-6 style-all-text-container"><span class="mr-2">&star;</span>@crop.Seasons[i]</li>
+                                                    }
+                                                </ul>
+                                            </div>
+
+                                            @for (int i = 0; i < crop.CropInfo.Length; i++)
+                                            {
+
+                                                <p>@crop.CropInfo[i]</p>
+                                            }
+
+                                        </div>
+
+                                    }
+                                }
+                            }
+                        </div>
                     </div>
                 </div>
-            </aritcle>
+                
+            </article>
         </div>
-        <div class="row mt-4 p-4">
-            <div class="search-container">
-                <h3>Search for Quicker Results</h3>
-                <div class="btns">
-                    <button class="btn">Sort Alphabetically</button>
-                    <button class="btn">Sort By Popularity</button>
-                </div>
-            </div>
-        </div>
-        <div class="sub-sections">
-            <div class="row flex-column px-3 mt-md-5">
-                @{
-                    if (CropsInfo != null)
-                    {
-                        string season = "";
-                        foreach (var crop in CropsInfo)
-                        {
-                            if (crop.CropInfo != null && crop.Seasons.Length > 1) { season = "seasons"; } else { season = "season"; }
-
-                            <div class="col text-md-center col-md-10 mx-md-auto mb-md-3">
-                                <h2 class=" fw-bold fs-3">@crop.CropName</h2>
-                                <div class="row">
-                                    <p class="fw-bold">Best @season for planting:</p>
-                                    <ul class="d-flex justify-content-center gap-2 p-2 rounded-1 mx-md-auto">
-                                        @for (int i = 0; i < crop.Seasons.Length; i++)
-                                        {
-                                            <li class="fs-6"><span class="mr-2">&star;</span>@crop.Seasons[i]</li>
-                                        }
-                                    </ul>
-                                </div>
-
-                                @for (int i = 0; i < crop.CropInfo.Length; i++)
-                                {
-
-                                    <p>@crop.CropInfo[i]</p>
-                                }
-
-                            </div>
-
-                        }
-                    }
-                }
-            </div>
-        </div>
+      
     </section>
 
 }

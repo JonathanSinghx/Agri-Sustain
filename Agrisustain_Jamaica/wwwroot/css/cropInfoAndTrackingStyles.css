@@ -10,7 +10,6 @@ html {
 }
 
 body {
-    font-family: Urbanist, Helvetica, Arial, sans-serif;
     margin-bottom: 60px;
 }
 
@@ -45,18 +44,21 @@ article .read-next-btn:hover {
     margin-inline: auto;
 }
 
-.styled-text-container:not(:first-of-type) {
+.styled-text-container:not(:first-of-type),
+.style-all-text-container {
     background-color: #a4c3b2;
     padding: 2em !important;
     border-top-left-radius: 1.5em;
     border-bottom-right-radius: 1.5em;
 }
 
+
 .styled-text-container:not(:first-of-type) h2 {
-    display: inline-block;
+     display: inline-block;
 }
 
-.styled-text-container:not(:first-of-type) h2::after {
+.styled-text-container:not(:first-of-type) h2::after
+{
     content: "";
     position: absolute;
     inset: 0;
@@ -68,15 +70,9 @@ article .read-next-btn:hover {
     transition: all 500ms ease-in-out;
 }
 
-/*.styled-text-container:not(:first-of-type):hover {
-    cursor: pointer;
-}*/
-
-.styled-text-container:not(:first-of-type):hover h2::after {
-    transform: scale(1);   
-    /*text-decoration: underline;*/
-    /*text-decoration-style:wavy;*/
-}
+    .styled-text-container:not(:first-of-type):hover h2::after {
+        transform: scale(1);
+    }
 
 .job-planning-container > .hero-text-container,
 .crop-tracking-homepage > .hero-text-container {
@@ -199,101 +195,11 @@ ul {
 }
 
 
-    /*.article-page .header-img {
-        position: relative;
-        max-width: 400px;*/
-       
-        /*overflow: hidden;*/
-        /*z-index: 10;
-        isolation: isolate;
-    }*/
-
-       /* .article-page .header-img img {
-            border-radius: 2em;
-        }*/
-
-       /* .article-page .header-img::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            left: 30px;
-            top: 20px;
-            background-color: #a2d4cb;
-            border-radius: 2em;
-            z-index: -1;
-        }
-*/
-      
-.plantingGuides-page .sub-sections ul {
-    flex-basis: 35%;
-    max-width: 150px;
-    background: #a2d4cb;
+/*planting guides page*/
+.plantingGuides-page ul > li {
+    padding: 1em !important;
 }
 
-.cropCare-page .ul-toggler {
-    background-color: #000;
-}
-
-
-.cropCare-page .ul-collapse {
-    background-color: #a2d4cb;
-}
-
-    .cropCare-page .ul-toggler,
-    .cropCare-page .ul-collapse li,
-    .cropCare-page aside > ul li {
-        cursor: pointer;
-    }
-
-        .cropCare-page .ul-collapse li:hover {
-            background-color: rgba(0, 0, 0, .15);
-        }
-
-.cropCare-page .bordered-div {
-    border-top: 1px solid #193631;
-    border-bottom: 1px solid #193631;
-}
-
-    .cropCare-page .bordered-div > *:not(.info):hover {
-        cursor: pointer;
-    }
-
-    .cropCare-page .bordered-div > *:not(.info) {
-        color: #193631;
-    }
-
-.cropCare-page aside > ul li:first-of-type {
-    /*color: #a2d4cb;
-    border-left: 2px solid #a2d4cb;
-    padding: 1em;*/
-}
-
-/*irrigation page*/
-
-/*.irrigation-page .content-section {
-    max-width: 800px;
-}*/
-
-.search-container .btns > button {
-    /*color: #fff;
-    background-color: #a2d4cb;*/
-    border: 3px solid #000;
-    border-radius: 99vw;
-}
-
-/*@media(min-width: 768px) {
-    .article-page .header-container {*/
-        /*color: #fff;*/
-        /*background-color: #193631;*/
-        /*padding-block: 5em;*/
-    /*}
-
-        .article-page .header-container img {
-            aspect-ratio: 1;
-        }
-}*/
 
 @keyframes image-color {
     0% {
@@ -304,6 +210,12 @@ ul {
         opacity: 1;
     }
 }
+
+
+
+
+
+
 
 /*crop tracking design*/
 
