@@ -41,14 +41,18 @@
     }
 
     <section class="cropCare-page article-page">
-        <article class="row">
-            <div class="d-flex flex-column flex-md-row gap-md-3 gap-lg-5 header-container">
-                <div class="col col-md-5 header-img">
-                    <img class="img-fluid" src="~/cropCareImg.jpg" alt="Crop care" />
-                </div>
-                <div class="col col-md-6 px-3 pt-3 py-md-0">
+        <div class="container py-5">
+            <article>
+                <div class="mb-4 | header-container">
                     <h1 class="fw-bold [ main-heading ]">@mainHeading</h1>
-                    <div class="main-intro-text">
+                    <div class="d-flex justify-content-between | flex-container">
+                        <p class="fst-italic">5 minutes read</p>
+                        <a class="read-next-btn">Read next</a>
+                    </div>
+                </div>
+                <img class="img-fluid w-100 | article-img" src="~/crop-care-img.jpg" alt="Crop care" />
+                <div class="fs-5 | article-content">
+                    <div class="mt-5 | main-intro-text">
                         @{
                             foreach (string text in blogIntroText)
                             {
@@ -56,84 +60,33 @@
                             }
                         }
                     </div>
-                </div>
-            </div>
-            <div class="row p-4 mx-auto sub-sections">
-                <div class="d-lg-none dropdown ul-dropdown">
-                    <div class="d-flex align-items-center justify-content-between p-4 text-white ul-toggler"
-                                 aria-label="Toggle ul">
-                        <p class="m-0">@cropCareInfo.ElementAt(0).Name</p>
-                        <span>&#11206;</span>        
-                    </div>
-                    <ul class="d-none px-0 py-4 ul-collapse">
-                        @{
-                            if (cropCareInfo != null)
-                            {
-                                foreach (var info in cropCareInfo)
-                                {
-                                    <li class="px-4 py-2">@info.Name</li>
-                                }
-                            }
-                         }
-                    </ul>
-                </div>
-                <div class="row flex-column flex-lg-row mt-lg-4 bottom-content">
-                    <div class="col col-lg-3">
-                        <aside class="d-none d-lg-block">
-                        <h3 class="fw-bold fs-6 text-uppercase">Crop Care</h3>
-
-                            <ul class="p-0">
+                    <div class="sub-sections">
+                        <div class="content-section">
                                 @{
                                     if (cropCareInfo != null)
                                     {
                                         foreach (var info in cropCareInfo)
                                         {
-                                            <li class="py-2 list-item">@info.Name</li>
+                                        <div class="col mb-3 p-0 | styled-text-container">
+                                            <h2 class=" fw-bold fs-3 position-relative">@info.Name</h2>
+                                                <div class="content mb-4">
+
+                                                    @for (int i = 0; i < info.CropCareInstructions.Length; i++)
+                                                    {
+                                                        
+                                                        <p>@info.CropCareInstructions[i]</p>
+                                                    }
+                                                </div>
+
+                                            </div>
                                         }
                                     }
                                 }
-                            </ul>
-                        </aside>
-                    </div>
-                    <div class="col col-lg-9">
-                        <div class="row flex-column px-3 mt-5 mt-lg-0">
-
-                            @{
-                                if (cropCareInfo != null)
-                                {
-                                    foreach (var info in cropCareInfo)
-                                    {
-                                        <div class="col dropdown content-dropdown">
-                                            <h2 class=" fw-bold fs-3">@info.Name</h2>
-                                            <div class="content mb-4">
-
-                                                @for (int i = 0; i < info.CropCareInstructions.Length; i++)
-                                                {
-                                                    <div class="row flex-column bordered-div">
-                                                        <div class="col d-flex align-items-center gap-2">
-                                                            <span class="fw-bold fs-1">+</span>
-                                                            <p class="fw-bold mb-0">Crop Care</p>
-                                                        </div>
-                                                        <div class="col d-none info">
-                                                            <p class="fs-4 mb-5">@info.CropCareInstructions[i]</p>
-                                                        </div>
-
-                                                    </div>
-
-
-                                                }
-                                            </div>
-
-                                        </div>
-
-                                    }
-                                }
-                            }
                         </div>
-                      </div>
+                    </div>
                 </div>
-            </div>
-        </article>
+            </article>
+        </div>
     </section>
 }
 
