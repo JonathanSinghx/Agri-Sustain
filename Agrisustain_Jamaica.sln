@@ -5,7 +5,7 @@ VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agrisustain_Jamaica", "Agrisustain_Jamaica\Agrisustain_Jamaica.csproj", "{0FFA112C-B7CC-4D28-814D-314651B5DFB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agri_Sustain", "Agri_Sustain\Agri_Sustain.csproj", "{271A234F-5CA9-4E27-B7B7-CE848C5FB06E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agri_Sustain", "Agri_Sustain\Agri_Sustain.csproj", "{271A234F-5CA9-4E27-B7B7-CE848C5FB06E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
