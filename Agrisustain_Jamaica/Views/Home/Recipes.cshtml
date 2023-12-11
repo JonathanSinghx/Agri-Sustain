@@ -9,57 +9,41 @@
 <style>
  
     #cardContainer {
-        flex: 1;
-        padding: 20px;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-auto-rows: 450px;
-        gap: 20px;
+        padding: 3em;
+        background-color: var(--clr-accent);
+        border-radius: 2em;
     }
 
-    .crop-card {
-        border-radius: 20px;
-        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.142);
-        display: flex;
-        flex-direction: column;
-        transition: all ease-in-out 0.3s;
+    #cardContainer > * {
+        flex-basis: 33.33%;
     }
 
-        .crop-card:hover {
-            transform: translateY(-3px) scale(1.03);
-            z-index: 10;
-            position: relative;
-        }
-
-    .img-wrap {
-        border-radius: 20px;
-        overflow:hidden;
-        height: 250px;
+    .recipe > img {
         width: 100%;
-        display: flex;
-        justify-content: center;
+        /* max-width: 300px; */
+        margin-bottom: 1em;
+        aspect-ratio: 1;
+        object-fit: cover;
+        border-radius: 1em;
+    }
+
+    .recipe .view-button {
+        font-size: .8rem;
+        display: inline-flex;
         align-items: center;
-        background-color: white;
-        color: white;
+        color: var(--clr-neutral-light);
+        padding: 1em;
+        background-color: var(--clr-primary);
+        border-radius: 99vw;
+        cursor: pointer;
+        transition: all 5ms ease-in-out;
     }
-
-    .img-wrap > img{
-        width: 100%;
-        object-fit: contain;
-        height: 100%;
-    }
-    
-
+      
     .info {
-        padding: 15px;
+       /*  padding: 15px;
         flex-direction: column;
         flex: 1;
-        display: grid;
-    }
-
-    .name {
-        text-align: center;
-        align-self: center;
+        display: grid; */
     }
 
     .quantity {
@@ -81,14 +65,8 @@
         font-weight: bold;
     }
 
-    .btn-wrap {
-        display: flex;
-        justify-content: center;
-    }
-
     button {
-        width: fit-content;
-        height: fit-content;
+       
         padding: 10px;
         border: none;
         outline: none;
@@ -96,12 +74,9 @@
         color: white;
         font-weight: bold;
         border-radius: 5px;
-        align-self: center;
+
     }
 
-    button:hover {
-        background-color: #156725;
-    }
     .location-wrap {
         display: flex;
         justify-content: end;
@@ -115,13 +90,8 @@
         align-self: flex-end;
     }
 
-    h1, h2 {
-        /* text-align: center; */
-    }
-
-
     .recipe-hero {
-       /*  background-image: url('/nutrition-bg.jpg');
+        /*  background-image: url('/nutrition-bg.jpg');
         background-repeat: no-repeat;
         background-size: cover;
         width: 50%; */
@@ -130,42 +100,42 @@
         /* background-blend-mode: overlay; */
     }
 
-        .recipe-hero h1 {
-            font-size: 3rem;
-            line-height: .8;
-            margin: 2em 0px 1em;
-            max-width: max-content;
+    .recipe-hero h1 {
+        font-size: 3rem;
+        line-height: .8;
+        margin: 2em 0px 1em;
+        max-width: max-content;
+    }
+
+    .recipe-hero h1 > span {
+        font-size: 6rem;
+    }
+
+    .recipe-hero .vegetables-img {
+        position: absolute;
+        left: 0px;
+        max-width: 600px;
+    }
+
+    .recipe-hero .images-container {
+        right: 0;
+        top: 80px;
+        max-width: 300px;
+        z-index: 999;
         }
 
-            .recipe-hero h1 > span {
-                font-size: 6rem;
-            }
-
-        .recipe-hero .vegetables-img {
-            position: absolute;
-            left: 0px;
-            max-width: 600px;
-        }
-
-        .recipe-hero .images-container {
-            right: 0;
-            top: 80px;
-            max-width: 300px;
-            z-index: 999;
-        }
-
-            .recipe-hero .images-container > img {
-                position: relative;
-                max-width: 200px;
-                /* margin-bottom: 1.5em; */
-            }
+    .recipe-hero .images-container > img {
+        position: relative;
+        max-width: 200px;
+        /* margin-bottom: 1.5em; */
+    }
 /* 
             .recipe-hero .images-container > .salad-img {
                
                 margin-bottom: 2em;
             } */
 
-    .right-bg-col {
+    .recipe-hero .right-bg-col {
         color: var(--clr-neutral-light);
         /* background-color: var(--clr-accent); */
         padding-top: 2em;
@@ -173,6 +143,7 @@
         height: 100%;
         right: 0;
         top: 0;
+        border-bottom-left-radius: 6em;
     }
 
 
@@ -202,10 +173,35 @@
     .shadowed-text-foods {
         margin-left: -.8em;
     }
+
+    .recipe-cards-container input {
+       text-indent: 5px;
+       border: none;
+       outline: none;
+       flex-grow: 2;
+    }
+
+    .recipe-cards-container .input-container {
+        flex-grow: 2;
+        padding-left: 1em;
+        max-width: 600px;
+        border: 1px solid var(--clr-neutral-dark);
+        border-radius: 5px;
+    }
+
+    .recipe-cards-container #search-btn {
+        width: 25%;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+
+    .recipe-cards-container #search-btn:hover {
+        background-color: var(--clr-accent);
+    }
 </style>
 
 
-<section class="d-flex position-relative recipe-hero">
+<section class="d-flex position-relative mb-5 recipe-hero">
     <div class="container py-5">
         <h1>Food <span class="d-block">Recipes</span></h1>
         <img class="vegetables-img" src="/png-food-recipe.png" alt="vegetables" />
@@ -223,68 +219,57 @@
       
 
     </div>
-    @* <div class="row bg-images-container">
-        <div class="col left-bg-col">
-            <h1>Food Recipes</h1>
-        </div>
-        <div class="col right-bg-col"></div>
-    </div> *@
- @*    <h1 class="fs-1">Food Recipes</h1>
-
-    <p class="shadowed-text shadowed-text-salads">Salads</p>
-    <p class="shadowed-text shadowed-text-drinks">Drinks</p>
-    <p class="shadowed-text shadowed-text-foods">Foods</p>
- 
-    <a href="#featured-content" class="btn text-uppercase p-2 px-4 recipe-btn">Check out Our Recipes</a> *@
 </section>
-<div class="input-container">
-    <input type="text" placeholder="Search..." id="user-input" />
-    <button id="search-btn"> Search</button>
-</div>
 
-<main>
-    <div id="cardContainer">
-        <div class="card">
-            <div class="img-wrap">
+<section class="recipe-cards-container">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-start gap-3 py-5 top-content">
+            <p class="fw-bold fs-3">Learn to cook delicious meals right now.</p>
+            <div class="d-flex justify-content-between input-container">
+                <input type="text" placeholder="Search..." id="user-input" />
+                <button id="search-btn"> Search</button>
+            </div>
+        </div>
+       
+        <div id="cardContainer" class="row lh-1 justify-content-between mb-5">
+            <div class="col recipe">
                 <img src="https://foodies.co.uk/wp-content/uploads/2020/02/jerk-chicken-1920x2880.jpg">
-            </div>
-            <div class="info">
-                <div class="name">
-                    <h2>Jamaican Jerk Chicken</h2>
+                <div class="info">
+                    <div class="name">
+                        <h2 class="fw-bolder fs-6">Jamaican Jerk Chicken</h2>
+                    </div>
+                    
+                        <a asp-controller="Home" asp-action="JerkChicken" class="view-button">View Recipe</a>
+                    
                 </div>
-                <div class="btn-wrap">
-                    <a asp-controller="Home" asp-action="JerkChicken" class="view-button">View Recipe</a>      
-                </div>
             </div>
-        </div>
-        <div class="card">
-            <div class="img-wrap">
+            <div class="col recipe">
                 <img src="https://shorturl.at/bhmUZ">
-            </div>
-            <div class="info">
-                <div class="name">
-                    <h2>Ackee and Salfish</h2>
+                <div class="info">
+                    <div class="name">
+                        <h2 class="fw-bolder fs-6">Ackee and Salfish</h2>
+                    </div>
+                    
+                        <a asp-controller="Home" asp-action="ackeesaltfish" class="view-button">View Recipe</a>
+                    
                 </div>
-                <div class="btn-wrap">
-                    <a asp-controller="Home" asp-action="ackeesaltfish" class="view-button">View Recipe</a>
+
+            </div>
+            <div class="col recipe">
+                <img src="https://cdn.meaningfuleats.com/wp-content/uploads/2017/05/IMG_7139-1.jpg">
+                <div class="info">
+                    <div class="name">
+                        <h2 class="fw-bolder fs-6">Corn Soup</h2>
+                    </div>
+                    
+                        <a asp-controller="Home" asp-action="cornsoup" class="view-button">View Recipe</a>
+                   
                 </div>
             </div>
-        </div>
-        <div class="card">
-            <div class="img-wrap">
-                <img src="https://shorturl.at/pqCN1">
-            </div>
-            <div class="info">
-                <div class="name">
-                    <h2>Corn Soup</h2>
-                </div>
-                <div class="btn-wrap">
-                    <a asp-controller="Home" asp-action="JerkChicken" class="view-button">View Recipe</a>
-                </div>
-            </div>
-        </div>
+        </div>     
     </div>
-</main>
+</section>
+
 
     <script>
 

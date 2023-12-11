@@ -1,0 +1,37 @@
+﻿@model Agrisustain_Jamaica.Models.ViewModels.SavedCropsModel
+
+<div class="crop-tracking-view">
+    <div class="text-center py-4 hero-text-container">
+        <h1 class="">Crop Tracking Records</h1>
+        <p>Hello, user! Here is your list of crops that are currently being tracked</p>
+    </div>
+
+    <div class=" [ mt-5 table-view-container ]">
+
+        <table class="table">
+            @* <caption class="caption-top text-white text-center mx-auto mb-4">Hello, user! Here is your list of crops that are currently being tracked</caption> *@
+            <thead>
+                <tr>
+                    <th scope="col" data-cell="name">Crop Name</th>
+                    <th scope="col" data-cell="description">Description</th>
+                    <th scope="col" data-cell="date">Date Planted</th>
+                    <th scope="col" data-cell="harvest">Expected Date for Harvesting</th>
+                    <th> </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var crop in Model.cropsList)
+                {
+                    <tr>
+                        <td data-cell="name">@crop</td>
+                        <td data-cell="description">@crop.Description</td>
+                        <td data-cell="date">@crop.DatePlanted.Date.ToShortDateString()</td>
+                        <td data-cell="harvest">@crop.HarvestDate.Date.ToShortDateString()</td>
+                        @* <td data-cell="view"><a href="Crops/Edit/@crop.Id">View</a></td> *@
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <a class=" [ fs-3 fw-bold btn mx-2 ] go-back-btn rounded-circle" asp-area="" asp-controller="CropTracking" asp-action="Add">&#8617;</a>
+</div>

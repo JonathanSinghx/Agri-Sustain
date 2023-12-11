@@ -4,7 +4,7 @@
 
 @{
 }
-<style>
+@* <style>
 .section-container {
     max-width: 950px;
     margin-inline: auto;
@@ -34,9 +34,60 @@
     background-color: #193631;
     max-width:300px;
 }
-</style>
+</style> *@
+
+<section class="bg-gradient p-5 mb-5 banner resources-banner">
+    <div class="wrapper">
+        <div class="row flex-column flex-md-row justify-content-md-between align-items-md-center flex-container">
+            <div class="col col-left">
+                <h1 class="fw-bolder lh-1">Welcome to the <span>Community Gardens</span> from AgriSustain.</h1>
+                <p class="mt-3">Please click below to select whether you're a farmer or a consumer.</p>
+            </div>
+            <div class="col d-flex justify-content-center justify-content-md-end align-items-start right-col">
+                <img src="~/images/garden-png-image-hd.png" alt="flower garden" />
+            </div>
+        </div>
+    </div>
+</section>
+<section class="[ row justify-content-center mx-0 g-2 position-relative pb-4 ] [ blog-posts ]">
+    <div class="blogposts-container">
+        <div class="[ row flex-column gap-4 flex-lg-row ] [ row-bottom ]">
+            <div class="[ col bg-white ] [ article-col ]">
+                <div class="[ row flex-column ] [ blog-post ]">
+                    <div class="[ col ] [ img-container ]">
+                        <img class="img-fluid" src="https://shorturl.at/ahNY4" alt="" />
+                    </div>
+                    <div class="[ col ] [ text-container ]">
+                        <h3 class="mt-3">Farmer</h3>
+                        <p>
+                            Access to the Garden manager where you are able to manage your crops and resources.
+                        </p>
+                    </div>
+                    <a class="[ text-white fw-bold text-decoration-none btn py-2 px-4 mt-auto ] [ btn-link ]" asp-area="" asp-controller="Home" asp-action="StarterGuide">Learn More</a>
+                </div>
+            </div>
+
+            <div class="[ col bg-white ] [ article-col ]">
+                <div class="[ row flex-column ] [ blog-post ]">
+                    <div class="[ col ] [ img-container ]">
+                        <img class="img-fluid" src="https://shorturl.at/ixJQX" alt="" />
+                    </div>
+                    <div class="[ col ] [ text-container ]">
+                        <h3 class="mt-3">Consumer</h3>
+                        <p> View crops farmers have available for sharing.</p>
+
+                    </div>
+                    <a class="[ text-white fw-bold text-decoration-none btn py-2 px-4 mt-auto ] [ btn-link ]" asp-area="" asp-controller="Home" asp-action="ShareProduce">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 
+
+
+@* 
 <div class="section-container">
     <h1>Welcome to the Community Gardens</h1>
     <p>Please click below to select whether you're a farmer or a consumer.</p>
@@ -70,4 +121,4 @@
 
         </div>
     </div>
-</div>
+</div> *@
