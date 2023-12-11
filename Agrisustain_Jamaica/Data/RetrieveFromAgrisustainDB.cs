@@ -7,7 +7,12 @@ namespace Agrisustain_Jamaica.Data
 {
     public class RetrieveFromAgrisustainDB
     {
-        private readonly IConfiguration? _configuration;
+        private readonly IConfiguration _configuration;
+
+        public RetrieveFromAgrisustainDB(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
 
         public DataTable GetData(string databaseTable)
         {

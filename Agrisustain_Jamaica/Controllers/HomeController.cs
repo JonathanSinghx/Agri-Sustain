@@ -152,6 +152,10 @@ namespace Agrisustain_Jamaica.Controllers
         {
             return View();
         }
+        public IActionResult Cornsoup()
+        {
+            return View();
+        }
         public IActionResult agriInfo() 
         {
             return View();

@@ -22,6 +22,8 @@ builder.Services.AddTransient<JSONFileCropCareService, JSONFileCropCareService>(
 //builder.Services.AddTransient<WeatherService, WeatherService>();
 builder.Services.AddScoped<IWeatherService, WeatherForecastService>();
 //builder.Services.AddHttpClient<WeatherForecastService>();
+builder.Services.AddScoped<AddToAgrisustainDB,  AddToAgrisustainDB>();
+builder.Services.AddScoped<RetrieveFromAgrisustainDB,  RetrieveFromAgrisustainDB>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

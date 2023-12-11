@@ -3,7 +3,7 @@
 @{
 }
 
-
+@* 
 <style>
     
 
@@ -163,12 +163,162 @@ button.calculate {
     .input input, .inputH input, .inputW input{
         font-size: 24px;
     }
+</style> *@
+
+<style>
+    .bmi-container {
+        max-width: 600px;
+        margin-inline: auto;
+    }
+
+    .active-gender {
+        background-color: var(--clr-accent) !important;
+    }
+
+    .gender span {
+        font-weight: bold;
+        font-size: 5rem;
+    }
+
+    .gender input[type="radio"] {
+        display: none;
+    }
+/* 
+        .gender input[type="radio"]:checked :is(.gender) {
+            background-color: var(--clr-accent);
+        } */
+    .gender-col,
+    .gender-col label {
+        cursor: pointer;
+    }
+
+    .height-col input[type="number"] {
+        text-indent: 1rem;
+        padding: .5em;
+        outline: none;
+        border: none;
+        border-radius: 99vw;
+    }
+
+    .gender-col, 
+    .height-col,
+    .weight-col,
+    .age-col,
+    .calculate-btn {
+        color: var(--clr-neutral-light);
+        text-align: center;
+        padding: 1em;
+        background-color: var(--clr-primary);
+        border-radius: 1em;
+
+    }
+
+    .weight-btns > button,
+    .age-btns > button {
+        font-weight: bold;
+        background-color: var(--clr-accent);
+        border: none;
+        padding: .5em .8em;
+        border-radius: 50%;
+       box-shadow: 1px 1px 0 #999;
+    }
+
+    .calculate-btn {
+        background-color: var(--clr-accent);
+    }
+
+    .calculate-btn > button {
+        font-weight: bold;
+        font-size: 1.5rem;
+        text-transform: uppercase;
+        color: var(--clr-primary);
+        border: none;
+        background-color: transparent;
+        width: 100%;
+    }
+
+  
 </style>
 
+<section class="bg-gradient p-5 mb-5 banner resources-banner">
+    <div class="wrapper">
+        <div class="row flex-column flex-md-row justify-content-md-between align-items-md-center flex-container">
+            <div class="col col-left">
+                <h1 class="fw-bolder lh-1">Develop Healthy Eating Habits</h1>
+                <p class="mt-3">Our Body Mass Index(BMI) calculator checks if your weight matches your height. It also checks to see if you're currently underweight, normal, or carrying too much weight. However, staying healthy is more than just numbers; it's about eating well, staying active, and feeling good! See what our recommended diet is based on your BMI results.</p>
+            </div>
+            <div class="col d-flex justify-content-center justify-content-md-end align-items-start right-col">
+                <img src="~/images/healthy-food-diet-png-picture.png" alt="healthy foods"/>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <h2 class="text-center mb-4">BMI Calculator</h2>
+        <div class="bmi-container">
+            <div class="row justify-content-between align-items-center gap-3 px-3 gender">
+                <div class="col male gender-col">
+                    <label for="male">
+                        <span class="d-block">♂</span>
+                        Male
+                    </label>
+                    <input type="radio" value="" name="gender" id="male" />
+                </div>
+                <div class="col female gender-col">
+                    <label for="female">
+                        <span class="d-block">♀</span>
+                        Female
+                    </label>
+                    <input type="radio" value="" name="gender" id="female" />
+                </div>
+
+            </div>
+            <div class="py-4 mt-3 height-col">
+                <p class="text-uppercase">Height</p>
+                <div class="lh-1 mb-3 height-details">
+                    <span class="height-val">136</span>
+                    <span>cm</span>
+                </div>
+                <input type="number" value="" />
+            </div>
+            <div class="row justify-content-between align-items-center lh-1 gap-3 px-3 mt-3 weight-and-age">
+                <div class="col weight-col">
+                    <p class="text-uppercase">weight</p>
+                    <div class="lh-1 mb-3 weight-details">
+                        <span class="weight-val">56</span>
+                        <span>Kg</span>
+                    </div>
+                    <div class="d-flex justify-content-center align-items-center gap-3 weight-btns">
+                        <button class="decrement-btn">-</button>
+                        <button class="increment-btn">+</button>
+                    </div>
+                </div>
+                <div class="col age-col">
+                    <p class="text-uppercase">Age</p>
+                    <p class="age">36 years</p>
+                    <div class="d-flex justify-content-center align-items-center gap-3 age-btns">
+                        <button class="decrement-btn">-</button>
+                        <button class="increment-btn">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-3 calculate-btn">
+                <button>Calculate</button>
+            </div>
+        </div> 
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="tips">
+
+        </div>
+    </div>
+</section>
 
 
-
-        <div class="box">
+       @*  <div class="box">
             <h1>Check your Body Mass Index</h1>
             <div class="content">
                 <div class="input">
@@ -210,12 +360,12 @@ button.calculate {
                 <div id="result">00.00</div>
                 <p class="comment"></p>
             </div>
-        </div>
+        </div> *@
     
  <div class="tips">  
-<h1>Healthy Eating Tips for Different BMI Ranges</h1>
+@* <h1>Healthy Eating Tips for Different BMI Ranges</h1>
 <p>BMI, or Body Mass Index, checks if your weight matches your height. It helps see if you're underweight, normal, or carrying too much weight, but staying healthy is more than just numbers, it's about eating well, staying active, and feeling good!</p>
-
+ *@
 <h2>Underweight (BMI less than 18.5)</h2>
 <ul>
     <li>
@@ -296,14 +446,79 @@ button.calculate {
 
 
     <script>
-        var age = document.getElementById("age");
-        var height = document.getElementById("height");
-        var weight = document.getElementById("weight");
-        var male = document.getElementById("m");
-        var female = document.getElementById("f");
-        var form = document.getElementById("form");
-        let resultArea = document.querySelector(".comment");
+        const genderCols = document.querySelectorAll(".gender-col");
+        const heightInput = document.querySelector(".height-col input[type='number']")
+        const heightVal = document.querySelector(".height-val");
+        const weightAndage = document.querySelector(".weight-and-age");
+        const weightVal = document.querySelector(".weight-details > .weight-val");
+        const ageVal = document.querySelector(".age-col > .age")
 
+        // var age = document.getElementById("age");
+        // var height = document.getElementById("height");
+        // var weight = document.getElementById("weight");
+        // var male = document.getElementById("m");
+        // var female = document.getElementById("f");
+        // var form = document.getElementById("form");
+        // let resultArea = document.querySelector(".comment");
+
+        selectGender();
+        handleHeightInput();
+        handleWeightAndAgeInput();
+
+    //select gender
+        function selectGender() {
+            document.querySelector(".male").classList.add("active-gender");
+            genderCols.forEach(genderCol => {
+                genderCol.closest(".bmi-container").addEventListener("click", (e) => {
+                    if (e.target.classList.contains("female") || e.target.closest(".female")) {
+                        document.querySelector(".female").classList.add("active-gender")
+                        document.querySelector(".male").classList.remove("active-gender");
+                    } else if (e.target.classList.contains("male") || e.target.closest(".male")) {
+                        document.querySelector(".male").classList.add("active-gender")
+                        document.querySelector(".female").classList.remove("active-gender");
+                    }
+                })
+            
+            })
+        }
+
+        //input height value
+        function handleHeightInput() {
+            heightInput.addEventListener("change", (e) => {
+                heightVal.textContent = e.target.value;
+            })
+        }
+
+        //input weight or age value
+        function handleWeightAndAgeInput() {
+            let age = ageVal.textContent.split(" ")[0];
+            let weight = weightVal.textContent;
+          
+            weightAndage.addEventListener("click", (e) => {
+                if (e.target.classList.contains("decrement-btn") && e.target.closest(".age-btns")) {
+                    +age--;
+                    if (+age < 0) {
+                        age = 0;
+                    }
+                    ageVal.textContent = `${age} years`;
+
+                } else if (e.target.classList.contains("increment-btn") && e.target.closest(".age-btns")) {
+                    +age++;
+                    ageVal.textContent = `${age} years`;
+
+                } else if (e.target.classList.contains("decrement-btn") && e.target.closest(".weight-btns")) {
+                    +weight--;
+                    if (+weight < 0) {
+                        weight = 0;
+                    }
+                    weightVal.textContent = weight;
+            } else if (e.target.classList.contains("increment-btn") && e.target.closest(".weight-btns")) {
+                    +weight++;
+                    weightVal.textContent = weight;
+            }
+            })
+        }
+      
         function calculate() {
             if (age.value == '' || height.value == '' || weight.value == '' || (male.checked == false && female.checked == false)) {
                 modal.style.display = "block";

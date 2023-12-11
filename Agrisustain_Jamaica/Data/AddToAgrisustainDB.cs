@@ -8,10 +8,10 @@ namespace Agrisustain_Jamaica.Data
     {
         private readonly IConfiguration? _configuration;
 
-        //public AgrisustainDB(IConfiguration configuration)
-        //{
-        //    _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
-        //}
+        public AddToAgrisustainDB(IConfiguration configuration)
+        {
+            _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+        }
 
         public void AddData(string databaseTable, object[] data)
         {

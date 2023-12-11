@@ -7,16 +7,20 @@ using System.Data;
 
 namespace Agrisustain_Jamaica.Controllers
 {
-    public class CropsController : Controller
+    public class CropTrackingController : Controller
     {
         //private readonly AgriSustainDBContext agriSustainDBContext;
         AddToAgrisustainDB agrisustainDB = new AddToAgrisustainDB();
-
+        private readonly RetrieveFromAgrisustainDB _retrieveFromAgrisustain;
+        private readonly AddToAgrisustainDB _addToAgrisustainDB;
+        //RetrieveFromAgrisustainDB retrieveFromAgrisustain = new RetrieveFromAgrisustainDB();
 
             //get access to use dbcontext injected in services (program.cs file)
-            public CropsController(AddToAgrisustainDB agriSustainDBContext)
+            public CropTrackingController(AddToAgrisustainDB agriSustainDBContext, RetrieveFromAgrisustainDB retrieveFromAgrisustainDBContext)
             {
-                agriSustainDBContext = agrisustainDB;
+                //agriSustainDBContext = agrisustainDB;
+                _addToAgrisustainDB = agriSustainDBContext;
+                _retrieveFromAgrisustain = retrieveFromAgrisustainDBContext;
             }
 
             public IActionResult Homepage()
@@ -32,18 +36,39 @@ namespace Agrisustain_Jamaica.Controllers
             }
 
 
-            //get list of crops stored in the database
-            [HttpGet]
-            public async Task<IActionResult> Index()
-            {
-            RetrieveFromAgrisustainDB retrieveFromAgrisustainDB = new RetrieveFromAgrisustainDB();
+        //get list of crops stored in the database
+        [HttpGet]
+        public async Task<IActionResult> Index()
+        {
+
+            SavedCropsModel savedCrops = new SavedCropsModel();
+          
+            //RetrieveFromAgrisustainDB retrieveFromAgrisustainDB = new RetrieveFromAgrisustainDB();
             //use agrisustainDbcontext to talk to Crops folder, which is a property of this context
             //var crops = await agriSustainDBContext.Crops.ToListAsync();
             //create a view to display this info
 
-           var crops = retrieveFromAgrisustainDB.GetData("Crops");
-                return View(crops);
+            var crops = _retrieveFromAgrisustain.GetData("Crops");
+            if (crops.Rows.Count > 0)
+            {
+                for (int i = 0; i < crops.Rows.Count; i++)
+                {
+                    CropViewModel newCrop = new CropViewModel();
+                    newCrop.CropName = crops.Rows[i]["CropName"].ToString();
+                    newCrop.Description = crops.Rows[i]["Description"].ToString();
+                    newCrop.DatePlanted = Convert.ToDateTime(crops.Rows[i]["DatePlanted"]);
+                    newCrop.CropStatus = crops.Rows[i]["CropStatus"].ToString();
+                    newCrop.HarvestDate = Convert.ToDateTime(crops.Rows[i]["HarvestDate"]);
+
+                    savedCrops.cropsList.Add(newCrop);
+                    // triggers.AddTriggerEvent(newTrigger);
+                }
+
+
+               
             }
+            return View(savedCrops);
+        }
 
             [HttpGet]
             public IActionResult Add()
@@ -80,55 +105,8 @@ namespace Agrisustain_Jamaica.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(Guid id)
         {
-            // var crop = await agriSustainDBContext.Crops.FirstOrDefaultAsync(x => x.Id == id);
-            RetrieveFromAgrisustainDB retrieveFromAgrisustainDB = new RetrieveFromAgrisustainDB();
-
-            var crops = retrieveFromAgrisustainDB.GetData("Crops");
-            var crop = "";
-
-            if (crops.Rows.Count > 0)
-            {
-                for (int i = 0; i < crops.Rows.Count; i++)
-                {
-
-                    //if (crops.Rows[i]["Id"])
-                    //{
-
-                    //}
-                    //WeatherTriggerViewModel newTrigger = new WeatherTriggerViewModel();
-                    //newTrigger.TriggerName = crops.Rows[i]["TriggerName"].ToString();
-                    //newTrigger.WeatherCondition = dataTable.Rows[i]["WeatherCondition"].ToString();
-                    //newTrigger.ConditionLevel = (int)dataTable.Rows[i]["ConditionLevel"];
-                    //newTrigger.Condition = dataTable.Rows[i]["Condition"].ToString();
-                    //newTrigger.Units = dataTable.Rows[i]["Units"].ToString();
-                    //newTrigger.Duration = (int)dataTable.Rows[i]["Duration"];
-                    //newTrigger.CreatedAt = Convert.ToDateTime(dataTable.Rows[i]["CreatedAt"]);
-
-                    //triggers.triggerEvents.Add(newTrigger);
-                    // triggers.AddTriggerEvent(newTrigger);
-                }
-
-
-
-                //if (crop != null)
-                //{
-                //    var viewModel = new UpdateCropViewModel()
-                //    {
-                //        Id = crop.Id,
-                //        CropName = crop.CropName,
-                //        Description = crop.Description,
-                //        DatePlanted = crop.DatePlanted,
-                //        //CropStatus = addCrop.CropStatus,
-                //        HarvestDate = crop.HarvestDate
-                //    };
-
-                //    return await Task.Run(() => View("Edit", viewModel));
-                //}
-
-                return RedirectToAction("Index");
-            }
-            //to be deleted
-            return View(crop);
+            
+            return View("Index");
         }
             //create a post method for the above View action
             //to be uncommented
