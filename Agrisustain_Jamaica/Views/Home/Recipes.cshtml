@@ -116,14 +116,127 @@
     }
 
     h1, h2 {
-        text-align: center;
+        /* text-align: center; */
     }
 
+
+    .recipe-hero {
+       /*  background-image: url('/nutrition-bg.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 50%; */
+        height: 100vh;
+        /* background-color: #193631; */
+        /* background-blend-mode: overlay; */
+    }
+
+        .recipe-hero h1 {
+            font-size: 3rem;
+            line-height: .8;
+            margin: 2em 0px 1em;
+            max-width: max-content;
+        }
+
+            .recipe-hero h1 > span {
+                font-size: 6rem;
+            }
+
+        .recipe-hero .vegetables-img {
+            position: absolute;
+            left: 0px;
+            max-width: 600px;
+        }
+
+        .recipe-hero .images-container {
+            right: 0;
+            top: 80px;
+            max-width: 300px;
+            z-index: 999;
+        }
+
+            .recipe-hero .images-container > img {
+                position: relative;
+                max-width: 200px;
+                /* margin-bottom: 1.5em; */
+            }
+/* 
+            .recipe-hero .images-container > .salad-img {
+               
+                margin-bottom: 2em;
+            } */
+
+    .right-bg-col {
+        color: var(--clr-neutral-light);
+        /* background-color: var(--clr-accent); */
+        padding-top: 2em;
+        width: 50%;
+        height: 100%;
+        right: 0;
+        top: 0;
+    }
+
+
+
+    .shadowed-text {
+        position: relative;
+        transform: rotate(3deg);
+        font-size: 8rem;
+        color: #fff;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-shadow: 0px -3px 0 var(--clr-accent), 0px -3px 0 var(--clr-accent), 0px 3px 0 var(--clr-accent), 0px 3px 0 var(--clr-accent), -3px 0px 0 var(--clr-accent), 3px 0px 0 var(--clr-accent), -3px 0px 0 var(--clr-accent), 3px 0px 0 var(--clr-accent), -3px -3px 0 var(--clr-accent), 3px -3px 0 var(--clr-accent), -3px 3px 0 var(--clr-accent), 3px 3px 0 var(--clr-accent), -3px 6px 0 var(--clr-accent), 0px 6px 0 var(--clr-accent), 3px 6px 0 var(--clr-accent), 0 7px 1px rgba(0,0,0,.1), 0 0 3px rgba(0,0,0,.1), 0 3px 3px rgba(0,0,0,.3), 0 12px 6px rgba(0,0,0,.2), 0 18px 18px rgba(0,0,0,.25), 0 24px 24px rgba(0,0,0,.2), 0 36px 36px rgba(0,0,0,.15);
+        max-width: max-content;
+    
+    }
+
+    .shadowed-text-salads {
+        position: relative;
+        /* color: var(--clr-primary); */
+        margin-left: -1.8em;
+    }
+
+    .shadowed-text-drinks {
+        margin-left: -1.2em;
+    }
+
+    .shadowed-text-foods {
+        margin-left: -.8em;
+    }
 </style>
 
 
+<section class="d-flex position-relative recipe-hero">
+    <div class="container py-5">
+        <h1>Food <span class="d-block">Recipes</span></h1>
+        <img class="vegetables-img" src="/png-food-recipe.png" alt="vegetables" />
+        <div class="images-container position-absolute">
+            <img class="salad-img"src="/Salad-Free-PNG-Image.png" alt="" />
+            <img class="drink-img"src="/Drink-PNG-8.png" alt="" />
+            <img class="food-img"src="/food-png-food.png" alt="" />
+        </div>
+    </div>
+  
+    <div class="col position-absolute right-bg-col bg-gradient">
+        <p class="shadowed-text shadowed-text-salads">Salads</p>
+        <p class="shadowed-text shadowed-text-drinks">Drinks</p>
+        <p class="shadowed-text shadowed-text-foods">Foods</p>
+      
 
-<h1>Check out Our Recipes</h1>
+    </div>
+    @* <div class="row bg-images-container">
+        <div class="col left-bg-col">
+            <h1>Food Recipes</h1>
+        </div>
+        <div class="col right-bg-col"></div>
+    </div> *@
+ @*    <h1 class="fs-1">Food Recipes</h1>
+
+    <p class="shadowed-text shadowed-text-salads">Salads</p>
+    <p class="shadowed-text shadowed-text-drinks">Drinks</p>
+    <p class="shadowed-text shadowed-text-foods">Foods</p>
+ 
+    <a href="#featured-content" class="btn text-uppercase p-2 px-4 recipe-btn">Check out Our Recipes</a> *@
+</section>
 <div class="input-container">
     <input type="text" placeholder="Search..." id="user-input" />
     <button id="search-btn"> Search</button>
