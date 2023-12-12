@@ -150,6 +150,10 @@
       
     }
 
+    .container .expandable-container .badge-input-container {
+        width: 100%;
+    }
+
      .expandable-container .badge-input-container {
             overflow: hidden;
             transition: height 0.3s;
@@ -160,6 +164,10 @@
         cursor: pointer;
         font-size: 1.5em;
         margin-bottom: 10px;
+    }
+
+    .container .expandable-container .mt-5 pdsubmission {
+        width: 100%;
     }
    
     </style>
@@ -441,7 +449,7 @@
                     </div>
 
                    
-
+                    <!-- Submit Button -->
                     <div class="row">
                         <div class="btn-container col-12">
                             <button type="submit" id="addBadgeButton" class="btn btn-primary">Add to my badges</button>
@@ -451,104 +459,10 @@
             </>
             </div>
             </div>
-       </div>
-
-        @*Pest and Disease Sighting Submission Form*@
-
-    <div class="container expandable-container mt-5 pdsubmission">
-        <div class="expandable-title" onclick="togglePestDiseaseContainer()">Pest and Disease Submission</div>
-            <div id="pestDiseaseContainer" class="container pest-disease-container">
-
-            <form action="/Farm/SubmitForm" method="post" enctype="multipart/form-data" onsubmit="submitForm()">
-                <!-- Farm Location -->
-                <div class="form-group">
-                    <label for="farmLocation">Farm Location</label>
-                    <input type="text" class="form-control" id="farmLocation" name="farmLocation" required>
-                </div>
-
-                <!-- Date of Sighting -->
-                <div class="form-group">
-                    <label for="dateOfSighting">Date of Sighting</label>
-                    <input type="date" class="form-control" id="dateOfSighting" name="dateOfSighting" required>
-                </div>
-
-                <!-- Pest Dropdown -->
-                <div class="form-group">
-                    <label for="pestSelect">Select Pest</label>
-                    <select class="form-control" id="pestSelect" name="pest">
-                        <option value="">Select...</option>
-                        <option value="pest1">Armyworms (Various Crops)</option>
-                        <option value="pest2">Aphids (Various Crops)</option>
-                        <option value="pest3">Whiteflies (Tomatoes, Peppers, Brassicas)</option>
-                        <option value="pest4">Thrips (Tomatoes, Peppers, Strawberries)</option>
-                        <option value="pest5">Cutworms (Cabbage, Corn, Lettuce)</option>
-                        <option value="pest6">Mites (Tomatoes, Strawberries, Beans)</option>
-                        <option value="pest7">Caterpillars (Cabbage, Broccoli, Cauliflower)</option>
-                        <option value="pest8">Leafhoppers (Potatoes, Beans, Grapes)</option>
-                        <option value="pest9">Flea Beetles (Eggplants, Potatoes, Tomatoes)</option>
-                        <option value="pest10">Root-knot Nematodes (Tomatoes, Carrots, Potatoes)</option>
-                        <option value="pest11">Spider Mites (Beans, Strawberries, Cucumbers)</option>
-                        <option value="pest12">Grasshoppers (Various Crops)</option>
-                        <option value="pest13">Scale Insects (Citrus, Ornamental Plants)</option>
-                        <option value="pest14">Japanese Beetles (Roses, Grapes, Fruit Trees)</option>
-                        <option value="pest15">Mealybugs (Citrus, Grapes, Ornamental Plants)</option>
-                        <option value="pest16">Wireworms (Potatoes, Carrots, Corn)</option>
-                        <option value="pest17">Snails (Lettuce, Cabbage, Strawberries)</option>
-                        <option value="pest18">Slugs (Lettuce, Cabbage, Strawberries)</option>
-                        <option value="pest19">Weevils (Corn, Cotton, Beans)</option>
-                        <option value="pest20">Hornworms (Tomatoes, Peppers, Eggplants)</option>
-                    </select>
-                </div>
-
-                <!-- Disease Dropdown -->
-                <div class="form-group">
-                    <label for="diseaseSelect">Select Disease</label>
-                    <select class="form-control" id="diseaseSelect" name="disease">
-                        <option value="">Select...</option>
-                        <option value="disease1">Black Sigatoka (Bananas)</option>
-                        <option value="disease2">Citrus Canker (Citrus)</option>
-                        <option value="disease3">Late Blight (Tomatoes, Potatoes)</option>
-                        <option value="disease4">Downy Mildew (Cucumbers, Grapes)</option>
-                        <option value="disease5">Anthracnose (Beans, Tomatoes, Peppers)</option>
-                        <option value="disease6">Powdery Mildew (Cucumbers, Melons, Squash)</option>
-                        <option value="disease7">Bacterial Wilt (Cucumbers, Tomatoes, Potatoes)</option>
-                        <option value="disease8">Fusarium Wilt (Tomatoes, Watermelons, Beans)</option>
-                        <option value="disease9">Root Rot (Various Crops)</option>
-                        <option value="disease10">Cercospora Leaf Spot (Tomatoes, Peppers, Beets)</option>
-                        <option value="disease11">Phytophthora (Tomatoes, Peppers, Potatoes)</option>
-                        <option value="disease12">Botrytis (Strawberries, Grapes, Tomatoes)</option>
-                        <option value="disease13">Alternaria (Potatoes, Tomatoes, Carrots)</option>
-                        <option value="disease14">Rust (Beans, Corn, Roses)</option>
-                        <option value="disease15">Septoria Leaf Spot (Tomatoes, Peppers, Potatoes)</option>
-                        <option value="disease16">Verticillium Wilt (Tomatoes, Eggplants, Peppers)</option>
-                        <option value="disease17">Angular Leaf Spot (Cucumbers, Lettuce, Tomatoes)</option>
-                        <option value="disease18">Smuts (Corn, Wheat, Barley)</option>
-                        <option value="disease19">Scab (Apples, Potatoes, Pears)</option>
-                        <option value="disease20">Fire Blight (Apples, Pears, Peaches)</option>
-                    </select>
-                </div>
-
-
-                <!-- Description -->
-                <div class="form-group">
-                    <label for="description">Description</label>
-                    <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
-                </div>
-
-                <!-- Photo Upload -->
-                <div class="form-group">
-                    <label for="photo">Upload Photo</label><br />
-                    <input type="file" class="form-control-file" id="photo" name="photo" accept="image/*" required>
-                </div>
-
-                <!-- Submit Button -->
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-            </div>
-            
-        
+       </div>  
 
 </div>
+
 
     <script>
         $(document).ready(function () {
@@ -613,24 +527,24 @@
             });
         });
 
-        function toggleContainer(containerId) {
-            var container = document.getElementById(containerId);
-            if (container.style.display === "none" || container.style.display === "") {
-                container.style.display = "block";
-            } else {
-                container.style.display = "none";
-            }
-        }
+        //function toggleContainer(containerId) {
+       //     var container = document.getElementById(containerId);
+      //      if (container.style.display === "none" || container.style.display === "") {
+        //        container.style.display = "block";
+        //    } else {
+        //        container.style.display = "none";
+        //    }
+       // }
          
-        // Function to toggle the Pest and Disease Submission container
-        function togglePestDiseaseContainer() {
-            toggleContainer('pestDiseaseContainer');
-        }
+        // Toggle the Pest and Disease Submission container
+        //function togglePestDiseaseContainer() {
+            //toggleContainer('pestDiseaseContainer');
+        //}
 
-        // Function to toggle the Track Your Badges container
-        function toggleBadgeContainer() {
-            toggleContainer('trackBadgesContainer');
-        }
+        // Toggle the Track Your Badges container
+        //function toggleBadgeContainer() {
+        //    toggleContainer('trackBadgesContainer');
+        //}
     </script>
 
 

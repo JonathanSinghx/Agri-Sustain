@@ -1,0 +1,55 @@
+﻿@using Agrisustain_Jamaica.Models.ViewModels;
+
+
+<div class="job-planning-container">
+    <div class="text-center py-4 hero-text-container">
+        <h1 class="mt-4">Start Planning ahead</h1>
+        <p>Select a job to get started</p>
+    </div>
+    <div class="row p-1 container-fluid cards-container">
+        <div class="col">
+            <ul class="list-unstyled">
+                <li>
+                    <a asp-area="" asp-controller="SprayPlanning" asp-action="Add">
+                        <i class="fa-solid fa-spray-can"></i>
+                        <p>Spray</p>
+                    </a>
+                </li>
+                <li>
+                    <a asp-area="" asp-controller="IrrigationPlanning" asp-action="Add">
+                        <i class="fa-solid fa-droplet"></i>
+                        <p>Irrigate/Fertigate</p>
+                    </a>
+                </li>
+                <li>
+                    <a asp-area="" asp-controller="HarvestPlanning" asp-action="Add">
+                        <i class="fa-solid fa-tractor"></i>
+                        <p>Harvest</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="col">
+            <ul class="list-unstyled">
+                <li>
+                    <a asp-area="" asp-controller="FertilizationPlanning" asp-action="Add">
+                        <i class="fa-solid fa-seedling"></i>
+                        <p>Fertilize</p>
+                    </a>
+                </li>
+                <li>
+                    <a asp-area="" asp-controller="PlantingPlanning" asp-action="Add">
+                        <i class="fa-solid fa-trowel"></i>
+                        <p>Sow/Plant</p>
+                    </a>
+                </li>
+                <li>
+                    <a asp-area="" asp-controller="PrunePlanning" asp-action="Add">
+                        <i class="fa-solid fa-scissors"></i>
+                        <p>Pruning</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

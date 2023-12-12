@@ -1,4 +1,4 @@
-html {
+﻿html {
     font-size: 16px;
 }
 
@@ -14,8 +14,26 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    font-family: Urbanist, Arial, Helvetica, sans-serif;
+    margin-bottom: 60px;
 }
+
+ul li > a {
+    color: var(--clr-neutral-dark);
+}
+
+ul li > a:hover {
+    color: var(--clr-accent);
+}
+
+/* Global styles*/
+.banner .right-col {
+    max-height: 330px;
+    overflow: hidden;
+}
+
+
+
 /*main{
     padding:1rem;
 }*/
@@ -331,5 +349,137 @@ footer {
 .marketplace-text {
     padding-block: 2em;
 }
+
+
+
+
+
+/*NUTRITION AND COOKING*/
+
+
+.recipe-details-section .video-container {
+    bottom: 1em;
+    right: 2em;
+    z-index: 10;
+}
+/* 
+        .recipe-details-section .video-container .close-btn {
+            font-size: 1.5rem;
+            font-weight: bold;
+            width: max-content;
+            margin-left: auto;
+            cursor: pointer;
+           
+        } */
+
+.recipe-details .nutritional-info > p {
+    font-size: .8rem;
+    color: var(--clr-primary);
+    padding: .8em 1.5em;
+    background-color: var(--clr-accent);
+    border-radius: 99vw;
+}
+
+.ingredients,
+.instructions {
+    /* background-color: transparent; */
+    box-shadow: 5px 10px 38px -9px rgba(0,0,0,0.46);
+    -webkit-box-shadow: 5px 10px 38px -9px rgba(0,0,0,0.46);
+    -moz-box-shadow: 5px 10px 38px -9px rgba(0,0,0,0.46);
+    /* border-radius: 1em; */
+}
+
+.ingredients {
+    /* align-self: center; */
+    /* background-color: var(--clr-accent); */
+}
+
+    .ingredients h1 {
+        color: var(--clr-neutral-light);
+        padding: .5em;
+        background-color: var(--clr-primary);
+    }
+
+    .ingredients ul li {
+        margin-block: 1em;
+    }
+
+        .ingredients ul li::marker {
+            content: "🐱";
+        }
+
+.instructions {
+    /*  color: var(--clr-neutral-light);
+        background-color: var(--clr-primary); */
+}
+
+    .instructions ol {
+        /* max-width: 350px; */
+        counter-reset: counter;
+        list-style: none;
+        padding-left: 3em;
+    }
+
+        .instructions ol li {
+            margin: 0 0 1em 0;
+            counter-increment: counter;
+            position: relative;
+        }
+
+            .instructions ol li::before {
+                content: counter(counter);
+                color: var(--clr-neutral-light);
+                font-size: 1rem;
+                font-weight: bold;
+                position: absolute;
+                --size: 25px;
+                left: calc(-1 * var(--size) - 10px);
+                line-height: var(--size);
+                width: var(--size);
+                height: var(--size);
+                top: 0;
+                transform: rotate(-10deg);
+                background: black;
+                border-radius: 50%;
+                text-align: center;
+                box-shadow: 1px 1px 0 #999;
+            }
+
+    .instructions .tooltip-content {
+        position: relative;
+        padding: .25em .5em;
+        background-color: var(--clr-accent);
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+.tooltip-text {
+    font-weight: bold;
+    visibility: hidden;
+    position: absolute;
+    top: -40px;
+    left: -50%;
+    z-index: 10;
+    min-width: 400px;
+    max-width: 550px;
+    color: var(--clr-neutral-primary);
+    font-size: .8rem;
+    background-color: var(--clr-accent);
+    border-radius: 1em;
+    padding: 1em;
+}
+
+.instructions .tooltip-content:hover .tooltip-text {
+    visibility: visible;
+}
+
+@media(min-width: 1400px) {
+    .ackee-and-saltfish-recipe-section .tooltip-text,
+    .corn-soup-recipe-section .tooltip-text {
+        left: -350px !important;
+    }
+}
+
+/*NUTRITION AND COOKING*/
 
 

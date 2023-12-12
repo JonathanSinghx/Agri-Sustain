@@ -19,7 +19,13 @@ builder.Services.AddDbContext<Agrisustain_JamaicaContext>(options =>
 builder.Services.AddTransient<JSONFileIrrigationService, JSONFileIrrigationService>();
 builder.Services.AddTransient<JSONFilePlantingGuidesService, JSONFilePlantingGuidesService>();
 builder.Services.AddTransient<JSONFileCropCareService, JSONFileCropCareService>();
-builder.Services.AddTransient<WeatherService, WeatherService>();
+//builder.Services.AddTransient<WeatherService, WeatherService>();
+builder.Services.AddScoped<IWeatherService, WeatherForecastService>();
+//builder.Services.AddHttpClient<WeatherForecastService>();
+builder.Services.AddScoped<AddToAgrisustainDB,  AddToAgrisustainDB>();
+builder.Services.AddScoped<RetrieveFromAgrisustainDB,  RetrieveFromAgrisustainDB>();
+builder.Services.AddScoped<UpdateAgrisustainDB, UpdateAgrisustainDB>();
+builder.Services.AddScoped<DeleteFromAgrisustainDB,  DeleteFromAgrisustainDB>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

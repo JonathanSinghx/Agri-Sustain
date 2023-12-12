@@ -2,8 +2,41 @@
 @{
     ViewData["Title"] = "Marketplace";
 }
+<style>
+    .header{
+        /* background-color: #193631; */
+        color: white;
+    }
 
-<h1>Marketplace</h1>
+    h1{
+        text-align: center;
+    }
+</style>
+
+<section class="d-flex flex-column align-items-center justify-content-center gap-3 marketplace-hero">
+    <h1 class="fs-1 header">The Marketplace</h1>
+    <a href="#featured-content" class="btn text-uppercase p-2 px-4 shop-now-btn">Shop now</a>
+</section>
+<section class="text-center p-3 py-5 lh-1 featured">
+    <div class="container">
+        <div id="featured-content">
+            <p class="fs-5">Develop healthy eating habits</p>
+            <p class="fw-bold fs-2 text-uppercase">Featured produce</p>
+            <div class="row mt-5 products" id="products">
+                <div class="col product">
+                    <img src="/dasheen.jpg" alt="" />
+                </div>
+                <div class="col product">
+                    <img src="/pumpkin.png" alt="" />
+                </div>
+                <div class="col product">
+                    <img src="/sweet-potato.jpg" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <script type="text/javascript">
     function atc() {
         var prd = JSON.parse(document.getElementById("hf").value);
@@ -42,7 +75,9 @@
 @using System.Text.Json.Serialization
 @{
     List<Item> lst = new List<Item>();
-    string constr = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;";
+    //string constr = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;";
+    var builder = WebApplication.CreateBuilder();
+    string constr = builder.Configuration.GetConnectionString("Agri_Sus");
     SqlConnection conn = new SqlConnection(constr);
     conn.Open();
     SqlCommand comm = new SqlCommand(constr, conn);
@@ -64,11 +99,22 @@
     foreach (Item i in lst)
     {
         <div class="card">
-            <label>id:</label>@i.id<br />
-            <label>name:</label>@i.name<br />
-            <label>price:</label>@i.price<br />
-            <label>quantity:</label>@i.quantity<br />
-            <img alt="" src="@i.image" height="24.5" width="24.5" /><br />
+            <table border="1">
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>price</th>
+                    <th>quantity</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>@i.id</td>
+                    <td>@i.name</td>
+                    <td>@i.price</td>
+                    <td>@i.quantity</td>
+                    <td><img alt="" src="@i.image" height="14.5%" width="14.5%" /></td>
+                </tr>
+            </table>
         </div>
     }
     var j_data = JsonSerializer.Serialize(lst);
@@ -106,4 +152,4 @@
         <input id="p_o" type="submit" value="place order" />
     </form>
 }
-<a asp-controller="Home" asp-action="R_sys">Ratings</a>
+<a asp-controller="Home" asp-action="R_sys">Rate the items</a>

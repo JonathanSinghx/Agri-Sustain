@@ -1,26 +1,77 @@
-﻿
-@{
-    ViewData["Title"] = "agriInfo";
-}
-
-<h1>Agriculture Information</h1>
-@using System.Text
+﻿@using System.Text
 @using System.Text.Json
 @using System.Text.Json.Nodes
 @using System.Text.Json.Serialization
 @{
-    <div class="card">
-        @Html.Label("Agricultural Best Practices")<br />
-        @Html.TextArea("abp",show_abp(),new{rows=5,cols=100})<br />
+    ViewData["Title"] = "agriInfo";
+}
+
+<style>
+    .farmers-hub-page textarea {
+        border: none;
+    }
+</style>
+
+<section class="farmers-hub-page article-page">
+    <div class="container py-5">
+        <article>
+            <div class="mb-4 | header-container">
+                <h1 class="fw-bold | main-heading">Agriculture Information</h1>
+                <div class="d-flex justify-content-between | flex-container">
+                    <p class="fst-italic">5 minutes read</p>
+                    <a class="read-next-btn">Read next</a>
+                </div>
+            </div>
+
+            <img class="img-fluid w-100 | article-img" src="~/agri-info.jpg" alt="two men on a farm" />
+            <div class="fs-5 mt-5  article-content">
+               @*  <div class="mt-5 | main-intro-text">
+                    <p class="">@blogIntroText.ElementAt(0)</p>
+                </div> *@
+                <div class="sub-sections">
+
+                    <div class="content-section">
+                       
+                        @{
+                            
+                            <div class="col mb-3 p-0 | style-all-text-container">
+                                <h2 class="fw-bold fs-3">Agricultural Best Practices</h2>
+                                <p>@show_abp()</p>
+                                
+                            </div>
+                            <div class="col mb-3 p-0 | styled-text-container">
+                                <h2 class="fw-bold fs-3">Crop Management Tips</h2>
+                                <p>@show_tips()</p>
+                            </div>
+                            <div class="col mb-3 p-0 | styled-text-container">
+                                <h2 class="fw-bold fs-3">Pest Control Strategies</h2>
+                                <p>@show_pcs()</p>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </article>
     </div>
-    <div class="card">
-        @Html.Label("Crop Management Tips")<br />
-        @Html.TextArea("tips",show_tips(),new{rows=3,cols=100})<br />
-    </div>
-    <div class="card">
-        @Html.Label("Pest Control Strategies")<br />
-        @Html.TextArea("pcs",show_pcs(),new{rows=5,cols=100})
-    </div>
+
+</section>
+}
+
+@* <h1>Agriculture Information</h1> *@
+
+@{
+    // <div class="card">
+    //     @Html.Label("Agricultural Best Practices")<br />
+    //     @Html.TextArea("abp",show_abp(),new{rows=5,cols=100})<br />
+    // </div>
+    // <div class="card">
+    //     @Html.Label("Crop Management Tips")<br />
+    //     @Html.TextArea("tips",show_tips(),new{rows=3,cols=100})<br />
+    // </div>
+    // <div class="card">
+    //     @Html.Label("Pest Control Strategies")<br />
+    //     @Html.TextArea("pcs",show_pcs(),new{rows=5,cols=100})
+    // </div>
 }
 @functions {
     public string show_abp()

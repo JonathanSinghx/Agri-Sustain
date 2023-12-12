@@ -42,49 +42,47 @@
     }
 
     <section class="irrigation-page article-page">
-        <article class="row">
-            <div class="d-flex flex-column flex-md-row gap-md-3 gap-lg-5 header-container">
-                <div class="col col-md-5 header-img">
-                    <img class="img-fluid" src="~/irrigation-img.jpg" alt="irrigation" />
-                </div>
-                <div class="col col-md-6 px-3 pt-3 py-md-0">
-                    <h1 class="fw-bold [ main-heading ]">@mainHeading</h1>
-                    <div class="main-intro-text">
-                        @{
-                            foreach (string text in blogIntroText)
-                            {
-                                <p class="fs-4">@text</p>
-                                
-                            } 
-                        }
+        <div class="container py-5">
+            <article>
+                <div class="mb-4 | header-container">
+                    <h1 class="fw-bold | main-heading">@mainHeading</h1>
+                    <div class="d-flex justify-content-between | flex-container">
+                        <p class="fst-italic">5 minutes read</p>
+                        <a class="read-next-btn">Read next</a>
                     </div>
                 </div>
-            </div>
-            
-            <div class="[ mt-5 ] [ sub-sections ]">
 
-                <div class="row flex-column align-items-center mx-auto px-3 [ content-section ] ">
-                    @{
-                        if(IrrigationMethodsInfo != null)
-                        {
-                            foreach (var sub in IrrigationMethodsInfo)
-                            {
-                                // <div class="col text-md-center col-md-10 mx-md-auto mb-md-3">
-                                <div class="[ col mb-3 p-0 ] [ irrigation-method-container ]">
-                                    <h2 class=" fw-bold fs-3 position-relative ">@sub.Subheading</h2>
-                                    @for (int i = 0; i < sub.Info.Length; i++)
+                <img class="img-fluid w-100 | article-img" src="~/irrigation-img.jpg" alt="green grass being irrigated" />
+                <div class="fs-5 | article-content">
+                    <div class="mt-5 | main-intro-text">
+                        <p class="">@blogIntroText.ElementAt(0)</p>
+                    </div>
+                    <div class="sub-sections">
+
+                        <div class="content-section">
+                            @{
+                                if (IrrigationMethodsInfo != null)
+                                {
+                                    foreach (var sub in IrrigationMethodsInfo)
                                     {
-                                        <p class="fs-4">@sub.Info[i]</p>
-                                       
-                                    }
-                                </div>
+                                    // <div class="col text-md-center col-md-10 mx-md-auto mb-md-3">
+                                        <div class="col mb-3 p-0 | styled-text-container">
+                                            <h2 class=" fw-bold fs-3 position-relative ">@sub.Subheading</h2>
+                                            @for (int i = 0; i < sub.Info.Length; i++)
+                                            {
+                                                <p>@sub.Info[i]</p>
 
+                                            }
+                                        </div>
+                                    }
+                                }
                             }
-                        }
-                    }
-               </div>    
-            </div>
-        </article>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+
     </section>
 }
 

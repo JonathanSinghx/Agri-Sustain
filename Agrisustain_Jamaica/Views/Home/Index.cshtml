@@ -100,9 +100,24 @@
                     <p>Get detailed information on locally grown crops.</p>
                 </div>
 
-                <a asp-controller="Home" asp-action="" class="btn custom-button">Learn More</a>
+                <a asp-controller="CropTracking" asp-action="Homepage" class="btn custom-button">Learn More</a>
 
             </div>
+
+            <div class=" card">
+            @* <div class="card-img">
+            <a><img src="https://picsum.photos/200"/> </a>
+            </div> *@
+            <div class="card-title">
+                <h5 class="fw-bold">Healthy Eating Tips</h5>
+            </div>
+            <div class="flex-grow-1 card-text">
+                <p>Answer questions and get healthy eating tips.</p>
+            </div>
+
+            <a asp-controller="Home" asp-action="HealthyEating" class="btn custom-button">Learn More</a>
+
+        </div>
         </div>
 
         <div class="content my-5">
