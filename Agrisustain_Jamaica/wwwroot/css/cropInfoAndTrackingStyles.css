@@ -219,40 +219,39 @@ ul {
 
 /*crop tracking design*/
 
-.crop-tracking-banner {
-    background-color: #193631;
+.crop-tracking-homepage .welcome-text > span {
+    display: inline-block;
+    background-color: var(--clr-accent);
+    padding: .25em .5em;
+    /*margin-inline: .25em;*/
+    border-radius: 99vw;
 }
 
-/*.crop-tracking-hero h1 {
-    font-size: 3rem;
-    line-height: 1.1;
-    max-width: 20ch;
-    margin-inline: auto;
-}*/
+.crop-tracking-homepage .big-text {
+    font-weight: bold;
+    font-size: clamp(2.5rem, 2.5rem + 2vw, 4rem);
+    line-height: 1;
+    margin-top: .25em;
+    max-width: 15ch;
+}
 
+.crop-tracking-homepage .bottom-content {
+    line-height: 1.2;
+}
+
+.crop-tracking-homepage img {
+    max-width: 350px;
+}
 
 .crop-tracking-hero .hero-text .btn {
-    background-color: #193631;
-}
-
-.crop-tracking-homepage .hero-img {
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background-image: url(/Farm-Image.png);
-    background-size: cover;
-    height: 100vh;
-    filter: grayscale(1);
-    opacity: .06;
-    /* background-color: #193631;
-    background-blend-mode:multiply;*/
+    background-color: var(--clr-primary);
 }
 
 /*Add view*/
 .crop-tracking-add,
 .crop-tracking-edit {
     /* display: flow-root;*/
-    background-color: #193631;
+    background-color: var(--clr-primary);
 }
 
     .crop-tracking-add .hero-text-container,
@@ -311,35 +310,6 @@ ul {
         width: 150px;
     }
 
-/*.crop-tracking-add .hero-text-container .arrow-img*/
-
-/*crop-tracking-view Index page*/
-/*.crop-tracking-view::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    height: 30vh;
-    background-color: #193631;
-    border-bottom-left-radius: 5em;
-    border-bottom-right-radius: 5em;
-}
-
-.crop-tracking-view > .table-view-container {
-    /*margin-top: 6em;*/
-/* max-width: 80%;
-    margin-inline: auto;*/
-/* border-bottom-left-radius: 5em;
-    border-bottom-right-radius: 5em;*/
-/* padding: 1.5em;
-        background: #fff;
-        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);*/
-/*}*/
-/*.crop-tracking-view {
-    color: #fff;*/
-/*padding: 1em;*/
-/*background-color: #193631;
-}*/
 .crop-tracking-view .hero-text-container {
     color: #fff;
     height: 30vh;
@@ -378,27 +348,24 @@ ul {
     background-color: #193631;
     height: 35vh;
 }*/
-.job-planning-container .cards-container,
-.crop-tracking-homepage .cards-container {
+
+/*.job-planning-container .cards-container {
     width: 85%;
     margin-inline: auto;
-    margin-top: -3em;
-}
+}*/
 
-    .job-planning-container .cards-container > *,
-    .crop-tracking-homepage .cards-container > * {
+   /* .job-planning-container .cards-container > {
         width: 50%;
     }
-
+*/
 .job-planning-container ul > li,
 .crop-tracking-homepage .card {
     font-weight: bold;
     text-align: center;
     margin-bottom: 1em;
-    padding: 3em 1em;
-    background-color: #fff;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    border: 1px solid #a2d4cb;
+    /*padding: 3em 1em;*/
+    background-color: var(--clr-neutral-light);
+    border: 1px solid var(--clr-accent);
     border-radius: 1em;
     transition: transform 500ms ease-in-out;
     cursor: pointer;
@@ -406,7 +373,7 @@ ul {
 
     .job-planning-container ul > li:hover,
     .crop-tracking-homepage .card:hover {
-        transform: scale(1.25);
+        transform: scale(1.15);
     }
 
     .job-planning-container ul > li a:not(i),

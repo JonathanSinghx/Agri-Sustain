@@ -1,8 +1,6 @@
-﻿using Agrisustain_Jamaica.Models.WeatherForecastDataModels;
-
-namespace Agrisustain_Jamaica.Models.ViewModels
+﻿namespace Agrisustain_Jamaica.Models.ViewModels
 {
-    public class CropViewModel
+    public class UpdateCropViewModel
     {
         public Guid Id { get; set; }
         public string CropName { get; set; }
@@ -10,10 +8,5 @@ namespace Agrisustain_Jamaica.Models.ViewModels
         public DateTime DatePlanted { get; set; } = DateTime.Now;
         //public string CropStatus { get; set; }
         public DateTime HarvestDate { get; set; }
-    }
-
-    public class SavedCropsModel
-    {
-        public List<CropViewModel> cropsList = new List<CropViewModel>();
     }
 }
