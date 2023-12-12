@@ -23,11 +23,11 @@
                 @foreach (var crop in Model.cropsList)
                 {
                     <tr>
-                        <td data-cell="name">@crop</td>
+                        <td data-cell="name">@crop.CropName</td>
                         <td data-cell="description">@crop.Description</td>
                         <td data-cell="date">@crop.DatePlanted.Date.ToShortDateString()</td>
                         <td data-cell="harvest">@crop.HarvestDate.Date.ToShortDateString()</td>
-                        @* <td data-cell="view"><a href="Crops/Edit/@crop.Id">View</a></td> *@
+                        <td data-cell="view"><a href="CropTracking/Edit/@crop.Id">View</a></td>
                     </tr>
                 }
             </tbody>
