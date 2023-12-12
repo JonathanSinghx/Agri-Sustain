@@ -26,8 +26,8 @@
     }
 
     .marketplace .card {
-        padding: 5% 0;
-        margin: 10%;
+        padding: 2% 0;
+        *margin: 10%;
     }
 
 </style>
@@ -164,47 +164,54 @@
     <div class="section-title">
         <h2 class="text-start section-subheading">Marketplace</h2>
     </div>
+
     <div class="row">
         <div class="col-lg-4">
             <div class="marketplace card">
-                <p>Eat Fresh <br /> Produce!</p>
+                <div class="col-6">
+                <p>Eat Fresh <br />Produce!</p>
+                </div>
+                <div class="col-6">
                 <img />
-            </div>
-
-            <div class="marketplace card">
-                <p>Eat Fresh <br /> Produce!</p>
-                <img />
+                </div>
             </div>
         </div>
 
-        <div class="col-lg-4">
+         <div class="col-lg-4">
             <div class="marketplace card">
                 <p class="align-text-left">Fruits</p>
                 <h4 class="align-text-left">Canteloupe</h4>
-                <img/>
-                <div class="row">
-                    <p>price</p>
-                    <p>$200 /lb</p>
-                    <p>Qty: </p>
-                    <input type="number" min="1" value="1" class="form-control">
+                <img src="https://via.placeholder.com/100" class="card-img" alt="Placeholder Image">
+                <div class="row align-items-center">
+                    <p class="col">Price</p>
+                    <p class="col">$150 /lb</p>
+                    <p class="col">Qty:</p>
+                    <input type="number" min="1" value="1" class="form-control col">
                 </div>
                 <button type="button" class="btn btn-primary">Add to cart</button>
             </div>
         </div>
+    </div>
+        
 
         <div class="col-lg-4">
             <div class="marketplace card">
                 <p class="align-text-left">Vegetables</p>
                 <h4 class="align-text-left">Sweet Potato</h4>
-                <img/>
-               
+                <img src="https://via.placeholder.com/100" class="card-img" alt="Placeholder Image">
+                <div class="row align-items-center">
+                    <p class="col">Price</p>
+                    <p class="col">$150 /lb</p>
+                    <p class="col">Qty:</p>
+                    <input type="number" min="1" value="1" class="form-control col">
+                </div>
                 <button type="button" class="btn btn-primary">Add to cart</button>
             </div>
         </div>
-
-        </div>
     </div>
 </div>
+
+
 
    @*  <section class="intro">
         <div class="container">
