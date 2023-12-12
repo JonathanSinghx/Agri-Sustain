@@ -1,0 +1,45 @@
+﻿@model Agrisustain_Jamaica.Models.ViewModels.UpdateCropViewModel;
+
+<div class="[ pt-5 position-relative ] [ crop-tracking-edit ]">
+    <div class="[ row flex-column flex-lg-row ]">
+        <div class="[ col d-flex justify-content-evenly align-items-center position-relative flex-lg-column  justify-content-lg-start align-items-lg-start ] [ hero-text-container ] ">
+            <h1 class="fs-6 text-white lh-1">Edit you crop data here</h1>
+            <img class="w-100 d-none d-lg-block" src="~/corn-clipart-crop.png" alt="corn" />
+
+        </div>
+        <div class="col ">
+            <div class="[ position-relative mt-5 p-5 bg-white mt-lg-0 ] [ form-container ]">
+                <form method="post" action="View">
+                    <div class="mb-3">
+                        <label for="id" class="form-label">Id</label>
+                        <input type="text" class="form-control" id="id" asp-for="Id" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cropName" class="form-label">Crop Name</label>
+                        <input type="text" class="form-control" id="cropName" asp-for="CropName">
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <input type="text" class="form-control" id="description" asp-for="Description">
+                    </div>
+                    <div class="mb-3">
+                        <label for="datePlanted" class="form-label">Date Planted</label>
+                        <input type="date" class="form-control" id="datePlanted" asp-for="DatePlanted">
+                    </div>
+                    @*  <div class="mb-3">
+                    <label for="cropStatus" class="form-label">Crop Status</label>
+                    <input type="text" class="form-control" id="cropStatus" asp-for="CropStatus">
+                    </div> *@
+                    <div class="mb-3">
+                        <label for="harvestDate" class="form-label">Harvest Date</label>
+                        <input type="date" class="form-control" id="harvestDate" asp-for="HarvestDate">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-danger" asp-action="Delete" asp-controller="CropTracking">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <a class="[ fs-3 fw-bold btn mx-2 ] go-back-btn rounded-circle" asp-action="Index">&#8617;</a>
+</div>
