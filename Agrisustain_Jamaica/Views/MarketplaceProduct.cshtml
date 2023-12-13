@@ -1,0 +1,158 @@
+﻿@page
+@model Agrisustain_Jamaica.Views.MarketplaceProductModel
+@{
+}
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="Your description goes here">
+        <meta name="keywords" content="one, two, three">
+
+        <title>Product</title>
+
+        <!-- external CSS link -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Urbanist&display=swap" rel="stylesheet">
+    </head>
+
+    <div class="product-container" style="margin-top: 20px; margin-bottom: 20px;">
+        <div class="row no-gutters">
+            <div class="col-md-6">
+                <img src="images/watermelon.png" alt="Watermelon Image" class="card-img">
+            </div>
+            <div class="col-md-6">
+                <div class="card-body">
+                    <h3 class="produce-type title">Fruit</h3>
+                    <h4 class="produce-name subtitle mb-2 text-muted">Watermelon</h4>
+                    <div class="rating">Rating: 4.5</div>
+                    <a href="#reviews">Reviews</a>
+                    <p>Number of products sold: 100</p>
+                    <hr>
+                    <p>Price: $200/lb</p>
+                    <div class="form-inline">
+                        <label for="quantity" class="mr-2">Quantity:</label>
+                        <input type="number" id="quantity" name="quantity" min="1" max="100" class="form-control form-control-sm">
+                    </div>
+                    <hr>
+                    <div class="row">
+                    <button class="add-to-cart btn btn-primary">Add to Cart</button>
+                    <button class="add-to-list btn btn-secondary">Add to List</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <section class="also-bought px-5 mx-5">
+        <h3 class="py-3">Customers also bought</h3>
+        <div class="row">
+            <div class="col-lg-2 col-md-3 mb-4">
+                <a href="product.html" style="text-decoration: none; color: #193631;">
+                    <div class="product-card card h-100">
+                        <h3 class="produce-type card-title">Fruits</h3>
+                        <h4 class="produce-name card-subtitle mb-2 text-muted">Bananas</h4>
+                        <img src="images/banana.png" alt="Product Image" class="card-img-top">
+                        <div class="card-body">
+                            <div class="rating">Rating: 4.5</div>
+                            <div class="form-inline">
+                                <label for="price" class="mr-2">Price:</label>
+                                <p class="price card-text">$20.00</p>
+                            </div>
+                            <div class="form-inline">
+                                <label for="quantity" class="mr-2">Quantity:</label>
+                                <input type="number" id="quantity" name="quantity" min="1" max="100" class="form-control form-control-sm">
+                            </div>
+                            <button class="add-to-cart btn btn-primary">Add to Cart</button>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-2 col-md-3 mb-4">
+                <a href="product.html" style="text-decoration: none; color: #193631;">
+                    <div class="product-card card h-100">
+                        <h3 class="produce-type card-title">Fruit</h3>
+                        <h4 class="produce-name card-subtitle mb-2 text-muted">Canteloupe</h4>
+                        <img src="images/Canteloupe.png" alt="Product Image" class="card-img-top">
+                        <div class="card-body">
+                            <div class="rating">Rating: 4.5</div>
+                            <div class="form-inline">
+                                <label for="price" class="mr-2">Price:</label>
+                                <p class="price card-text">$20.00</p>
+                            </div>
+                            <div class="form-inline">
+                                <label for="quantity" class="mr-2">Quantity:</label>
+                                <input type="number" id="quantity" name="quantity" min="1" max="100" class="form-control form-control-sm">
+                            </div>
+                            <button class="add-to-cart btn btn-primary">Add to Cart</button>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-2 col-md-3 mb-4">
+                <a href="product.html" style="text-decoration: none; color: #193631;">
+                    <div class="product-card card h-100">
+                        <h3 class="produce-type card-title">Fruit</h3>
+                        <h4 class="produce-name card-subtitle mb-2 text-muted">Pineapple</h4>
+                        <img src="images/pineapple.png" alt="Product Image" class="card-img-top">
+                        <div class="card-body">
+                            <div class="rating">Rating: 4.5</div>
+                            <div class="form-inline">
+                                <label for="price" class="mr-2">Price:</label>
+                                <p class="price card-text">$20.00</p>
+                            </div>
+                            <div class="form-inline">
+                                <label for="quantity" class="mr-2">Quantity:</label>
+                                <input type="number" id="quantity" name="quantity" min="1" max="100" class="form-control form-control-sm">
+                            </div>
+                            <button class="add-to-cart btn btn-primary">Add to Cart</button>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-2 col-md-3 mb-4">
+                <a href="product.html" style="text-decoration: none; color: #193631;">
+                    <div class="product-card card h-100">
+                        <h3 class="produce-type card-title">Fruit</h3>
+                        <h4 class="produce-name card-subtitle mb-2 text-muted">Papaya</h4>
+                        <img src="~/images/papaya.png" alt="Product Image" class="card-img-top">
+                        <div class="card-body">
+                            <div class="rating">Rating: 4.5</div>
+                            <div class="form-inline">
+                                <label for="price" class="mr-2">Price:</label>
+                                <p class="price card-text">$20.00</p>
+                            </div>
+                            <div class="form-inline">
+                                <label for="quantity" class="mr-2">Quantity:</label>
+                                <input type="number" id="quantity" name="quantity" min="1" max="100" class="form-control form-control-sm">
+                            </div>
+                            <button class="add-to-cart btn btn-primary">Add to Cart</button>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-2 col-md-3 mb-4">
+                <a href="product.html" style="text-decoration: none; color: #193631;">
+                    <div class="product-card card h-100">
+                        <h3 class="produce-type card-title">Fruit</h3>
+                        <h4 class="produce-name card-subtitle mb-2 text-muted">Mango</h4>
+                        <img src="images/mango.png" alt="Product Image" class="card-img-top">
+                        <div class="card-body">
+                            <div class="rating">Rating: 4.5</div>
+                            <div class="form-inline">
+                                <label for="price" class="mr-2">Price:</label>
+                                <p class="price card-text">$20.00</p>
+                            </div>
+                            <div class="form-inline">
+                                <label for="quantity" class="mr-2">Quantity:</label>
+                                <input type="number" id="quantity" name="quantity" min="1" max="100" class="form-control form-control-sm">
+                            </div>
+                            <button class="add-to-cart btn btn-primary">Add to Cart</button>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+</html>
