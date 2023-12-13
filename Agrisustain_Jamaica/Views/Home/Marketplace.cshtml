@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Marketplace";
 }
+
 <style>
     .header{
         /* background-color: #193631; */
@@ -12,18 +13,16 @@
         text-align: center;
     }
 
-
-body {
-	 font-family: 'Urbanist', sans-serif;
-}
-
 .product-card {
 	 border-radius: 10px;
-	 box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+	 /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); */
 	 background-color: #b6b0b031;
 
  }
 
+ .product-card p {
+	 margin: 0 !important;
+ }
  .produce-type {
 	 font-size: 0.75em;
  }
@@ -33,6 +32,10 @@ body {
 	 color: #193631;
  }
 
+.product-img > img {
+	width: 100%;
+}
+
  .add-to-cart {
 	 margin-top: 10px;
 	 background-color: #193631;
@@ -41,11 +44,7 @@ body {
 	 margin-right: auto;
  }
 .produce-type, .produce-name {
-	 padding: 10px;
-}
-
-header {
-	 background-color: #193631;
+	 /* padding: 10px; */
 }
 
 .rating {
@@ -55,42 +54,93 @@ header {
 .price, #quantity {
 	 font-size: 1em;
 }
+
+.quantity-col {
+	flex-grow: 2;
+}
+
+/* restyle */
+.product-info .rating,
+.quantity > p {
+	font-size: .8rem;
+}
+
+	.product-info {
+		flex-grow: 2;
+	}
+
+.quantity .quantity-input > input {
+	max-width: 35px;
+}
+
+
+
 </style>
 
 <section class="d-flex flex-column align-items-center justify-content-center gap-3 marketplace-hero">
     <h1 class="fs-1 header">The Marketplace</h1>
-    <a href="#featured-content" class="btn text-uppercase p-2 px-4 shop-now-btn">Shop now</a>
+	<a href="#products-section" class="btn text-uppercase p-2 px-4 shop-now-btn">Shop now</a>
+</section>
+<section id="products-section" class="py-5">
+    <div class="container">
+        <h2 >Featured Products</h2>
+        <div class="mt-5 | products">
+            <div class="row align-items-stretch">
+			</div>
+		</div>
+	</div>
 </section>
 
+<script type="module">
+	import Products from "/js/Products.js";
+	
+	Products.map(product => {
+		document.querySelector(".products > .row").innerHTML += `
+				 <div class="col-sm-6 col-md-3 mb-3">
+							<div class="d-flex flex-column p-3 h-100 | product-card">
+								<h3 class="produce-type card-title">${product.type}</h3>
+								<h4 class="produce-name card-subtitle mb-2 text-muted">${product.name}</h4>
+									<div class="product-img">
+										<img src=${product.image} alt="watermelon" />
+									</div>
+								<div class="row flex-column p-0 m-0 gap-2 | product-info">
+									<div class="col review-and-price">
+										<div class="rating">
+											<p>reviews</p>
+										</div>
+										<div class="price">
+											<p>$${product.price} <span>/lb</span></p>
+										</div>
+									</div>
+									<div class="col quantity-col">
+										<p>Serving Chart</p>
+										<div class="d-flex flex-column gap-2 | quantity">
+											<span>Qty</span>
+											<div class="quantity-input">
+												<button>-</button>
+												<input class="text-center" type="number" value="1" />
+												<button>+</button>
+											</div>
+										</div>
+									</div>
+									<button class="add-to-cart btn btn-primary">Add to Cart</button>
+								</div>
+							</div>
+					</div>
+		`
+	})
+</script>
 
-<head>
-		<meta charset="utf-8">
-		<meta name="description" content="Your description goes here">
-		<meta name="keywords" content="one, two, three">
 
-		<title>Marketplace</title>
-
-		<!-- external CSS link -->
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-		<link rel="stylesheet" href="css/normalize.css">
-		<link rel="stylesheet" href="css/style.css">
-		<link href="https://fonts.googleapis.com/css2?family=Urbanist&display=swap" rel="stylesheet">
-	</head>
-	<body>
-		<header class="text-white text-center py-5">
-			<h1>Welcome to our Marketplace!</h1>
-		</header>
-
-		<main class="container py-5">
-			<section>
-				<h2>Featured Products</h2>
+@* <section class="p-5">
+				
 				<div class="row">
 					<div class="col-lg-4 col-md-6 mb-4">
 						<a href="product.html" style="text-decoration: none; color: #193631;">
 							<div class="product-card card h-100">
 								<h3 class="produce-type card-title">Fruit</h3>
 								<h4 class="produce-name card-subtitle mb-2 text-muted">Watermelon</h4>
-								<img src="images/watermelon.png" alt="Banana Image" class="card-img-top">
+									 <img src="~/images/watermelon.png" alt="watermelon" />
 								<div class="card-body">
 									<div class="rating">Rating: 4.5</div>
 									<div class="form-inline">
@@ -110,7 +160,7 @@ header {
 						<div class="product-card card h-100">
 							<h3 class="produce-type card-title">Fruit</h3>
 							<h4 class="produce-name card-subtitle mb-2 text-muted">Canteloupe</h4>
-							<img src="images/Canteloupe.png" alt="Produce Image" class="card-img-top">
+							<img src="~/images/canteloupe.png" alt="canteloupe"/>
 							<div class="card-body">
 								<div class="rating">Rating: 4.5</div>
 								<div class="form-inline">
@@ -129,7 +179,7 @@ header {
 						<div class="product-card card h-100">
 							<h3 class="produce-type card-title">Fruit</h3>
 							<h4 class="produce-name card-subtitle mb-2 text-muted">Otaheiti Apple</h4>
-							<img src="images/oapple.png" alt="Produce Image" class="card-img-top">
+							<img src="~/images/oapple.png" alt="apple"/>
 							<div class="card-body">
 								<div class="rating">Rating: 4.5</div>
 								<div class="form-inline">
@@ -150,7 +200,7 @@ header {
 						<div class="product-card card h-100">
 							<h3 class="produce-type card-title">Vegetable</h3>
 							<h4 class="produce-name card-subtitle mb-2 text-muted">White Yam</h4>
-							<img src="images/whiteyam.png" alt="Produce Image" class="card-img-top">
+							<img src="~/images/whiteyam.png" alt="white yam" class="card-img-top">
 							<div class="card-body">
 								<div class="rating">Rating: 4.5</div>
 								<div class="form-inline">
@@ -169,7 +219,7 @@ header {
 						<div class="product-card card h-100">
 							<h3 class="produce-type card-title">Vegetable</h3>
 							<h4 class="produce-name card-subtitle mb-2 text-muted">Yellow Yam</h4>
-							<img src="images/yellowyam.png" alt="Banana Image" class="card-img-top">
+							<img src="~/images/yellowyam.png" alt="yellow yam" class="card-img-top">
 							<div class="card-body">
 								<div class="rating">Rating: 4.5</div>
 								<div class="form-inline">
@@ -188,7 +238,7 @@ header {
 						<div class="product-card card h-100">
 							<h3 class="produce-type card-title">Vegetable</h3>
 							<h4 class="produce-name card-subtitle mb-2 text-muted">Sweet Potato</h4>
-							<img src="images/sweetpotato.png" alt="Produce Image" class="card-img-top">
+							<img src="~/images/sweetpotato.png" alt="sweet potato" class="card-img-top">
 							<div class="card-body">
 								<div class="rating">Rating: 4.5</div>
 								<div class="form-inline">
@@ -209,7 +259,7 @@ header {
 						<div class="product-card card h-100">
 							<h3 class="produce-type card-title">Vegetable</h3>
 							<h4 class="produce-name card-subtitle mb-2 text-muted">Carrot</h4>
-							<img src="images/carrots.png" alt="Produce Image" class="card-img-top">
+							<img src="~/images/carrots.png" alt="carrot" class="card-img-top">
 							<div class="card-body">
 								<div class="rating">Rating: 4.5</div>
 								<div class="form-inline">
@@ -228,7 +278,7 @@ header {
 						<div class="product-card card h-100">
 							<h3 class="produce-type card-title">Vegetable</h3>
 							<h4 class="produce-name card-subtitle mb-2 text-muted">Cucumber</h4>
-							<img src="images/cucumber.png" alt="Produce Image" class="card-img-top">
+							<img src="~/images/cucumber.png" alt="cucumber" class="card-img-top">
 							<div class="card-body">
 								<div class="rating">Rating: 4.5</div>
 								<div class="form-inline">
@@ -247,7 +297,7 @@ header {
 						<div class="product-card card h-100">
 							<h3 class="produce-type card-title">Vegetable</h3>
 							<h4 class="produce-name card-subtitle mb-2 text-muted">Cabbage</h4>
-							<img src="images/cabbage.png" alt="Produce Image" class="card-img-top">
+							<img src="~/images/cabbage.png" alt="cabbage" class="card-img-top">
 							<div class="card-body">
 								<div class="rating">Rating: 4.5</div>
 								<div class="form-inline">
@@ -263,12 +313,16 @@ header {
 						</div>
 					</div>
 			</section>
-		</main>
-		<footer class="bg-dark text-white text-center py-3">
-			
-		</footer>
-		<script type="text/javascript" src="js/main.js"></script>
-	</body>
+		 *@
+		
+	
+
+
+
+
+
+
+
 
 @* <section class="text-center p-3 py-5 lh-1 featured">
     <div class="container">
