@@ -11,7 +11,7 @@ namespace Agrisustain_Jamaica.Controllers
     public class CropTrackingController : Controller
     {
         //private readonly AgriSustainDBContext agriSustainDBContext;
-        AddToAgrisustainDB agrisustainDB = new AddToAgrisustainDB();
+        //AddToAgrisustainDB agrisustainDB = new AddToAgrisustainDB();
         private readonly RetrieveFromAgrisustainDB _retrieveFromAgrisustain;
         private readonly AddToAgrisustainDB _addToAgrisustainDB;
         private readonly UpdateAgrisustainDB _updateAgrisustainDB;
@@ -101,8 +101,8 @@ namespace Agrisustain_Jamaica.Controllers
             // use addCrop to call entity framework dbcontext to save data to the database
             // await agriSustainDBContext.Crops.AddAsync(crop);
             // await agriSustainDBContext.SaveChangesAsync();
-            AddToAgrisustainDB add = new AddToAgrisustainDB();
-            add.AddData("Crops", data);
+            //AddToAgrisustainDB add = new AddToAgrisustainDB();
+            //add.AddData("Crops", data);
             return RedirectToAction("Index");
         }
 
