@@ -1,0 +1,59 @@
+﻿@model Agrisustain_Jamaica.Models.CropPlanning.SavedFertilizationEventsModel;
+
+<section class="bg-gradient p-5 mb-5 | banner">
+    <div class="wrapper">
+        <div class="row flex-column flex-md-row justify-content-md-between align-items-center flex-container">
+            <div class="col col-left">
+                <h1 class="fw-bolder lh-1 mb-4">
+                    Scheduled Fertiliization Events
+                </h1>
+                <p>Hello, user! Here is your active Fertilization schedule</p>
+                <div class="d-flex button-group">
+                    <a class="btn btn-secondary w-50" asp-area="" asp-controller="CropTracking" asp-action="Homepage">Return to Crop Tracking homepage</a>
+                </div>
+            </div>
+            <div class="col d-flex justify-content-center justify-content-md-end align-items-start right-col">
+                <img src="~/images/corn-clipart-crop.png" alt="corn" />
+            </div>
+        </div>
+    </div>
+</section>
+<section class="crop-tracking-view">
+    <div class="mt-5 | table-view-container">
+
+        <table class="table">
+            @* <caption class="caption-top text-white text-center mx-auto mb-4">Hello, user! Here is your active Fertilization schedule</caption> *@
+            <thead>
+                <tr>
+                    @* <th scope="col" data-cell="id">Id</th> *@
+                    <th scope="col" data-cell="start">Start Date</th>
+                    <th scope="col" data-cell="end">End Date</th>
+                    <th scope="col" data-cell="reason">Reason</th>
+                    <th scope="col" data-cell="growth">Growth Stage</th>
+                    <th scope="col" data-cell="crops">Target Crops</th>
+                    <th scope="col" data-cell="pests">Target Pests</th>
+                    <th scope="col" data-cell="application">Application Pattern</th>
+                    <th> </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var fertilizationEvent in Model.eventsList)
+                {
+
+                    <tr>
+                        @* <td data-cell="id">@fertilizationEvent.Id</td> *@
+                        <td data-cell="start">@fertilizationEvent.StartDate.Date.ToShortDateString()</td>
+                        <td data-cell="end">@fertilizationEvent.EndDate.Date.ToShortDateString()</td>
+                        <td data-cell="reason">@fertilizationEvent.Reason</td>
+                        <td data-cell="growth">@fertilizationEvent.GrowthStage</td>
+                        <td data-cell="crops">@fertilizationEvent.TargetCrops</td>
+                        <td data-cell="pests">@fertilizationEvent.TargetPests</td>
+                        <td data-cell="application">@fertilizationEvent.ApplicationPattern</td>
+                        <td data-cell="view"><a href="FertilizationPlanning/Edit/@fertilizationEvent.Id">View</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <a class=" [ fs-3 fw-bold btn mx-2 ] go-back-btn rounded-circle" asp-area="" asp-controller="FertilizationPlanning" asp-action="Add">&#8617;</a>
+</section>
