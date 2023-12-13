@@ -1,0 +1,51 @@
+﻿@model Agrisustain_Jamaica.Models.CropPlanning.SavedHarvestEventsModel;
+<section class="bg-gradient p-5 mb-5 banner resources-banner">
+    <div class="wrapper">
+        <div class="row flex-column flex-md-row justify-content-md-between align-items-center flex-container">
+            <div class="col col-left">
+                <h1 class="fw-bolder lh-1 mb-4">
+                    Scheduled Harvesting Events
+                </h1>
+                <p>Hello, user! Here is your active Harvesting schedule</p>
+                <div class="d-flex button-group">
+                    <a class="btn btn-secondary w-50" asp-area="" asp-controller="CropTracking" asp-action="Homepage">Return to Crop Tracking homepage</a>
+                </div>
+            </div>
+            <div class="col d-flex justify-content-center justify-content-md-end align-items-start right-col">
+                <img src="~/images/corn-clipart-crop.png" alt="corn" />
+            </div>
+        </div>
+    </div>
+</section>
+<section class="crop-tracking-view">
+    <div class="mt-5 | table-view-container">
+
+        <table class="table">
+            <thead>
+                <tr>
+                    @* <th scope="col" data-cell="id">Id</th> *@
+                    <th scope="col" data-cell="start">Start Date</th>
+                    <th scope="col" data-cell="end">End Date</th>
+                    <th scope="col" data-cell="status">Crop Status</th>
+                    <th scope="col" data-cell="crops">Target Crops</th>
+                    <th> </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var harvestEvent in Model.eventsList)
+                {
+
+                    <tr>
+                        @* <td data-cell="id">@harvestEvent.Id</td> *@
+                        <td data-cell="start">@harvestEvent.StartDate.Date.ToShortDateString()</td>
+                        <td data-cell="end">@harvestEvent.EndDate.Date.ToShortDateString()</td>
+                        <td data-cell="status">@harvestEvent.CropStatus</td>
+                        <td data-cell="target">@harvestEvent.TargetCrops</td>
+                        <td data-cell="view"><a href="HarvestPlanning/Edit/@harvestEvent.Id">View</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <a class=" [ fs-3 fw-bold btn mx-2 ] go-back-btn rounded-circle" asp-area="" asp-controller="HarvestPlanning" asp-action="Add">&#8617;</a>
+</section>
