@@ -73,6 +73,19 @@
 	max-width: 35px;
 }
 
+.quantity .quantity-input > input::-webkit-inner-spin-button,
+.quantity .quantity-input > input::-webkit-outer-spin-button {
+	display: none;
+}
+
+
+.quantity .quantity-input > button {
+	border: none;
+	outline: none;
+	cursor: pointer;
+}
+
+
 
 
 </style>
@@ -96,39 +109,78 @@
 	
 	Products.map(product => {
 		document.querySelector(".products > .row").innerHTML += `
-				 <div class="col-sm-6 col-md-3 mb-3">
-							<div class="d-flex flex-column p-3 h-100 | product-card">
-								<h3 class="produce-type card-title">${product.type}</h3>
-								<h4 class="produce-name card-subtitle mb-2 text-muted">${product.name}</h4>
-									<div class="product-img">
-										<img src=${product.image} alt="watermelon" />
-									</div>
-									<div class="row flex-column flex-lg-row p-0 m-0 mt-4 gap-2 | product-info">
-									<div class="col | review-and-price">
-										<div class="rating">
-											<p>reviews</p>
+					 <div id=${product.id} class="col-sm-6 col-md-3 mb-3">
+								<div class="d-flex flex-column p-3 h-100 | product-card">
+									<h3 class="produce-type card-title">${product.type}</h3>
+									<h4 class="produce-name card-subtitle mb-2 text-muted">${product.name}</h4>
+										<div class="product-img">
+											<img src=${product.image} alt="watermelon" />
 										</div>
-										<div class="price">
-											<p>$${product.price} <span>/lb</span></p>
-										</div>
-									</div>
-									<div class="col quantity-col">
-										<p>Serving Chart</p>
-										<div class="d-flex flex-column flex-lg-row gap-2 | quantity">
-											<span>Qty</span>
-											<div class="quantity-input">
-												<button>-</button>
-												<input class="text-center" type="number" value="1" />
-												<button>+</button>
+										<div class="row flex-column flex-lg-row p-0 m-0 mt-4 gap-2 | product-info">
+										<div class="col | review-and-price">
+											<div class=" mb-3 | rating">
+												<p>reviews</p>
+											</div>
+											<div class="price">
+												<p class="fw-bold">$${product.price} <span>/lb</span></p>
 											</div>
 										</div>
+										<div class="col quantity-col">
+											<p>Serving Chart</p>
+											<div class="d-flex flex-column flex-xl-row gap-2 mt-3 | quantity">
+												<span>Qty</span>
+												<div class="quantity-input">
+													<button class="decrement-btn">-</button>
+													<input class="text-center" type="number" value="1" />
+													<button class="increment-btn">+</button>
+												</div>
+											</div>
+										</div>
+										<button class="add-to-cart btn btn-primary">Add to Cart</button>
 									</div>
-									<button class="add-to-cart btn btn-primary">Add to Cart</button>
 								</div>
-							</div>
-					</div>
-		`
-	})
+						</div>
+			`
+	});
+
+
+	//const addToCartBtns = document.querySelectorAll(".add-to-cart");
+	const products = document.querySelector(".products");
+	const inCart = document.querySelector("header .in-cart");
+	const quantityInput = document.querySelector(".quantity-input > input")
+	// let quantityAmount = 1;
+	let itemsInCart = 0;
+	let itemClicked;
+	products.addEventListener("click", (e) => {
+		if (e.target.classList.contains("add-to-cart")) {
+			itemClicked = e.target.closest(".product-card").parentElement;
+			itemsInCart++;
+			inCart.textContent = itemsInCart;
+		}
+
+		if (itemsInCart > 0) {
+			inCart.style.transform = "scale(1)";
+		}
+
+		if(e.target.classList.contains("decrement-btn")) {
+			let quantityAmount = +e.target.closest(".quantity-input").querySelector("input").value;
+			if(quantityAmount == 1) {
+				return;
+			} else {
+				quantityAmount--;
+			}
+			e.target.closest(".quantity-input").querySelector("input").value = quantityAmount;
+	
+		} else if(e.target.classList.contains("increment-btn")) {
+			let quantityAmount = +e.target.closest(".quantity-input").querySelector("input").value;
+			quantityAmount++;
+			e.target.closest(".quantity-input").querySelector("input").value = quantityAmount;
+		}
+	});
+
+	
+
+	
 </script>
 
 

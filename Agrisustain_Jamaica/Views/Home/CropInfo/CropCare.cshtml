@@ -47,7 +47,7 @@
                     <h1 class="fw-bold [ main-heading ]">@mainHeading</h1>
                     <div class="d-flex justify-content-between | flex-container">
                         <p class="fst-italic">5 minutes read</p>
-                        <a class="read-next-btn">Read next</a>
+                        <a asp-area="" asp-controller="Home" asp-action="CropRotation" class="read-next-btn">Read next</a>
                     </div>
                 </div>
                 <img class="img-fluid w-100 | article-img" src="~/crop-care-img.jpg" alt="Crop care" />
@@ -67,7 +67,7 @@
                                     {
                                         foreach (var info in cropCareInfo)
                                         {
-                                        <div class="col mb-3 p-0 | styled-text-container">
+                                        <div class="col mb-3 p-0">
                                             <h2 class=" fw-bold fs-3 position-relative">@info.Name</h2>
                                                 <div class="content mb-4">
 
