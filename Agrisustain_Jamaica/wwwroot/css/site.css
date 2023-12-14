@@ -26,6 +26,23 @@ ul li > a:hover {
     color: var(--clr-accent);
 }
 
+header .shopping-cart {
+    width: 20px;
+}
+
+header .in-cart {
+    font-size: .8rem !important;
+    background: var(--clr-primary);
+    top: -5px;
+    right: -5px;
+    padding: .15em .6em;
+    border-radius: 50%;
+    display: inline-block;
+    color: var(--clr-neutral-light);
+    transform: scaleY(0);
+    transition: transform 500ms ease-in;
+}
+
 /* Global styles*/
 .banner .right-col {
     max-height: 330px;

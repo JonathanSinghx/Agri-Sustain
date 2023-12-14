@@ -45,26 +45,55 @@
             border-radius: 5px;
         }
 
-        h1 {
+       /*  h1 {
         padding: 5%;
         color: white;
-        }
+        } */
 
         .header {
             background-color: #193631;
            
         }
 
-    </style>
+h5 {
+    padding: 4%;
+}
+</style>
 </head>
 <body>
-
-    <div class="header">
-        <h1 class="text-center">Pest and Disease Mitigation Strategies</h1>
+    <section class="bg-gradient p-5 mb-5 banner">
+        <div class="wrapper">
+            <div class="row flex-column flex-md-row justify-content-md-between align-items-center flex-container">
+                <div class="col col-left">
+                    <h1 class="fw-bolder lh-1 mb-4">
+                        Pest and Disease Mitigation Strategies
+                    </h1>
+                    <p>Apply these strategies to protect your farm from pests and diseases.</p>
+                </div>
+                <div class="col d-flex justify-content-center justify-content-md-end align-items-start right-col">
+                    <img src="~/climate-smart-transformed.png" alt="" />
+                </div>
+            </div>
+        </div>
+    </section>
+@* <section class="bg-gradient p-5">
+    <div class="wrapper">
+         <div class="row flex-column flex-md-row justify-content-md-between flex-container">
+            <div class="col col-left">
+                <h1 class="fs-1 fw-bold big-text"> Pest and Diseas Mitigation Strategies</h1>
+                     <h5>Apply these strategies to protect your farm from pests and diseases.</h5>
+            </div>
+    <div class="col d-flex justify-content-center justify-content-md-end align-items-start right-col">
+    <img src="~/climate-smart-transformed.png" alt="" />
     </div>
+    </div>
+    </div>
+</section> *@
 
+    <div class="container">
     <div>
-         <a class="nav-link" asp-area="" asp-controller="Home" asp-action="PestDiseaseSubmissionForm">Pest and Disease Submission Form</a>
+         <a class="nav-link" asp-area="" asp-controller="Home" asp-action="PestDiseaseSubmissionForm">Click here to report a pest or disease sighting on your farm</a>
+    </div>
     </div>
 
     <div class="container">

@@ -6,7 +6,7 @@ namespace Agrisustain_Jamaica.Data
 {
     public class AddToAgrisustainDB
     {
-        private readonly IConfiguration? _configuration;
+        private readonly IConfiguration _configuration;
 
         public AddToAgrisustainDB(IConfiguration configuration)
         {
@@ -27,8 +27,8 @@ namespace Agrisustain_Jamaica.Data
                 {
                     for (int i = 0; i < data.Length; i++)
                     {
-                        //command.Parameters.AddWithValue($"@Param{i + 1}", data[i] ?? DBNull.Value);
-                        command.Parameters.AddWithValue($"@Param{i + 1}", data[i]);
+                        command.Parameters.AddWithValue($"@Param{i + 1}", data[i] ?? DBNull.Value);
+                        //command.Parameters.AddWithValue($"@Param{i + 1}", data[i]);
                     }
 
                     command.ExecuteNonQuery();

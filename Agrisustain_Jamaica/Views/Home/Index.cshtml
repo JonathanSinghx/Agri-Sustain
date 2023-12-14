@@ -13,7 +13,23 @@
     .card-img {
         border-radius: 10px;
         width: 100%;
+}
+    .about {
+        background-color: #193631;
+        color: #fff;
+        padding: 5%;
+    
     }
+
+    .marketplace {
+        padding: 5%;
+    }
+
+    .marketplace .card {
+        padding: 2% 0;
+        *margin: 10%;
+    }
+
 </style>
 
 <div class="home text-center">
@@ -100,7 +116,7 @@
                     <p>Get detailed information on locally grown crops.</p>
                 </div>
 
-                <a asp-controller="Home" asp-action="" class="btn custom-button">Learn More</a>
+                <a asp-controller="CropTracking" asp-action="Homepage" class="btn custom-button">Learn More</a>
 
             </div>
 
@@ -128,6 +144,75 @@
 
     </section>
 
+    <div class="about container">
+    <div class="row">
+      <div class="col-lg-6">
+        <h2 class="d-flex align-items-center section-subheading">Our Mission</h2>
+      </div>
+      <div class="col-lg-6">
+        <p class="mission-statement">
+          At AgriSustain, we are on a mission to revolutionize agriculture by providing comprehensive solutions that bridge
+          the gap between farmers and consumers. Our platform is committed to promoting sustainable farming practices,
+          fostering community engagement, and ensuring the availability of fresh, locally grown produce.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marketplace container">
+    <div class="section-title">
+        <h2 class="text-start section-subheading">Marketplace</h2>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="marketplace card">
+                <div class="col-6">
+                <p>Eat Fresh <br />Produce!</p>
+                </div>
+                <div class="col-6">
+                <img />
+                </div>
+            </div>
+        </div>
+
+         <div class="col-lg-4">
+            <div class="marketplace card">
+                <p class="align-text-left">Fruits</p>
+                <h4 class="align-text-left">Canteloupe</h4>
+                <img src="https://via.placeholder.com/100" class="card-img" alt="Placeholder Image">
+                <div class="row align-items-center">
+                    <p class="col">Price</p>
+                    <p class="col">$150 /lb</p>
+                    <p class="col">Qty:</p>
+                    <input type="number" min="1" value="1" class="form-control col">
+                </div>
+                <button type="button" class="btn btn-primary">Add to cart</button>
+            </div>
+        </div>
+    </div>
+        
+
+        <div class="col-lg-4">
+            <div class="marketplace card">
+                <p class="align-text-left">Vegetables</p>
+                <h4 class="align-text-left">Sweet Potato</h4>
+                <img src="https://via.placeholder.com/100" class="card-img" alt="Placeholder Image">
+                <div class="row align-items-center">
+                    <p class="col">Price</p>
+                    <p class="col">$150 /lb</p>
+                    <p class="col">Qty:</p>
+                    <input type="number" min="1" value="1" class="form-control col">
+                </div>
+                <button type="button" class="btn btn-primary">Add to cart</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
    @*  <section class="intro">
         <div class="container">
             <div class="intro-text">
@@ -152,7 +237,7 @@
     <p>Fresh, locally grown produce from the farmers you know.</p>
     </section> *@
 
-    <div class="back-to-top">
+    <div class="text-center back-to-top">
         <a class="btn button text-light" href="#top">^</a>
     </div>
 </div>
