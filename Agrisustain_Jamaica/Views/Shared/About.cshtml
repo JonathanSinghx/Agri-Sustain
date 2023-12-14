@@ -37,7 +37,7 @@
     }
 
     .key-feature h3 {
-      color: #007bff;
+      color: #193631;
     }
 
      h1 {
@@ -45,34 +45,57 @@
         color: white;
         }
 
+    .p {
+        max-width: 50%;
+    }
+
         .header {
             background-color: #193631;
-
         }
+    .bg-gradient {
+    line-height: 1.5;
+    color: white;
+    background-color: rgb(25,54,49);
+    background-image: radial-gradient(circle, rgba(25,54,49,1) 0%, rgba(162,212,203,1) 100%);
+}
 
-  </style>
+h2 {
+    padding: 5%;
+}
+</style>
 </head>
-
 <body>
 
-    <div class="header">
-        <h1 class="text-center">About AgriSustain Jamaica</h1>
+<section class="bg-gradient p-5">
+    <div class="wrapper">
+         <div class="row flex-column flex-md-row justify-content-md-between flex-container">
+            <div class="col col-left">
+                <h1 class="fs-1 fw-bold big-text"> About</h1>
+                     <h2>AgriSustain Jamaica</h2>
+            </div>
+    <div class="col d-flex justify-content-center justify-content-md-end align-items-start right-col">
+    <img src="~/climate-smart-transformed.png" alt="" />
     </div>
+    </div>
+    </div>
+</section>
 
   <div class="container about-section">
     <div class="row">
       <div class="col-lg-12">
         <p class="mission-statement">
-          Welcome to AgriSustain, your go-to platform for sustainable agriculture, community engagement, and healthy living. <br />
+          <b>Welcome to AgriSustain, your go-to platform for sustainable agriculture, community engagement, and healthy living. <br />
           Our application is designed to empower farmers and consumers alike with a wealth of resources and tools aimed
-          at promoting responsible farming practices and fostering a thriving agricultural community.
+          at promoting responsible farming practices and fostering a thriving agricultural community.</b>
         </p>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-lg-12">
+      <div class="col-lg-6">
         <h3 class="text-center section-subheading">Our Mission</h3>
+    </div>
+    <div class="col-lg-6"
         <p class="mission-statement">
           At AgriSustain, we are on a mission to revolutionize agriculture by providing comprehensive solutions that bridge
           the gap between farmers and consumers. Our platform is committed to promoting sustainable farming practices,
@@ -81,47 +104,48 @@
       </div>
     </div>
 
-    <div class="row">
+    <section class="container">
+        <div class="row">
       <div class="col-lg-12">
-        <h3 class="text-center section-subheading">Key Features</h3>
+        <h3 class="section-subheading">Key Features</h3>
         <ul class="key-features">
           <li class="key-feature">
-            <h3>Crop Information and Tracking:</h3>
+            <h4>Crop Information and Tracking:</h4>
             <p>
               Access detailed information on various crops, including growth patterns, optimal conditions, and harvesting
               techniques. Utilize our crop tracking tools to monitor and manage your crops effectively.
             </p>
           </li>
           <li class="key-feature">
-            <h3>Farmers Hub:</h3>
+            <h4>Farmers Hub:</h4>
             <p>
               A centralized hub offering a wealth of information on agricultural best practices. Connect with fellow farmers,
               share experiences, and stay updated on the latest trends in agriculture.
             </p>
           </li>
           <li class="key-feature">
-            <h3>Community Gardens:</h3>
+            <h4>Community Gardens:</h4>
             <p>
               Engage in community farming groups with our dedicated garden management resources. Learn how to start and manage
               community gardens, fostering a sense of unity and sustainability.
             </p>
           </li>
           <li class="key-feature">
-            <h3>Nutrition Information and Recipes:</h3>
+            <p><b>Nutrition Information and Recipes</b>:</p>
             <p>
               Explore a rich repository of nutrition information related to locally grown produce. Discover delicious recipes that
               make the most of sustainably farmed ingredients.
             </p>
           </li>
           <li class="key-feature">
-            <h3>Marketplace:</h3>
+            <h4>Marketplace:</h4>
             <p>
               A platform that connects farmers directly with consumers. Purchase fresh, locally grown produce directly from
               farmers, promoting a sustainable and supportive marketplace.
             </p>
           </li>
           <li class="key-feature">
-            <h3>Weather Information:</h3>
+            <p><b>Weather Information</b>:</p>
             <p>
               Stay informed with real-time weather updates relevant to your farming activities. Plan your agricultural activities
               effectively based on accurate weather forecasts.
@@ -130,7 +154,9 @@
         </ul>
       </div>
       <div>
-          <h3 class="text-center section-subheading">How It Works </h3>
+    </section>
+    
+          <h3 class="section-subheading">How It Works </h3>
            <p>AgriSustain is designed to be user-friendly, ensuring that both farmers and consumers can easily navigate and access the information they need. Whether you are a seasoned farmer looking for advanced crop tracking tools or a consumer eager to support local agriculture, AgriSustain has something for everyone. </p><br />
             <p>  Join us on this journey towards sustainable agriculture, community empowerment, and a healthier future. Together, we can cultivate a more sustainable and resilient agricultural ecosystem.</p> <br />
             <p>AgriSustain - Nurturing Farms, Connecting Communities.</p>

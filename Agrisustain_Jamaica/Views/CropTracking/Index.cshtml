@@ -1,37 +1,53 @@
 ﻿@model Agrisustain_Jamaica.Models.ViewModels.SavedCropsModel
 
-<div class="crop-tracking-view">
-    <div class="text-center py-4 hero-text-container">
-        <h1 class="">Crop Tracking Records</h1>
-        <p>Hello, user! Here is your list of crops that are currently being tracked</p>
+<section class="bg-gradient p-5 mb-5 banner resources-banner">
+    <div class="wrapper">
+        <div class="row flex-column flex-md-row justify-content-md-between align-items-center flex-container">
+            <div class="col col-left">
+                <h1 class="fw-bolder lh-1 mb-4">
+                    Crop Tracking Records
+                </h1>
+                <p>Farm record keeping plays an integral part when making important business or planning decisions regarding your farming activities. Keeping a record of planted crops can help farmers make educated decisions regarding crop management in the future.</p>
+                <div class="d-flex button-group">
+                    <a class="btn btn-secondary w-50" asp-area="" asp-controller="CropTracking" asp-action="Add">Add new crop</a>
+                </div>
+            </div>
+            <div class="col d-flex justify-content-center justify-content-md-end align-items-start right-col">
+                <img src="~/images/corn-clipart-crop.png" alt="corn" />
+            </div>
+        </div>
     </div>
+</section>
+<section class="crop-tracking-view">
+    <div class="container-fluid">
+        <p class="text-center">Hello, user! Here is your list of crops that are currently being tracked. Click view to update or delete crop information. </p>
+        <div class=" [ mt-5 table-view-container ]">
 
-    <div class=" [ mt-5 table-view-container ]">
-
-        <table class="table">
-            @* <caption class="caption-top text-white text-center mx-auto mb-4">Hello, user! Here is your list of crops that are currently being tracked</caption> *@
-            <thead>
-                <tr>
-                    <th scope="col" data-cell="name">Crop Name</th>
-                    <th scope="col" data-cell="description">Description</th>
-                    <th scope="col" data-cell="date">Date Planted</th>
-                    <th scope="col" data-cell="harvest">Expected Date for Harvesting</th>
-                    <th> </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var crop in Model.cropsList)
-                {
+            <table class="table">
+                <thead>
                     <tr>
-                        <td data-cell="name">@crop.CropName</td>
-                        <td data-cell="description">@crop.Description</td>
-                        <td data-cell="date">@crop.DatePlanted.Date.ToShortDateString()</td>
-                        <td data-cell="harvest">@crop.HarvestDate.Date.ToShortDateString()</td>
-                        <td data-cell="view"><a href="CropTracking/Edit/@crop.Id">View</a></td>
+                        <th scope="col" data-cell="name">Crop Name</th>
+                        <th scope="col" data-cell="description">Description</th>
+                        <th scope="col" data-cell="date">Date Planted</th>
+                        <th scope="col" data-cell="harvest">Expected Date for Harvesting</th>
+                        <th> </th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var crop in Model.cropsList)
+                    {
+                        <tr>
+                            <td data-cell="name">@crop.CropName</td>
+                            <td data-cell="description">@crop.Description</td>
+                            <td data-cell="date">@crop.DatePlanted.Date.ToShortDateString()</td>
+                            <td data-cell="harvest">@crop.HarvestDate.Date.ToShortDateString()</td>
+                            <td data-cell="view"><a href="CropTracking/Edit/@crop.Id">View</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <a class=" [ fs-3 fw-bold btn mx-2 ] go-back-btn rounded-circle" asp-area="" asp-controller="CropTracking" asp-action="Add">&#8617;</a>
     </div>
-    <a class=" [ fs-3 fw-bold btn mx-2 ] go-back-btn rounded-circle" asp-area="" asp-controller="CropTracking" asp-action="Add">&#8617;</a>
-</div>
+</section>
+

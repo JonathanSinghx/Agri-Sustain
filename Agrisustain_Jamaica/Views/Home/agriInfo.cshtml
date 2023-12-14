@@ -3,7 +3,7 @@
 @using System.Text.Json.Nodes
 @using System.Text.Json.Serialization
 @{
-    ViewData["Title"] = "agriInfo";
+    ViewData["Title"] = "Agriculture Information";
 }
 
 <style>
@@ -19,7 +19,7 @@
                 <h1 class="fw-bold | main-heading">Agriculture Information</h1>
                 <div class="d-flex justify-content-between | flex-container">
                     <p class="fst-italic">5 minutes read</p>
-                    <a class="read-next-btn">Read next</a>
+                    <a asp-area="" asp-controller="Home" asp-action="PestDiseaseMitigation" class="read-next-btn">Read next</a>
                 </div>
             </div>
 
@@ -34,16 +34,16 @@
                        
                         @{
                             
-                            <div class="col mb-3 p-0 | style-all-text-container">
+                            <div class="col mb-3 p-0">
                                 <h2 class="fw-bold fs-3">Agricultural Best Practices</h2>
                                 <p>@show_abp()</p>
                                 
                             </div>
-                            <div class="col mb-3 p-0 | styled-text-container">
+                            <div class="col mb-3 p-0">
                                 <h2 class="fw-bold fs-3">Crop Management Tips</h2>
                                 <p>@show_tips()</p>
                             </div>
-                            <div class="col mb-3 p-0 | styled-text-container">
+                            <div class="col mb-3 p-0">
                                 <h2 class="fw-bold fs-3">Pest Control Strategies</h2>
                                 <p>@show_pcs()</p>
                             </div>

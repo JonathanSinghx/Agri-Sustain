@@ -19,7 +19,7 @@ namespace AgriSustain_Jamaica.Models
         public IEnumerable<ShareProduce> getData()
 
         {
-            string text = File.ReadAllText(@"C:\Users\js614673\source\repos\AgriSustain_Jamaica\Agrisustain_Jamaica\wwwroot\data\cropData.json");
+            string text = File.ReadAllText(@"wwwroot\data\cropData.json");
             var classObj = JsonSerializer.Deserialize<ShareProduce[]>(text);
             return classObj;
         }
