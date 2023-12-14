@@ -3,95 +3,8 @@
     ViewData["Title"] = "Marketplace";
 }
 
-<style>
-    .header{
-        /* background-color: #193631; */
-        color: white;
-    }
-
-    h1{
-        text-align: center;
-    }
-
-.product-card {
-	 border-radius: 10px;
-	 /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); */
-	 background-color: #b6b0b031;
-
- }
-
- .product-card p {
-	 margin: 0 !important;
- }
- .produce-type {
-	 font-size: 0.75em;
- }
-
- .produce-name {
-	 font-size: 1.125em;
-	 color: #193631;
- }
-
-.product-img > img {
-	width: 100%;
-}
-
- .add-to-cart {
-	 margin-top: 10px;
-	 background-color: #193631;
-	 display: block;
-	 margin-left: auto;
-	 margin-right: auto;
- }
-.produce-type, .produce-name {
-	 /* padding: 10px; */
-}
-
-.rating {
-	 font-size: 0.75em;
-}
-
-.price, #quantity {
-	 font-size: 1em;
-}
-
-.quantity-col {
-	flex-grow: 2;
-}
-
-/* restyle */
-.product-info .rating,
-.quantity > p {
-	font-size: .8rem;
-}
-
-	.product-info {
-		flex-grow: 2;
-	}
-
-.quantity .quantity-input > input {
-	max-width: 35px;
-}
-
-.quantity .quantity-input > input::-webkit-inner-spin-button,
-.quantity .quantity-input > input::-webkit-outer-spin-button {
-	display: none;
-}
-
-
-.quantity .quantity-input > button {
-	border: none;
-	outline: none;
-	cursor: pointer;
-}
-
-
-
-
-</style>
-
 <section class="d-flex flex-column align-items-center justify-content-center gap-3 marketplace-hero">
-    <h1 class="fs-1 header">The Marketplace</h1>
+    <h1 class="fs-1 text-white">The Marketplace</h1>
 	<a href="#products-section" class="btn text-uppercase p-2 px-4 shop-now-btn">Shop now</a>
 </section>
 <section id="products-section" class="py-5">
@@ -151,11 +64,18 @@
 	// let quantityAmount = 1;
 	let itemsInCart = 0;
 	let itemClicked;
+	let productId;
 	products.addEventListener("click", (e) => {
 		if (e.target.classList.contains("add-to-cart")) {
 			itemClicked = e.target.closest(".product-card").parentElement;
 			itemsInCart++;
 			inCart.textContent = itemsInCart;
+			productId = e.target.parentElement.parentElement.parentElement.getAttribute("id");
+
+	const productData = Products.filter(product => product.id == productId);
+
+	//console.log(productData)
+
 		}
 
 		if (itemsInCart > 0) {
@@ -178,9 +98,6 @@
 		}
 	});
 
-	
-
-	
 </script>
 
 

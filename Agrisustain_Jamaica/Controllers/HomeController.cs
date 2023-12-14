@@ -173,6 +173,11 @@ namespace Agrisustain_Jamaica.Controllers
             return View();
         }
 
+        public IActionResult Cart()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult Confirmation() 
         {
