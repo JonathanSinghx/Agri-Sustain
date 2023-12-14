@@ -26,6 +26,10 @@ ul li > a:hover {
     color: var(--clr-accent);
 }
 
+header .shopping-cart {
+    width: 30px;
+}
+
 /* Global styles*/
 .banner .right-col {
     max-height: 330px;

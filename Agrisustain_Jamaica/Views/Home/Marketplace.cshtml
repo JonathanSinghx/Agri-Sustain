@@ -96,7 +96,7 @@
 	
 	Products.map(product => {
 		document.querySelector(".products > .row").innerHTML += `
-				 <div class="col-sm-6 col-md-3 mb-3">
+				 <div id=${product.id} class="col-sm-6 col-md-3 mb-3">
 							<div class="d-flex flex-column p-3 h-100 | product-card">
 								<h3 class="produce-type card-title">${product.type}</h3>
 								<h4 class="produce-name card-subtitle mb-2 text-muted">${product.name}</h4>
