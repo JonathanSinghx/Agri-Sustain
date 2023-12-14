@@ -27,7 +27,20 @@ ul li > a:hover {
 }
 
 header .shopping-cart {
-    width: 30px;
+    width: 20px;
+}
+
+header .in-cart {
+    font-size: .8rem !important;
+    background: var(--clr-primary);
+    top: -5px;
+    right: -5px;
+    padding: .15em .6em;
+    border-radius: 50%;
+    display: inline-block;
+    color: var(--clr-neutral-light);
+    transform: scaleY(0);
+    transition: transform 500ms ease-in;
 }
 
 /* Global styles*/
