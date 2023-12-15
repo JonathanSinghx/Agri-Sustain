@@ -1,7 +1,10 @@
-﻿@* @model Agrisustain_Jamaica.Controllers.WeatherViewModel; *@
+﻿
+@* @model Agrisustain_Jamaica.Controllers.WeatherViewModel; *@
 @{
-   // await CurrentWeather.GetCurrentWeatherData();
-   // var currentWeatherCondition = CurrentWeather.GetCurrentWeatherCondition().Result.ElementAt(0);
+     var temperature = ViewData["Temperature"];
+    // var temperature = TempData["Temperature"];
+    //var temperature = HttpContext.Session.GetString("Temperature");
+
 }
 
 <!DOCTYPE html>
@@ -64,10 +67,13 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
                         </li>
                         <li class="nav-item position-relative">
-                            <a class="nav-link" href="">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Cart">
                                 <img class="shopping-cart" src="~/images/shopping-cart.png" alt="shopping cart"/>
                                 <span class="position-absolute | in-cart">0</span>
                             </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact">@temperature°C</a>
                         </li>
                         @* <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="SignUpForm">Sign Up</a>
@@ -135,7 +141,7 @@
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script type="module" src="~/js/site.js" asp-append-version="true"></script>
     <script type="module" src="~/js/Products.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

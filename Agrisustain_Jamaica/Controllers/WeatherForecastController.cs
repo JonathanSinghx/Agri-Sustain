@@ -9,6 +9,9 @@ using Microsoft.CodeAnalysis;
 using System.Text.Json;
 using System.Data;
 using System.Data.SqlClient;
+using Agrisustain_Jamaica.Data;
+using Agrisustain_Jamaica.Models.CropPlanning;
+using Microsoft.AspNetCore.Http;
 
 namespace Agrisustain_Jamaica.Controllers
 {
@@ -34,11 +37,7 @@ namespace Agrisustain_Jamaica.Controllers
 
     public class WeatherForecastController : Controller
     {
-       
-        // List<object> coords = new List<object>();
-        //GeolocationModel location = new GeolocationModel();
-        //public double Lat { get; set; } = 18.0367;
-        //public double Lng { get; set; } = -77.4859;
+        public double Temperature { get; set; }
 
         public double Lat { get; set; }
         public double Lng { get; set; }
@@ -54,80 +53,71 @@ namespace Agrisustain_Jamaica.Controllers
 
         private readonly IWeatherService _weatherService;
         private readonly IConfiguration _configuration;
-        
-        public WeatherForecastController(IWeatherService weatherForecast, IConfiguration configuration)
+        private readonly AddToAgrisustainDB _addToAgrisustainDB;
+        private readonly RetrieveFromAgrisustainDB _retrieveFromAgrisustain;
+
+        public WeatherForecastController(IWeatherService weatherForecast, IConfiguration configuration, AddToAgrisustainDB agriSustainDBContext, RetrieveFromAgrisustainDB retrieveFromAgrisustainDBContext)
         {
             _weatherService = weatherForecast;    
             _configuration = configuration;
-          
+            _addToAgrisustainDB = agriSustainDBContext;
+            _retrieveFromAgrisustain = retrieveFromAgrisustainDBContext;
+
         }
-        /*
+        
         //[HttpPost("PostCoordinates")]
 
-        //[HttpPost]
-        public JsonResult PostCoordinates(GeolocationModel data)
+        [HttpPost]
+        public JsonResult PostCoordinates([FromBody] GeolocationModel data)
         {
             double latitude = data.Latitude;
             double longitude = data.Longitude;
 
-            GeolocationModel geolocation = new GeolocationModel()
+            var geolocation  = new GeolocationModel()
             {
                 Latitude = latitude,
                 Longitude = longitude
             };
 
-            // _weatherService.GetCoordinates(latitude, longitude);
-            // await _weatherService.GetWeather(latitude, longitude);
-             _weatherService.GetWeather(
-             latitude, longitude);
 
-            var currentWeatherData =  _weatherService.GetCurrentWeatherCondition();
-            //var currentForecastData = await _weatherService.GetCurrentMainForecast();
-            //var currentWindForecastData = await _weatherService.GetCurrentWind();
-            //var currentSunriseAndSunsetData = await _weatherService.GetCurrentSunriseAndSunset();
-            //var visibilityAndTimeData = await _weatherService.GetCurrentWeatherVisibility();
-            //var currentHourlyForecastData = await _weatherService.GetHourlyWeatherForecast();
-            //var fiveDaysHourlyForecastsData = await _weatherService.GetHourlyWeatherForecasts();
+            object[] coords = new object[] {
+             latitude,
+             longitude
+     
+            };
 
-            // CurrentWeatherListItems = currentWeatherData;
-            // CurrentForecastListItems = currentForecastData;
-            // CurrentWindListItems = currentWindForecastData;
-            // CurrentSunriseAndSunsetListItems = currentSunriseAndSunsetData;
-            // CurrentVisibilityAndTimeListItems = visibilityAndTimeData;
-            // CurrentHourlyForecastListItems = currentHourlyForecastData;
-            // FiveDaysHourlyForecastListItems = fiveDaysHourlyForecastsData;
+            _addToAgrisustainDB.AddData("Coordinates", coords);
 
-            //var weatherViewModel = new WeatherViewModel
-            //{
-            //    CurrentWeatherConditionModel = CurrentWeatherListItems,
-            //    CurrentMainForecastModel = CurrentForecastListItems,
-            //    CurrentWindModel = CurrentWindListItems,
-            //    SunriseAndSunsetModel = CurrentSunriseAndSunsetListItems,
-            //    WeatherDataModel = CurrentVisibilityAndTimeListItems,
-            //    HourlyWeatherForecastModel = CurrentHourlyForecastListItems,
-            //    HourlyWeatherForecastsModel = FiveDaysHourlyForecastListItems
-
-            //};
-
-            //return View("weatherforecast/weatherforecast", weatherViewModel);
-            //HttpContext.Items["GeolocationData"] = geolocation;
-
-            //HttpContext.Items["GeolocationData"] = geolocation;
-
-            // return View(weatherViewModel);
-            return Json(currentWeatherData);
-
+          
+            return Json(new { message = "Coordinates received successfully" });
         }
 
-        */
+    
+
+        
         public async Task<IActionResult> WeatherForecast()
         {
+            //var coords = _retrieveFromAgrisustain.GetData("Coordinates");
+            //double lat = 0;
+            //double lng = 0;
 
-            //    // GeolocationModel data = Lat;
-            //    //CoordinatesModel coordinatesModel = new CoordinatesModel();
-            //    //double res1 = coordinatesModel.AccessGeolocationData()
+            //GeolocationModel location = new GeolocationModel();
+
+            //if (coords.Rows.Count > 0)
+            //{
+            //    for (int i = 0; i < coords.Rows.Count; i++)
+            //    {
+            //        lat = Convert.ToDouble(coords.Rows[i]["Latitude"]);
+            //        lng = Convert.ToDouble(coords.Rows[i]["Longitude"]);
+
+            //        location.Latitude = Convert.ToDouble(coords.Rows[i]["Latitude"]);
+            //        location.Longitude = Convert.ToDouble(coords.Rows[i]["Longitude"]);
+            //    }
+            
+
+
             await _weatherService.GetWeather(
-                Lat, Lng);
+              17.99702, -76.79358);
 
             var currentWeatherData = await _weatherService.GetCurrentWeatherCondition();
             var currentForecastData = await _weatherService.GetCurrentMainForecast();
@@ -165,6 +155,14 @@ namespace Agrisustain_Jamaica.Controllers
 
             };
 
+           
+
+
+
+            Temperature = currentForecastData.ElementAt(0).Temperature;
+            //ViewData["Temperature"] = Temperature;
+            //TempData["Temperature"] = Temperature;
+            HttpContext.Session.SetString("Temperature", Temperature.ToString());
             //    //return await Task.Run(() => View(weatherViewModel));
 
             return View(weatherViewModel);
