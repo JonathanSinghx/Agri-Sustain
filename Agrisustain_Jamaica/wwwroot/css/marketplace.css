@@ -110,15 +110,19 @@
 }
 
 .cart-info, .payment-info {
-    padding: 1em;
+    padding: 1em 3em;
     background-color: var(--clr-neutral-light);
     box-shadow: 5px 10px 22px 0px rgba(0,0,0,0.19);
     -webkit-box-shadow: 5px 10px 22px 0px rgba(0,0,0,0.19);
     -moz-box-shadow: 5px 10px 22px 0px rgba(0,0,0,0.19);
     /*border: 1px solid black;*/
 }
+
+.cart-info .delete-btn {
+    cursor: pointer;
+}
 .cart-product-img {
-    max-width: 200px;
+    max-width: 100px;
 }
 
 .cart-info {

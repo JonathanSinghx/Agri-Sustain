@@ -46,17 +46,6 @@
 
             <i asp-area="" asp-controller="Geolocation" asp-action="" class="fa-solid fa-location-crosshairs location-icon"></i>
 
-            @*  <div class="d-flex justify-content-end location">
-            <div class="position-relative search-input">
-            <div class="d-flex search">
-            <input type="search" />
-            <button>Search</button>
-            </div>
-
-            <i class="fa-solid fa-magnifying-glass search-icon"></i>
-            </div>
-
-            <i class="fa-solid fa-location-crosshairs location-icon"></i>*@
         </div>
    
         <div class="row flex-column flex-md-row weather-container">
@@ -114,7 +103,7 @@
                         </div>
                         <div class="col">
                             <p><span><i class="fa-regular fa-calendar calendar-icon"></i></span>@DateTime.Now.ToString("dddd, MMMM d, yyyy")</p>
-                            <p><span><i class="fa-solid fa-location-dot location-icon"></i></span>@Model.WeatherDataModel.ElementAt(0).Name, St. Elizabeth</p>
+                            <p><span><i class="fa-solid fa-location-dot location-icon"></i></span>@Model.WeatherDataModel.ElementAt(0).Name, Jamaica</p>
                         </div>
                     </div>
                 </div>
@@ -333,52 +322,41 @@
     </div>
 </div>
 
-@* @section Scripts {
-//     <script>
+ @section Scripts {
+    // <script>
 
-//          document.addEventListener("DOMContentLoaded", () =>
-//          {
-//              console.log("test")
-//              if (navigator.geolocation)
-//              {
-//                  navigator.geolocation.getCurrentPosition((position) =>
-//                  {
-//                      const latitude = position.coords.latitude;
-//                      const longitude = position.coords.longitude;
+    //     document.addEventListener("DOMContentLoaded", () => {
+    //         if (navigator.geolocation) {
+    //             navigator.geolocation.getCurrentPosition((position) => {
+    //                 const latitude = position.coords.latitude;
+    //                 const longitude = position.coords.longitude;
+    //                 sendCoordinatesToServer(latitude, longitude);
+    //             });
+    //         } else {
+    //             console.log('Geolocation is not supported by this browser.');
+    //         }
+    //     });
 
-//                      Call the function to send the coordinates to the backend
-//                      sendCoordinatesToServer(latitude, longitude);
-//                  });
-//              } else {
-//                      console.log('Geolocation is not supported by this browser.');
-//                     }
-//          });
+    //     function sendCoordinatesToServer(latitude, longitude) {
+    //         const data = {
+    //             Latitude: latitude,
+    //             Longitude: longitude
+    //         };
 
-//          function sendCoordinatesToServer(latitude, longitude) {
-//              const data = {
-//                  latitude: latitude,
-//                  longitude: longitude
-//              };
+    //         $.ajax({
+    //             type: 'POST',
+    //             url: "/weatherforecast/weatherforecast", // Update to the correct endpoint URL
+    //             data: JSON.stringify(data),
+    //             contentType: 'application/json',
+    //             success: function (response) {
+    //                 console.log('Coordinates sent successfully');
+    //                 console.log(response);
+    //             },
+    //             error: function (error) {
+    //                 console.error('Error sending coordinates:', error);
+    //             }
+    //         });
+    //     }
 
-//              Send the coordinates to the server using Ajax (Assuming jQuery is used)
-//              $.ajax({
-//                  type: 'POST',
-//                 url: "/weatherforecast/weatherforecast",
-//                 url: "@Url.Action("PostCoordinates")", Replace with your controller/action URL
-//                  data: JSON.stringify(data),
-//                  contentType: 'application/json',
-//                  contentType: 'html',
-//                  success: function (response) {
-
-//                      console.log('Coordinates sent successfully');
-//                      console.log(response); Log the response from the server
-//                  },
-//                  error: function (error) {
-//                      console.error('Error sending coordinates:', error);
-//                  }
-//              });
-
-//          }
-//     </script>
-// } 
-*@
+    // </script>
+} 

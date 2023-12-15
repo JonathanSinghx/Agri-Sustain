@@ -145,10 +145,15 @@ ul {
     line-height: 1.2;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     padding: 1em;
-    /*border-radius: 2em;*/
+    border-radius: 1em;
     margin-bottom: 2em;
     height: 100%;
+    transition: transform 0.3s;
 }
+
+    .blog-post:hover {
+        transform: translateY(-10px);
+    }
 
     .blog-post .article-col {
         /*background: #fff;*/
@@ -173,8 +178,9 @@ ul {
 
 .blog-post .btn-link {
     font-size: clamp(.6rem, .875rem, 1rem);
-    background: #193631;
+    background: var(--clr-primary);
     max-width: 150px;
+    border-radius: 5px;
 }
 
 .blog-post p {

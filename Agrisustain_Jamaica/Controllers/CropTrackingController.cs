@@ -98,11 +98,6 @@ namespace Agrisustain_Jamaica.Controllers
                 crop.HarvestDate
             };
 
-            // use addCrop to call entity framework dbcontext to save data to the database
-            // await agriSustainDBContext.Crops.AddAsync(crop);
-            // await agriSustainDBContext.SaveChangesAsync();
-            //AddToAgrisustainDB add = new AddToAgrisustainDB();
-            //add.AddData("Crops", data);
             return RedirectToAction("Index");
         }
 

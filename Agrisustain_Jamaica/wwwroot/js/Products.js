@@ -6,7 +6,7 @@
         "image": "../images/watermelon.png",
         "rating": 0,
         "price": 200,
-        "quantity": 10,
+        "quantity": 1,
     },
 
     {
@@ -16,7 +16,7 @@
         "image": "../images/canteloupe.png",
         "rating": 0,
         "price": 150,
-        "quantity": 10,
+        "quantity": 1,
     },
 
     {
@@ -26,7 +26,7 @@
         "image": "../images/oapple.png",
         "rating": 0,
         "price": 80,
-        "quantity": 10,
+        "quantity": 1,
     },
 
     {
@@ -36,7 +36,7 @@
         "image": "../images/whiteyam.png",
         "rating": 0,
         "price": 200,
-        "quantity": 10,
+        "quantity": 1,
     },
 
     {
@@ -46,7 +46,7 @@
         "image": "../images/yellowyam.png",
         "rating": 0,
         "price": 250,
-        "quantity": 5,
+        "quantity": 1,
     },
 
     {
@@ -56,7 +56,7 @@
         "image": "../images/sweetpotato.png",
         "rating": 0,
         "price": 250,
-        "quantity": 10,
+        "quantity": 1,
     },
 
     {
@@ -66,7 +66,7 @@
         "image": "../images/carrots.png",
         "rating": 0,
         "price": 300,
-        "quantity": 3,
+        "quantity": 1,
 
     },
 
@@ -77,7 +77,7 @@
         "image": "../images/cucumber.png",
         "rating": 0,
         "price": 80,
-        "quantity": 5,
+        "quantity": 1,
 
     },
 
@@ -88,7 +88,7 @@
         "image": "../images/cabbage.png",
         "rating": 0,
         "price": 300,
-        "quantity": 4,
+        "quantity": 1,
 
     },
 

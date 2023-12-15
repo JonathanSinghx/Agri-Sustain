@@ -61,27 +61,34 @@
 	const products = document.querySelector(".products");
 	const inCart = document.querySelector("header .in-cart");
 	const quantityInput = document.querySelector(".quantity-input > input")
-	// let quantityAmount = 1;
-	let itemsInCart = 0;
+	
+	// const cartItems = JSON.parse(localStorage.getItem("products")) || [];
+	let cart = JSON.parse(localStorage.getItem("products")) || [];
+	//let itemsInCart = 0;
 	let itemClicked;
 	let productId;
 	products.addEventListener("click", (e) => {
 		if (e.target.classList.contains("add-to-cart")) {
 			itemClicked = e.target.closest(".product-card").parentElement;
-			itemsInCart++;
-			inCart.textContent = itemsInCart;
+			// itemsInCart++;
 			productId = e.target.parentElement.parentElement.parentElement.getAttribute("id");
 
-	const productData = Products.filter(product => product.id == productId);
-	
+			const product = Products.filter(product => product.id == productId);
+			cart.push(...product)
+			
+			localStorage.setItem("products", JSON.stringify(cart))
+			cart = JSON.parse(localStorage.getItem("products"));
 
+			inCart.style.transform = "scale(1)";
+			inCart.textContent = cart.length
 	//console.log(productData)
 
 		}
 
-		if (itemsInCart > 0) {
-			inCart.style.transform = "scale(1)";
-		}
+		//localStorage.setItem("products", JSON.stringify(cart))
+
+		
+		
 
 		if(e.target.classList.contains("decrement-btn")) {
 			let quantityAmount = +e.target.closest(".quantity-input").querySelector("input").value;
@@ -98,6 +105,13 @@
 			e.target.closest(".quantity-input").querySelector("input").value = quantityAmount;
 		}
 	});
+
+
+	if (cart.length > 0) {
+		inCart.style.transform = "scale(1)";
+		inCart.textContent = cart.length
+	}
+
 
 </script>
 
