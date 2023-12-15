@@ -178,6 +178,12 @@ namespace Agrisustain_Jamaica.Controllers
             return View();
         }
 
+
+        public IActionResult StartingGarden()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult Confirmation() 
         {
